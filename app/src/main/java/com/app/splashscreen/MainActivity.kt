@@ -45,6 +45,13 @@ fun MyApp() {
     val navController = rememberNavController()
     NavHost(navController, startDestination = "splash") {
         composable("splash") { SplashScreen(navController) }
+        composable("start") {
+            com.app.splashscreen.ui.start.StartScreen {
+                navController.navigate("home") {
+                    popUpTo("start") { inclusive = true }
+                }
+            }
+        }
         composable("home") { HomeScreen() }
     }
 }
@@ -53,7 +60,7 @@ fun MyApp() {
 fun SplashScreen(navController: NavHostController) {
     LaunchedEffect(Unit) {
         kotlinx.coroutines.delay(2000)
-        navController.navigate("home") {
+        navController.navigate("start") {
             popUpTo("splash") { inclusive = true }
         }
     }
@@ -81,6 +88,7 @@ fun SplashScreen(navController: NavHostController) {
     }
 }
 
+@Preview
 @Composable
 fun HomeScreen() {
     Surface(modifier = androidx.compose.ui.Modifier.fillMaxSize()) {

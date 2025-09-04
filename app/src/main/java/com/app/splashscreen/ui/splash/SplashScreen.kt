@@ -14,8 +14,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
 import androidx.compose.material3.Surface
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import com.app.splashscreen.R
 import kotlinx.coroutines.delay
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.platform.LocalContext // Might be needed by rememberNavController indirectly
+
 
 @Composable
 fun SplashScreen(navController: NavHostController) {
@@ -45,4 +51,12 @@ fun SplashScreen(navController: NavHostController) {
             )
         }
     }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun SplashScreenPreview() {
+    val navController = rememberNavController()
+    SplashScreen(navController = navController)
 }
