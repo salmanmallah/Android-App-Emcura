@@ -33,7 +33,7 @@ fun StartScreen(onStartClick: () -> Unit) {
                 .padding(top = 60.dp, bottom = 40.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(70.dp))
             Image(
                 painter = painterResource(id = R.drawable.start_screen),
                 contentDescription = "Start Screen Illustration",
@@ -48,13 +48,13 @@ fun StartScreen(onStartClick: () -> Unit) {
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF222222)
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = "Clinical Care",
                 fontSize = 18.sp,
                 color = Color(0xFF888888)
             )
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(25.dp))
             Row(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth()

@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-// ...existing code...
 import androidx.compose.ui.tooling.preview.Preview
 import com.app.splashscreen.ui.theme.SplashscreenTheme
 
@@ -30,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.graphics.Color
+import com.app.splashscreen.ui.login.LoginScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,11 +47,12 @@ fun MyApp() {
         composable("splash") { SplashScreen(navController) }
         composable("start") {
             com.app.splashscreen.ui.start.StartScreen {
-                navController.navigate("home") {
+                navController.navigate("login") {
                     popUpTo("start") { inclusive = true }
                 }
             }
         }
+        composable("login") { LoginScreen() }
         composable("home") { HomeScreen() }
     }
 }
