@@ -44,11 +44,12 @@ fun LoginScreen() {
                 .padding(top = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Spacer(modifier = Modifier.height(50.dp))
             // Logo
             Image(
                 painter = painterResource(id = R.drawable.red_logo),
                 contentDescription = "Emcura Logo",
-                modifier = Modifier.size(220.dp)
+                modifier = Modifier.width(200.dp).height(100.dp)
             )
 //            Spacer(modifier = Modifier.height(8.dp))
 //            Text(
