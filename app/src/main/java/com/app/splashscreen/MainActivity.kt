@@ -48,7 +48,7 @@ fun MyApp() {
         composable("start") {
             com.app.splashscreen.ui.start.StartScreen {
                 navController.navigate("login") {
-                    popUpTo("start") { inclusive = true }
+                    popUpTo("start") { inclusive = false }
                 }
             }
         }
@@ -62,7 +62,7 @@ fun SplashScreen(navController: NavHostController) {
     LaunchedEffect(Unit) {
         kotlinx.coroutines.delay(2000)
         navController.navigate("start") {
-            popUpTo("splash") { inclusive = true }
+            popUpTo("splash") { inclusive = false }
         }
     }
 
