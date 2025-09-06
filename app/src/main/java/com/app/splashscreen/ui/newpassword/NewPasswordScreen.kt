@@ -1,4 +1,4 @@
-package com.app.splashscreen.ui.login
+package com.app.splashscreen.ui.newpassword
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,11 +17,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun LoginScreen(navController: NavController = rememberNavController()) {
+fun NewPasswordScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -39,6 +37,8 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
                 )
             )
     ) {
+        var newPassword by remember { mutableStateOf("") }
+        var confirmPassword by remember { mutableStateOf("") }
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -53,13 +53,6 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
                 contentDescription = "Emcura Logo",
                 modifier = Modifier.width(200.dp).height(100.dp)
             )
-//            Spacer(modifier = Modifier.height(8.dp))
-//            Text(
-//                text = "emcura medical",
-//                color = Color(0xFFC2185B),
-//                fontSize = 28.sp,
-//                fontWeight = FontWeight.Bold
-//            )
             Spacer(modifier = Modifier.height(24.dp))
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -67,7 +60,7 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
             ) {
                 Divider(modifier = Modifier.weight(1f), color = Color(0xFFBDBDBD))
                 Text(
-                    text = "  Log in  ",
+                    text = "  NEW PASSWORD  ",
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp,
                     color = Color.Black
@@ -75,61 +68,78 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
                 Divider(modifier = Modifier.weight(1f), color = Color(0xFFBDBDBD))
             }
             Spacer(modifier = Modifier.height(24.dp))
-            Text(
-                text = "Sign in using email if or username:",
-                fontWeight = FontWeight.Medium,
-                fontSize = 14.sp,
-                color = Color.Black
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            var email by remember { mutableStateOf("") }
-            var password by remember { mutableStateOf("") }
-            OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
-                label = { Text("Email/Username") },
-                leadingIcon = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.email_username),
-                        contentDescription = null,
-                        tint = Color(0xFFC2185B)
-  
-                    )
-                },
-                shape = RoundedCornerShape(24.dp),
+            Column(
                 modifier = Modifier
                     .fillMaxWidth(0.85f)
-                    .height(56.dp),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = Color(0xFFC2185B),
-                    unfocusedBorderColor = Color(0xFFE0E0E0)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+//                Text(
+//                    text = "Enter New Password:",
+//                    fontWeight = FontWeight.Medium,
+//                    fontSize = 14.sp,
+//                    color = Color.Black,
+//                )
+                Spacer(modifier = Modifier.height(8.dp))
+                OutlinedTextField(
+                    value = newPassword,
+                    onValueChange = { newPassword = it },
+                    label = { Text("New Password") },
+                    leadingIcon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.password),
+                            contentDescription = null,
+                            tint = Color(0xFFC2185B)
+                        )
+                    },
+                    visualTransformation = PasswordVisualTransformation(),
+                    shape = RoundedCornerShape(24.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(56.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = Color(0xFFC2185B),
+                        unfocusedBorderColor = Color(0xFFE0E0E0)
+                    )
                 )
-            )
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            OutlinedTextField(
-                value = password,
-                onValueChange = { password = it },
-                label = { Text("Password") },
-                leadingIcon = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.password),
-                        contentDescription = null,
-                        tint = Color(0xFFC2185B)
-                    )
-                },
-                visualTransformation = PasswordVisualTransformation(),
-                shape = RoundedCornerShape(24.dp),
+            Column(
                 modifier = Modifier
                     .fillMaxWidth(0.85f)
-                    .height(56.dp),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = Color(0xFFC2185B),
-                    unfocusedBorderColor = Color(0xFFE0E0E0)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+//                Text(
+//                    text = "Confirm Password:",
+//                    fontWeight = FontWeight.Medium,
+//                    fontSize = 14.sp,
+//                    color = Color.Black,
+//                )
+                Spacer(modifier = Modifier.height(8.dp))
+                OutlinedTextField(
+                    value = confirmPassword,
+                    onValueChange = { confirmPassword = it },
+                    label = { Text("Confirm Password") },
+                    leadingIcon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.password),
+                            contentDescription = null,
+                            tint = Color(0xFFC2185B)
+                        )
+                    },
+                    visualTransformation = PasswordVisualTransformation(),
+                    shape = RoundedCornerShape(24.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(56.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = Color(0xFFC2185B),
+                        unfocusedBorderColor = Color(0xFFE0E0E0)
+                    )
                 )
-            )
+            }
             Spacer(modifier = Modifier.height(24.dp))
             Button(
-                onClick = { /* TODO: Handle login */ },
+                onClick = { /* TODO: Handle password change */ },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFC2185B)),
                 modifier = Modifier
                     .fillMaxWidth(0.6f)
@@ -139,16 +149,12 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
             ) {
                 Text("Login", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
-            Spacer(modifier = Modifier.height(16.dp))
-            TextButton(onClick = { navController.navigate("new_password") }) {
-                Text("Forget Password?", color = Color.Gray, fontWeight = FontWeight.Bold, fontSize = 15.sp)
-            }
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun LoginScreenPreview() {
-    LoginScreen()
+fun NewPasswordScreenPreview() {
+    NewPasswordScreen()
 }

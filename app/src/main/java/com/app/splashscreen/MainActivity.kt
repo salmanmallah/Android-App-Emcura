@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.graphics.Color
 import com.app.splashscreen.ui.login.LoginScreen
+import com.app.splashscreen.ui.newpassword.NewPasswordScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,11 +49,12 @@ fun MyApp() {
         composable("start") {
             com.app.splashscreen.ui.start.StartScreen {
                 navController.navigate("login") {
-                    popUpTo("start") { inclusive = false }
+                    popUpTo("start") { inclusive = true }
                 }
             }
         }
-        composable("login") { LoginScreen() }
+        composable("login") { LoginScreen(navController) }
+        composable("new_password") { NewPasswordScreen() }
         composable("home") { HomeScreen() }
     }
 }
