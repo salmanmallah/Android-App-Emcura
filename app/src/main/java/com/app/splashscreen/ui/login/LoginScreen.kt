@@ -30,10 +30,10 @@ fun LoginScreen() {
                         Color.White,
                         Color(0xFFF8F8F8),
                         Color(0xFFFDE6EA),
-                        Color(0xFFFDE6EA)
+                        Color(0xFFD3A8AC)
                     ),
                     startY = 0f,
-                    endY = 1200f
+                    endY = 2500f
                 )
             )
     ) {
@@ -48,7 +48,7 @@ fun LoginScreen() {
             Image(
                 painter = painterResource(id = R.drawable.red_logo),
                 contentDescription = "Emcura Logo",
-                modifier = Modifier.size(150.dp)
+                modifier = Modifier.size(220.dp)
             )
 //            Spacer(modifier = Modifier.height(8.dp))
 //            Text(
@@ -90,6 +90,7 @@ fun LoginScreen() {
                         painter = painterResource(id = R.drawable.email_username),
                         contentDescription = null,
                         tint = Color(0xFFC2185B)
+  
                     )
                 },
                 shape = RoundedCornerShape(24.dp),
