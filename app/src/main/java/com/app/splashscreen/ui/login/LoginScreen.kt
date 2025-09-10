@@ -51,7 +51,7 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
             Image(
                 painter = painterResource(id = R.drawable.red_logo),
                 contentDescription = "Emcura Logo",
-                modifier = Modifier.width(200.dp).height(100.dp)
+                modifier = Modifier.width(200.dp).height(100.dp),
             )
 //            Spacer(modifier = Modifier.height(8.dp))
 //            Text(
@@ -89,11 +89,10 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
                 onValueChange = { email = it },
                 label = { Text("Email/Username") },
                 leadingIcon = {
-                    Icon(
+                    Image(
                         painter = painterResource(id = R.drawable.email_username),
                         contentDescription = null,
-                        tint = Color(0xFFC2185B)
-  
+                        modifier = Modifier.size(24.dp)
                     )
                 },
                 shape = RoundedCornerShape(24.dp),
@@ -111,10 +110,10 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
                 onValueChange = { password = it },
                 label = { Text("Password") },
                 leadingIcon = {
-                    Icon(
+                    Image(
                         painter = painterResource(id = R.drawable.password),
                         contentDescription = null,
-                        tint = Color(0xFFC2185B)
+                        modifier = Modifier.size(24.dp)
                     )
                 },
                 visualTransformation = PasswordVisualTransformation(),

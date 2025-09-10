@@ -85,10 +85,10 @@ fun NewPasswordScreen() {
                     onValueChange = { newPassword = it },
                     label = { Text("New Password") },
                     leadingIcon = {
-                        Icon(
+                        Image(
                             painter = painterResource(id = R.drawable.password),
                             contentDescription = null,
-                            tint = Color(0xFFC2185B)
+                            modifier = Modifier.size(24.dp)
                         )
                     },
                     visualTransformation = PasswordVisualTransformation(),
@@ -120,10 +120,10 @@ fun NewPasswordScreen() {
                     onValueChange = { confirmPassword = it },
                     label = { Text("Confirm Password") },
                     leadingIcon = {
-                        Icon(
+                        Image(
                             painter = painterResource(id = R.drawable.password),
                             contentDescription = null,
-                            tint = Color(0xFFC2185B)
+                            modifier = Modifier.size(24.dp)
                         )
                     },
                     visualTransformation = PasswordVisualTransformation(),
