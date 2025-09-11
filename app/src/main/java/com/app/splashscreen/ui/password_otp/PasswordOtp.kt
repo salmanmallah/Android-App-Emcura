@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -17,10 +18,13 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
+
+import androidx.navigation.NavController
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun PasswordOtpScreen() {
+fun PasswordOtpScreen(navController: NavController) {
     var code1 by remember { mutableStateOf("") }
     var code2 by remember { mutableStateOf("") }
     var code3 by remember { mutableStateOf("") }
@@ -92,7 +96,7 @@ fun PasswordOtpScreen() {
             }
             Spacer(modifier = Modifier.height(32.dp))
             Button(
-                onClick = { /* TODO: Confirm action */ },
+                onClick = { navController.navigate("new_password") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier
@@ -146,5 +150,5 @@ fun OtpTextField(value: String, onValueChange: (String) -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun PasswordOtpScreenPreview() {
-    PasswordOtpScreen()
+    PasswordOtpScreen(navController = rememberNavController())
 }

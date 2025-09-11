@@ -58,7 +58,7 @@ fun MyApp() {
         composable("new_password") { NewPasswordScreen() }
         composable("home") { HomeScreen() }
         composable("forget_password_email") { ForgetPasswordScreen(navController) }
-        composable("password_otp") { PasswordOtpScreen() }
+        composable("password_otp") { PasswordOtpScreen(navController) }
     }
 }
 
