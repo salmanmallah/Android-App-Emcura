@@ -139,7 +139,7 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
                 Text("Login", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
             Spacer(modifier = Modifier.height(16.dp))
-            TextButton(onClick = { navController.navigate("new_password") }) {
+            TextButton(onClick = { navController.navigate("forget_password_email") }) {
                 Text("Forget Password?", color = Color.Gray, fontWeight = FontWeight.Bold, fontSize = 15.sp)
             }
         }

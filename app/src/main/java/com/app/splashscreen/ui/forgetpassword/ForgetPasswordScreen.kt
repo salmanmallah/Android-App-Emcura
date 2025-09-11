@@ -10,7 +10,6 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.MaterialTheme
-// ...existing code...
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,9 +21,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 
 @Composable
-fun ForgetPasswordScreen() {
+fun ForgetPasswordScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     Box(
         modifier = Modifier
@@ -39,7 +39,7 @@ fun ForgetPasswordScreen() {
                         Color(0xFFD3A8AC)
                     ),
                     startY = 0f,
-                    endY = 1200f
+                    endY = 2000f
                 )
             )
     ) {
@@ -98,7 +98,7 @@ fun ForgetPasswordScreen() {
             )
             Spacer(modifier = Modifier.height(24.dp))
             Button(
-                onClick = { /* TODO: handle send */ },
+                onClick = { navController.navigate("password_otp") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier
@@ -114,5 +114,5 @@ fun ForgetPasswordScreen() {
 @Preview(showBackground = true)
 @Composable
 fun ForgetPasswordScreenPreview() {
-    ForgetPasswordScreen()
+    // ForgetPasswordScreen()
 }
