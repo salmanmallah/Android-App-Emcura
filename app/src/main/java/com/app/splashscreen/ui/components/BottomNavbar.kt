@@ -1,82 +1,104 @@
 package com.app.splashscreen.ui.components
 
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.Image
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.graphics.Color
-
+import androidx.compose.ui.tooling.preview.Preview
+import com.app.splashscreen.R
 
 @Composable
 fun BottomNavbar(
-    items: List<BottomNavItem>,
-    selectedIndex: Int,
-    onItemSelected: (Int) -> Unit
+    icons: List<Int>,
+    onIconClick: (Int) -> Unit,
+    centerImageResId: Int
 ) {
-    Surface(
-        color = Color.White,
-       
-        shadowElevation = 8.dp
-    ) {
-        Row(
+        Box(
             modifier = Modifier
+                .height(100.dp)
                 .fillMaxWidth()
-                .height(56.dp)
-                .background(Color.White),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
         ) {
-            items.forEachIndexed { index, item ->
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .padding(vertical = 4.dp)
-                        .weight(1f)
-                        .clickable { onItemSelected(index) }
-                ) {
-                    Icon(
-                        painter = painterResource(id = item.iconRes),
-                        contentDescription = item.label,
-                        tint = if (selectedIndex == index) item.selectedColor else item.unselectedColor,
-                        modifier = Modifier.size(28.dp)
+            // Bottom bar background
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
+                    .align(Alignment.BottomCenter)
+                    .background(
+                        color = Color(0xFFE94F4F),
+                        shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
                     )
-                    Text(
-                        text = item.label,
-                        fontSize = 11.sp,
-                        color = if (selectedIndex == index) item.selectedColor else item.unselectedColor
+            )
+
+            // Row for icons, with space for center card
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+                    .padding(horizontal = 32.dp, vertical = 24.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // Left icons
+                icons.take(icons.size / 2).forEachIndexed { index, iconRes ->
+                    Icon(
+                        painter = painterResource(id = iconRes),
+                        contentDescription = "Nav Icon $index",
+                        tint = Color.White,
+                        modifier = Modifier.size(32.dp)
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(64.dp)) // Space for center card
+
+                // Right icons
+                icons.drop(icons.size / 2).forEachIndexed { index, iconRes ->
+                    Icon(
+                        painter = painterResource(id = iconRes),
+                        contentDescription = "Nav Icon ${index + icons.size / 2}",
+                        tint = Color.White,
+                        modifier = Modifier.size(32.dp)
                     )
                 }
             }
+
+            // Center circular card
+            Image(
+                painter = painterResource(id = centerImageResId),
+                contentDescription = "Center Image",
+                modifier = Modifier
+                    .size(96.dp)
+                    .align(Alignment.BottomCenter)
+                    .offset(y = (-32).dp)
+            )
         }
-    }
 }
-
-
-data class BottomNavItem(
-    val iconRes: Int,
-    val label: String,
-    val selectedColor: Color = Color(0xFFE94F4F),
-    val unselectedColor: Color = Color(0xFFBDBDBD)
-)
-
 
 @Preview(showBackground = true)
 @Composable
 fun BottomNavbarPreview() {
-    val items = listOf(
-        BottomNavItem(iconRes = android.R.drawable.ic_menu_call, label = "Call"),
-        BottomNavItem(iconRes = android.R.drawable.ic_menu_camera, label = "Camera"),
-        BottomNavItem(iconRes = android.R.drawable.ic_menu_compass, label = "Compass")
+    BottomNavbar(
+        onIconClick = {},
+        icons = listOf(
+            R.drawable.ic_dashboard_power,
+            R.drawable.ic_dashboard_waitingroom,
+            R.drawable.ic_dashboard_support,
+            R.drawable.ic_dashboard_masseges,
+        ),
+        centerImageResId = R.drawable.ic_dashboard_bell_patientcare // Replace with your image resource
     )
-    BottomNavbar(items = items, selectedIndex = 0, onItemSelected = {})
 }
