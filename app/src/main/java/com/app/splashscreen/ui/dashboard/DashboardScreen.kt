@@ -92,7 +92,11 @@ fun DashboardScreen() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(
+    showBackground = true,
+//    widthDp = 1080,
+//    heightDp = 2400,
+)
 @Composable
 fun DashboardScreenPreview() {
 	DashboardScreen()

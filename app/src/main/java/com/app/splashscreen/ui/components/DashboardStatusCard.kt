@@ -67,6 +67,7 @@ fun DashboardStatusCard(
             // Name and location
             Column(
                 modifier = Modifier.weight(1f)
+                    .offset(x=0.dp, y=-10.dp)
             ) {
                 Text(
                     text = "Hello, $name",
@@ -93,9 +94,12 @@ fun DashboardStatusCard(
             // Edit icon
             Box(
                 modifier = Modifier
+                    .offset(x = 0.dp, y=-30.dp)
                     .size(32.dp)
                     .clip(CircleShape)
-                    .background(Color.White),
+                    .background(Color.White)
+                    ,
+
                 contentAlignment = Alignment.Center
             ) {
                 Image(
