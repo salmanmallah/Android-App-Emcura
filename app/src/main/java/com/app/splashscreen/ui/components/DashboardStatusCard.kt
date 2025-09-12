@@ -30,28 +30,28 @@ fun DashboardStatusCard(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 32.dp, start = 16.dp, end = 16.dp)
+            .padding(top = 24.dp, start = 12.dp, end = 12.dp)
     ) {
         // Card background
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(170.dp)
-                .clip(RoundedCornerShape(32.dp))
+                .height(120.dp)
+                .clip(RoundedCornerShape(24.dp))
                 .background(Color.White.copy(alpha = 0.7f))
         )
         // Card content
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(170.dp)
-                .padding(horizontal = 28.dp, vertical = 24.dp),
+                .height(120.dp)
+                .padding(horizontal = 16.dp, vertical = 12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Profile image with border
             Box(
                 modifier = Modifier
-                    .size(100.dp)
+                    .size(60.dp)
                     .clip(CircleShape)
                     .background(Color.White)
                     .border(1.dp, Color(0xFFEB474B), CircleShape),
@@ -60,10 +60,10 @@ fun DashboardStatusCard(
                 Image(
                     painter = painterResource(id = R.drawable.ic_dashboard_profile),
                     contentDescription = "Profile",
-                    modifier = Modifier.size(86.dp)
+                    modifier = Modifier.size(52.dp)
                 )
             }
-            Spacer(modifier = Modifier.width(18.dp))
+            Spacer(modifier = Modifier.width(12.dp))
             // Name and location
             Column(
                 modifier = Modifier.weight(1f)
@@ -72,28 +72,28 @@ fun DashboardStatusCard(
                     text = "Hello, $name",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 32.sp
+                    fontSize = 20.sp
                 )
-                Spacer(modifier = Modifier.height(6.dp))
+                Spacer(modifier = Modifier.height(2.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_dashboard_top_sider), // Replace with location pin icon
                         contentDescription = "Location Pin",
-                        modifier = Modifier.size(26.dp)
+                        modifier = Modifier.size(16.dp)
                     )
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = location,
                         color = Color.White,
-                        fontSize = 20.sp
+                        fontSize = 12.sp
                     )
                 }
             }
-            Spacer(modifier = Modifier.width(18.dp))
+            Spacer(modifier = Modifier.width(12.dp))
             // Edit icon
             Box(
                 modifier = Modifier
-                    .size(60.dp)
+                    .size(32.dp)
                     .clip(CircleShape)
                     .background(Color.White),
                 contentAlignment = Alignment.Center
@@ -101,11 +101,10 @@ fun DashboardStatusCard(
                 Image(
                     painter = painterResource(id = R.drawable.ic_dashboard_edit),
                     contentDescription = "Edit",
-                    modifier = Modifier.size(34.dp)
+                    modifier = Modifier.size(18.dp)
                 )
             }
         }
-        // Removed bell and sider icons from top left and right
     }
 }
 

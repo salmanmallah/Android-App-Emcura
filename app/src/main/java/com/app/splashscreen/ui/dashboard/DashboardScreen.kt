@@ -24,6 +24,7 @@ import com.app.splashscreen.ui.components.SearchBar
 import com.app.splashscreen.ui.components.DashboardIconGrid
 import com.app.splashscreen.ui.components.BottomNavbar
 import androidx.compose.runtime.Composable
+import com.app.splashscreen.ui.components.DashboardStatusCard
 
 
 
@@ -40,17 +41,14 @@ fun DashboardScreen() {
             modifier = Modifier
                 .size(180.dp)
                 .align(Alignment.TopEnd)
-                .offset(x = (-16).dp, y = -16.dp),
+                .offset(x = (-16).dp, y = 16.dp),
             alpha = 0.25f // subtle overlay
         )
-
-
-
         // Top icons row
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 40.dp, start = 24.dp, end = 24.dp)
+                .padding(top = 24.dp, start = 24.dp, end = 24.dp)
                 .align(Alignment.TopCenter),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
@@ -66,14 +64,15 @@ fun DashboardScreen() {
                 modifier = Modifier.size(40.dp)
             )
         }
+        // Add DashboardStatusCard below top icons
         Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.TopCenter
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.TopCenter)
+                .padding(top = 80.dp) // space below icons
         ) {
-            // Place your status card here
-//            DashboardStatusCard()
+            DashboardStatusCard()
         }
-        // Bottom navbar
         Box(
             modifier = Modifier
                 .fillMaxWidth()
