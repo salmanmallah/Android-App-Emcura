@@ -40,9 +40,32 @@ fun DashboardScreen() {
             modifier = Modifier
                 .size(180.dp)
                 .align(Alignment.TopEnd)
-                .offset(x = (-16).dp, y = 16.dp),
+                .offset(x = (-16).dp, y = -16.dp),
             alpha = 0.25f // subtle overlay
         )
+
+
+
+        // Top icons row
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, start = 24.dp, end = 24.dp)
+                .align(Alignment.TopCenter),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_dashboard_top_sider),
+                contentDescription = "Menu",
+                modifier = Modifier.size(40.dp)
+            )
+            Image(
+                painter = painterResource(id = R.drawable.ic_dashboard_bell),
+                contentDescription = "Notifications",
+                modifier = Modifier.size(40.dp)
+            )
+        }
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.TopCenter
