@@ -65,28 +65,39 @@ fun DashboardScreen() {
             )
         }
         // Add DashboardStatusCard below top icons
-        Box(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.TopCenter)
-                .padding(top = 80.dp) // space below icons
+                .fillMaxSize()
+//                .background(Color(0xFFF5F5F5)), // optional background
+                    ,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // Top icons ke liye space
+            Spacer(modifier = Modifier.height(80.dp))
+
+            // Dashboard Status Card
             DashboardStatusCard()
-        }
 
+            // Card aur neeche container ke beech gap
+            Spacer(modifier = Modifier.height(16.dp))
 
-        // Center grid: white rounded container below status card, extends to bottom
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.7f) // fraction -> adjust karo (0.8f = 80% screen height)
-                .align(Alignment.BottomCenter) // neeche chipka do
-                .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
-                .background(Color.White)
-        ) {
-            // Add your grid/content here
-
-            //
+            // White rounded container
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f) // bacha hua height le lega, har screen pe adjust hoga
+                    .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
+                    .background(Color.White)
+            ) {
+                // Add your grid/content here
+                SearchBar(
+                    value = "",
+                    onValueChange = {},
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp, vertical = 24.dp)
+                )
+            }
         }
 
 
