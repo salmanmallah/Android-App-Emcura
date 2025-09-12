@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -28,17 +29,28 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun DashboardScreen() {
-	Box(
-		modifier = Modifier.fillMaxSize().background(Color(0xFFF5F5F5)),
-		contentAlignment = Alignment.Center
-	) {
-		Text(
-			text = "Dashboard",
-			color = Color(0xFFEB474B),
-			fontWeight = FontWeight.Bold,
-			fontSize = 32.sp
-		)
-	}
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(colorResource(id = R.color.dashboard_background))
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_dashboard_background_pattern),
+            contentDescription = null,
+            modifier = Modifier
+                .size(250.dp)
+                .align(Alignment.TopEnd)
+                .offset(x = (-16).dp, y = -16.dp),
+            alpha = 0.25f // subtle overlay
+        )
+
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DashboardScreenPreview() {
+	DashboardScreen()
 }
 
 
