@@ -81,12 +81,14 @@ fun DashboardStatusCard(
                         painter = painterResource(id = R.drawable.ic_dashboard_location), // Replace with location pin icon
                         contentDescription = "Location Pin",
                         modifier = Modifier.size(16.dp)
+                            .offset(x=-5.dp , y = 0.dp)
                     )
-                    Spacer(modifier = Modifier.width(4.dp))
+                    Spacer(modifier = Modifier.width(0.dp))
                     Text(
                         text = location,
                         color = Color.White,
                         fontSize = 12.sp
+
                     )
                 }
             }
