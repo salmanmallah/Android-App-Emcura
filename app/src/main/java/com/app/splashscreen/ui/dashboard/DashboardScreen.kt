@@ -38,12 +38,35 @@ fun DashboardScreen() {
             painter = painterResource(id = R.drawable.ic_dashboard_background_pattern),
             contentDescription = null,
             modifier = Modifier
-                .size(250.dp)
+                .size(180.dp)
                 .align(Alignment.TopEnd)
-                .offset(x = (-16).dp, y = -16.dp),
+                .offset(x = (-16).dp, y = 16.dp),
             alpha = 0.25f // subtle overlay
         )
-
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.TopCenter
+        ) {
+            // Place your status card here
+//            DashboardStatusCard()
+        }
+        // Bottom navbar
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+        ) {
+            BottomNavbar(
+                icons = listOf(
+                    R.drawable.ic_dashboard_power,
+                    R.drawable.ic_dashboard_waitingroom,
+                    R.drawable.ic_dashboard_support,
+                    R.drawable.ic_dashboard_masseges,
+                ),
+                centerImageResId = R.drawable.ic_dashboard_bell_patientcare,
+                onIconClick = {}
+            )
+        }
     }
 }
 
