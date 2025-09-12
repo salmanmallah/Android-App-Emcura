@@ -39,9 +39,9 @@ fun DashboardScreen() {
             painter = painterResource(id = R.drawable.ic_dashboard_background_pattern),
             contentDescription = null,
             modifier = Modifier
-                .size(180.dp)
+                .size(280.dp)
                 .align(Alignment.TopEnd)
-                .offset(x = (-16).dp, y = 16.dp),
+                .offset(x = (-16).dp, y = -16.dp),
             alpha = 0.25f // subtle overlay
         )
         // Top icons row
@@ -73,6 +73,24 @@ fun DashboardScreen() {
         ) {
             DashboardStatusCard()
         }
+
+
+        // Center grid: white rounded container below status card, extends to bottom
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.7f) // fraction -> adjust karo (0.8f = 80% screen height)
+                .align(Alignment.BottomCenter) // neeche chipka do
+                .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
+                .background(Color.White)
+        ) {
+            // Add your grid/content here
+        }
+
+
+
+
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -89,6 +107,8 @@ fun DashboardScreen() {
                 onIconClick = {}
             )
         }
+
+
     }
 }
 
