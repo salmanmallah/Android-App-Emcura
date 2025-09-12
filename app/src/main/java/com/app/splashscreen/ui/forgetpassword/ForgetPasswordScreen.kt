@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun ForgetPasswordScreen(navController: NavController) {
@@ -114,5 +115,5 @@ fun ForgetPasswordScreen(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun ForgetPasswordScreenPreview() {
-    // ForgetPasswordScreen()
+     ForgetPasswordScreen(navController = rememberNavController())
 }
