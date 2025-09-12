@@ -67,18 +67,18 @@ fun DashboardStatusCard(
             // Name and location
             Column(
                 modifier = Modifier.weight(1f)
-                    .offset(x=0.dp, y=-10.dp)
+                    .offset(x=0.dp, y=-5.dp)
             ) {
                 Text(
                     text = "Hello, $name",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp
+                    fontSize = 16.sp
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Image(
-                        painter = painterResource(id = R.drawable.ic_dashboard_top_sider), // Replace with location pin icon
+                        painter = painterResource(id = R.drawable.ic_dashboard_location), // Replace with location pin icon
                         contentDescription = "Location Pin",
                         modifier = Modifier.size(16.dp)
                     )
