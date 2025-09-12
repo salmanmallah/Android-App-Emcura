@@ -17,9 +17,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun NewPasswordScreen() {
+fun NewPasswordScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -139,7 +141,7 @@ fun NewPasswordScreen() {
             }
             Spacer(modifier = Modifier.height(24.dp))
             Button(
-                onClick = { /* TODO: Handle password change */ },
+                onClick = { navController.navigate("dashboard") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFC2185B)),
                 modifier = Modifier
                     .fillMaxWidth(0.6f)
@@ -147,7 +149,7 @@ fun NewPasswordScreen() {
                 shape = RoundedCornerShape(8.dp),
                 elevation = ButtonDefaults.buttonElevation(defaultElevation = 8.dp)
             ) {
-                Text("Login", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Text("Reset Password", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
         }
     }
@@ -156,5 +158,5 @@ fun NewPasswordScreen() {
 @Preview(showBackground = true)
 @Composable
 fun NewPasswordScreenPreview() {
-    NewPasswordScreen()
+    NewPasswordScreen(navController = rememberNavController())
 }

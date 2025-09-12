@@ -33,6 +33,9 @@ import com.app.splashscreen.ui.login.LoginScreen
 import com.app.splashscreen.ui.newpassword.NewPasswordScreen
 import com.app.splashscreen.ui.forgetpassword.ForgetPasswordScreen
 import com.app.splashscreen.ui.password_otp.PasswordOtpScreen
+import com.app.splashscreen.ui.dashboard.DashboardScreen
+
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,10 +58,11 @@ fun MyApp() {
             }
         }
         composable("login") { LoginScreen(navController) }
-        composable("new_password") { NewPasswordScreen() }
+        composable("new_password") { NewPasswordScreen(navController) }
         composable("home") { HomeScreen() }
         composable("forget_password_email") { ForgetPasswordScreen(navController) }
         composable("password_otp") { PasswordOtpScreen(navController) }
+        composable("dashboard") { DashboardScreen() }
     }
 }
 
