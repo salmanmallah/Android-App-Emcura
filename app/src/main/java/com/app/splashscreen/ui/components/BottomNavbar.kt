@@ -27,65 +27,65 @@ fun BottomNavbar(
     onIconClick: (Int) -> Unit,
     centerImageResId: Int
 ) {
+    Box(
+        modifier = Modifier
+            .height(68.dp)
+            .fillMaxWidth()
+    ) {
+        // Bottom bar background
         Box(
             modifier = Modifier
-                .height(100.dp)
                 .fillMaxWidth()
+                .height(52.dp)
+                .align(Alignment.BottomCenter)
+                .background(
+                    color = Color(0xFFE94F4F),
+                    shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+                )
+        )
+
+        // Row for icons, with space for center card
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+                .padding(horizontal = 24.dp, vertical = 12.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            // Bottom bar background
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(80.dp)
-                    .align(Alignment.BottomCenter)
-                    .background(
-                        color = Color(0xFFE94F4F),
-                        shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
-                    )
-            )
-
-            // Row for icons, with space for center card
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.BottomCenter)
-                    .padding(horizontal = 32.dp, vertical = 24.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                // Left icons
-                icons.take(icons.size / 2).forEachIndexed { index, iconRes ->
-                    Icon(
-                        painter = painterResource(id = iconRes),
-                        contentDescription = "Nav Icon $index",
-                        tint = Color.White,
-                        modifier = Modifier.size(32.dp)
-                    )
-                }
-
-                Spacer(modifier = Modifier.width(64.dp)) // Space for center card
-
-                // Right icons
-                icons.drop(icons.size / 2).forEachIndexed { index, iconRes ->
-                    Icon(
-                        painter = painterResource(id = iconRes),
-                        contentDescription = "Nav Icon ${index + icons.size / 2}",
-                        tint = Color.White,
-                        modifier = Modifier.size(32.dp)
-                    )
-                }
+            // Left icons
+            icons.take(icons.size / 2).forEachIndexed { index, iconRes ->
+                Icon(
+                    painter = painterResource(id = iconRes),
+                    contentDescription = "Nav Icon $index",
+                    tint = Color.White,
+                    modifier = Modifier.size(22.dp)
+                )
             }
 
-            // Center circular card
-            Image(
-                painter = painterResource(id = centerImageResId),
-                contentDescription = "Center Image",
-                modifier = Modifier
-                    .size(96.dp)
-                    .align(Alignment.BottomCenter)
-                    .offset(y = (-32).dp)
-            )
+            Spacer(modifier = Modifier.width(38.dp)) // Space for center card
+
+            // Right icons
+            icons.drop(icons.size / 2).forEachIndexed { index, iconRes ->
+                Icon(
+                    painter = painterResource(id = iconRes),
+                    contentDescription = "Nav Icon ${index + icons.size / 2}",
+                    tint = Color.White,
+                    modifier = Modifier.size(22.dp)
+                )
+            }
         }
+
+        // Center circular card
+        Image(
+            painter = painterResource(id = centerImageResId),
+            contentDescription = "Center Image",
+            modifier = Modifier
+                .size(70.dp)
+                .align(Alignment.BottomCenter)
+                .offset(y = (-18).dp)
+        )
+    }
 }
 
 @Preview(showBackground = true)
