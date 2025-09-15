@@ -65,11 +65,10 @@ fun DashboardScreen() {
             )
         }
         // Add DashboardStatusCard below top icons
+
         Column(
             modifier = Modifier
-                .fillMaxSize()
-//                .background(Color(0xFFF5F5F5)), // optional background
-                    ,
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Top icons ke liye space
@@ -97,9 +96,24 @@ fun DashboardScreen() {
                         .fillMaxWidth()
                         .padding(horizontal = 24.dp, vertical = 24.dp)
                 )
+//                Spacer(modifier = Modifier.height(120.dp))
+//                DashboardIconGrid(
+//                    icons = listOf(
+//                        R.drawable.ic_dashboard_connect,
+//                        R.drawable.ic_dashboard_mic,
+//                        R.drawable.ic_dashboard_prescription,
+//                        R.drawable.ic_dashboard_call,
+//                        R.drawable.ic_dashboard_connect,
+//                        R.drawable.ic_dashboard_refill
+//                    )
+//                )
+
+
+
+                // dashboard icons grid
+
             }
         }
-
 
 
 
