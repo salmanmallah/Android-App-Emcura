@@ -20,28 +20,23 @@ fun DashboardIconGrid(
     icons: List<Int>,
     modifier: Modifier = Modifier
 ) {
+    val iconsPerRow = 3
+    val rows = icons.chunked(iconsPerRow)
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(24.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            DashboardCircleIcon(icons[0], Modifier.weight(1f))
-            DashboardCircleIcon(icons[1], Modifier.weight(1f))
-            DashboardCircleIcon(icons[2], Modifier.weight(1f))
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            DashboardCircleIcon(icons[3], Modifier.weight(1f))
-            DashboardCircleIcon(icons[4], Modifier.weight(1f))
-            DashboardCircleIcon(icons[5], Modifier.weight(1f))
+        rows.forEach { rowIcons ->
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                rowIcons.forEach { iconResId ->
+                    DashboardCircleIcon(iconResId, Modifier.size(48.dp))
+                }
+            }
         }
     }
 }
@@ -51,8 +46,8 @@ fun DashboardCircleIcon(iconResId: Int, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .aspectRatio(1f)
-            .padding(8.dp)
-            .shadow(12.dp, CircleShape)
+            .padding(4.dp)
+            .shadow(8.dp, CircleShape)
             .background(color = MaterialTheme.colorScheme.background, shape = CircleShape)
             .clip(CircleShape),
         contentAlignment = Alignment.Center
@@ -61,7 +56,7 @@ fun DashboardCircleIcon(iconResId: Int, modifier: Modifier = Modifier) {
             painter = painterResource(id = iconResId),
             contentDescription = null,
             modifier = Modifier
-                .fillMaxSize(0.65f)
+                .fillMaxSize(0.6f)
                 .clip(CircleShape)
         )
     }

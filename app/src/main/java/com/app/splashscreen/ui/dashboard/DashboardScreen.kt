@@ -56,12 +56,12 @@ fun DashboardScreen() {
             Image(
                 painter = painterResource(id = R.drawable.ic_dashboard_top_sider),
                 contentDescription = "Menu",
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(25.dp)
             )
             Image(
                 painter = painterResource(id = R.drawable.ic_dashboard_bell),
                 contentDescription = "Notifications",
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(25.dp)
             )
         }
         // Add DashboardStatusCard below top icons
@@ -72,7 +72,7 @@ fun DashboardScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Top icons ke liye space
-            Spacer(modifier = Modifier.height(80.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
             // Dashboard Status Card
             DashboardStatusCard()
@@ -88,25 +88,31 @@ fun DashboardScreen() {
                     .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
                     .background(Color.White)
             ) {
-                // Add your grid/content here
-                SearchBar(
-                    value = "",
-                    onValueChange = {},
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 24.dp, vertical = 24.dp)
-                )
-//                Spacer(modifier = Modifier.height(120.dp))
-//                DashboardIconGrid(
-//                    icons = listOf(
-//                        R.drawable.ic_dashboard_connect,
-//                        R.drawable.ic_dashboard_mic,
-//                        R.drawable.ic_dashboard_prescription,
-//                        R.drawable.ic_dashboard_call,
-//                        R.drawable.ic_dashboard_connect,
-//                        R.drawable.ic_dashboard_refill
-//                    )
-//                )
+                        .padding(horizontal = 24.dp, vertical = 24.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    SearchBar(
+                        value = "",
+                        onValueChange = {},
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(32.dp))
+                    // this grid is overlaping the on the search bar search bar k bad ye grid ani chahiye.
+                    DashboardIconGrid(
+                        icons = listOf(
+                            R.drawable.ic_dashboard_connect,
+                            R.drawable.ic_dashboard_mic,
+                            R.drawable.ic_dashboard_prescription,
+                            R.drawable.ic_dashboard_call,
+                            R.drawable.ic_dashboard_connect,
+                            R.drawable.ic_dashboard_refill
+                        )
+                    )
+                }
 
 
 
