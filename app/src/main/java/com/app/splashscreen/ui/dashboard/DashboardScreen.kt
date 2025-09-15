@@ -112,6 +112,17 @@ fun DashboardScreen() {
                             R.drawable.ic_dashboard_refill
                         )
                     )
+
+
+                    // ic_dashboard_card.png ye image lagao yahan par
+                    Spacer(modifier = Modifier.height(32.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_dashboard_card),
+                        contentDescription = "Dashboard Card",
+//                        modifier = Modifier
+//                            .size(70.dp)
+//                            .align(Alignment.Center),
+                    )
                 }
 
 

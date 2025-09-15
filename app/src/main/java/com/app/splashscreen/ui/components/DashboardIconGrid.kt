@@ -34,7 +34,7 @@ fun DashboardIconGrid(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 rowIcons.forEach { iconResId ->
-                    DashboardCircleIcon(iconResId, Modifier.size(48.dp))
+                    DashboardCircleIcon(iconResId, Modifier.size(70.dp))
                 }
             }
         }
