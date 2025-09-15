@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,17 +31,20 @@ fun SearchBar(
             Text(
                 text = "Search",
                 color = Color(0xFFBDBDBD),
-                fontSize = 20.sp,
-                modifier = Modifier.padding(start = 4.dp)
+                fontSize = 16.sp
             )
         },
         singleLine = true,
+        textStyle = TextStyle(
+            fontSize = 16.sp,
+            lineHeight = 20.sp // 👈 ensures text sits higher
+        ),
         trailingIcon = {
             Icon(
                 painter = painterResource(id = R.drawable.ic_dashboard_search),
                 contentDescription = "Search Icon",
                 tint = Color(0xFFBDBDBD),
-                modifier = Modifier.size(28.dp)
+                modifier = Modifier.size(20.dp)
             )
         },
         colors = TextFieldDefaults.colors(
@@ -53,12 +57,18 @@ fun SearchBar(
         ),
         modifier = modifier
             .fillMaxWidth()
-            .height(64.dp)
-            .shadow(18.dp, RoundedCornerShape(32.dp))
-            .background(Color.White, RoundedCornerShape(32.dp))
+            .height(48.dp)
+            .shadow(
+                elevation = 6.dp,
+                shape = RoundedCornerShape(24.dp),
+                clip = true
+            )
+            .background(Color.White, RoundedCornerShape(24.dp))
             .padding(horizontal = 8.dp)
     )
 }
+
+
 
 @Preview(showBackground = true)
 @Composable

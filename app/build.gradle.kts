@@ -54,6 +54,7 @@ dependencies {
         // Material Components for Android (Material Design)
         implementation("com.google.android.material:material:1.12.0")
     implementation(libs.androidx.foundation)
+    implementation(libs.androidx.ui.text)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
