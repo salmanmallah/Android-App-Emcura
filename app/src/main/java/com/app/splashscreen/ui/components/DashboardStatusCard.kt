@@ -30,22 +30,22 @@ fun DashboardStatusCard(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 24.dp, start = 12.dp, end = 12.dp)
+            .padding(top = 12.dp, start = 12.dp, end = 12.dp)
     ) {
         // Card background
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(120.dp)
-                .clip(RoundedCornerShape(24.dp))
+                .height(90.dp)
+                .clip(RoundedCornerShape(16.dp))
                 .background(Color.White.copy(alpha = 0.7f))
         )
         // Card content
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(120.dp)
-                .padding(horizontal = 16.dp, vertical = 12.dp),
+                .height(72.dp)
+                .padding(horizontal = 10.dp, vertical = 6.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Profile image with border
@@ -63,51 +63,49 @@ fun DashboardStatusCard(
                     modifier = Modifier.size(52.dp)
                 )
             }
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(8.dp))
             // Name and location
             Column(
                 modifier = Modifier.weight(1f)
-                    .offset(x=0.dp, y=-5.dp)
+                    .offset(x=0.dp, y=-2.dp)
             ) {
                 Text(
                     text = "Hello, $name",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 15.sp
                 )
-                Spacer(modifier = Modifier.height(2.dp))
+                Spacer(modifier = Modifier.height(1.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_dashboard_location), // Replace with location pin icon
                         contentDescription = "Location Pin",
-                        modifier = Modifier.size(16.dp)
-                            .offset(x=-5.dp , y = 0.dp)
+                        modifier = Modifier.size(12.dp)
+                            .offset(x=-3.dp , y = 0.dp)
                     )
                     Spacer(modifier = Modifier.width(0.dp))
                     Text(
                         text = location,
                         color = Color.White,
                         fontSize = 12.sp
-
                     )
                 }
             }
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(8.dp))
             // Edit icon
             Box(
                 modifier = Modifier
-                    .offset(x = 0.dp, y=-30.dp)
-                    .size(32.dp)
+                    .offset(x = 0.dp, y=-16.dp)
+                    .size(22.dp)
                     .clip(CircleShape)
                     .background(Color.White)
-                    ,
-
+                ,
                 contentAlignment = Alignment.Center
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_dashboard_edit),
                     contentDescription = "Edit",
-                    modifier = Modifier.size(18.dp)
+                    modifier = Modifier.size(12.dp)
                 )
             }
         }
