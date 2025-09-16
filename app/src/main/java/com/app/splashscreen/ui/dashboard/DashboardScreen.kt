@@ -104,12 +104,12 @@ fun DashboardScreen() {
                     // this grid is overlaping the on the search bar search bar k bad ye grid ani chahiye.
                     DashboardIconGrid(
                         icons = listOf(
-                            R.drawable.ic_dashboard_connect,
-                            R.drawable.ic_dashboard_mic,
-                            R.drawable.ic_dashboard_prescription,
-                            R.drawable.ic_dashboard_call,
-                            R.drawable.ic_dashboard_connect,
-                            R.drawable.ic_dashboard_refill
+                            R.drawable.ic_dashboard_connect to "Doc to Doc",
+                            R.drawable.ic_dashboard_mic to "Clinic Patient",
+                            R.drawable.ic_dashboard_prescription to "My Prescriptions",
+                            R.drawable.ic_dashboard_call to "Call History",
+                            R.drawable.ic_dashboard_connect to "Instant Connect",
+                            R.drawable.ic_dashboard_refill to "Refill Request"
                         )
                     )
 
