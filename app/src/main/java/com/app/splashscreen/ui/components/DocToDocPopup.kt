@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -60,7 +61,7 @@ fun DocToDocPopup(
                 Text(
                     text = "Please Select a below option  to view\nDoctor Care Providers",
                     fontWeight = FontWeight.SemiBold,
-                    fontSize = 15.sp,
+                    fontSize = 14.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Center
                 )
@@ -78,7 +79,7 @@ fun DocToDocPopup(
                 ) {
                     Button(
                         onClick = onDocToDocClick,
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
+                        colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.instant_connect_button)),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.weight(1f).height(44.dp)
                     ) {
@@ -86,7 +87,7 @@ fun DocToDocPopup(
                     }
                     Button(
                         onClick = onDocToCpClick,
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
+                        colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.instant_connect_button)),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.weight(1f).height(44.dp)
                     ) {
