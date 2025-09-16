@@ -31,65 +31,64 @@ fun DocToDocPopup(
     Dialog(onDismissRequest = onDismiss) {
         Box(
             modifier = Modifier
-                .fillMaxWidth(0.9f)
-                .clip(RoundedCornerShape(28.dp))
+                .width(320.dp)
+                .wrapContentHeight()
+                .clip(RoundedCornerShape(20.dp))
                 .background(Color.White)
         ) {
             // Pattern background
             Image(
                 painter = painterResource(id = R.drawable.ic_dashboard_background_pattern),
                 contentDescription = null,
-                contentScale = ContentScale.Crop, // 👈 prevent stretching
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .fillMaxSize()
-                    .clip(RoundedCornerShape(28.dp))
+                    .matchParentSize()
+                    .clip(RoundedCornerShape(20.dp))
             )
-
             // White scrim overlay for readability
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .matchParentSize()
                     .background(Color.White.copy(alpha = 0.85f))
             )
-
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 32.dp, horizontal = 18.dp),
+                    .padding(vertical = 24.dp, horizontal = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Please select an option below to view\nDoctor Care Providers",
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 16.sp,
+                    text = "Please Select a below option  to view\nDoctor Care Providers",
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 15.sp,
                     color = Color.Black,
                     textAlign = TextAlign.Center
                 )
-                Spacer(modifier = Modifier.height(18.dp))
+                Spacer(modifier = Modifier.height(14.dp))
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(2.dp)
                         .background(Color(0xFFE94F4F))
                 )
-                Spacer(modifier = Modifier.height(18.dp))
+                Spacer(modifier = Modifier.height(14.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     Button(
                         onClick = onDocToDocClick,
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
-                        shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier.weight(1f)
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier.weight(1f).height(44.dp)
                     ) {
                         IconWithText(text = "DOC TO DOC")
                     }
                     Button(
                         onClick = onDocToCpClick,
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
-                        shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier.weight(1f)
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier.weight(1f).height(44.dp)
                     ) {
                         IconWithText(text = "DOC TO CP")
                     }
@@ -105,14 +104,14 @@ private fun IconWithText(text: String) {
         Image(
             painter = painterResource(id = R.drawable.ic_dashboard_bell_patientcare),
             contentDescription = null,
-            modifier = Modifier.size(20.dp)
+            modifier = Modifier.size(18.dp)
         )
-        Spacer(modifier = Modifier.width(6.dp))
+        Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = text,
             color = Color.White,
             fontWeight = FontWeight.SemiBold,
-            fontSize = 13.sp
+            fontSize = 12.sp
         )
     }
 }
