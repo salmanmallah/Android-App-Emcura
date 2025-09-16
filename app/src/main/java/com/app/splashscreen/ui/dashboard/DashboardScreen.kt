@@ -4,8 +4,10 @@ package com.app.splashscreen.ui.dashboard
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -80,13 +82,17 @@ fun DashboardScreen() {
             // Card aur neeche container ke beech gap
             Spacer(modifier = Modifier.height(16.dp))
 
+
+
+
             // White rounded container
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f) // bacha hua height le lega, har screen pe adjust hoga
+                    .weight(1f)
                     .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
                     .background(Color.White)
+                    .verticalScroll(rememberScrollState()) // scroll added to the container
             ) {
                 Column(
                     modifier = Modifier
@@ -97,11 +103,11 @@ fun DashboardScreen() {
                     SearchBar(
                         value = "",
                         onValueChange = {},
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth()
                     )
-                    Spacer(modifier = Modifier.height(32.dp))
-                    // this grid is overlaping the on the search bar search bar k bad ye grid ani chahiye.
+
+                    Spacer(modifier = Modifier.height(25.dp))
+
                     DashboardIconGrid(
                         icons = listOf(
                             R.drawable.ic_dashboard_connect to "Doc to Doc",
@@ -113,23 +119,18 @@ fun DashboardScreen() {
                         )
                     )
 
+                    Spacer(modifier = Modifier.height(25.dp))
 
-                    // ic_dashboard_card.png ye image lagao yahan par
-                    Spacer(modifier = Modifier.height(32.dp))
                     Image(
                         painter = painterResource(id = R.drawable.ic_dashboard_card),
-                        contentDescription = "Dashboard Card",
-//                        modifier = Modifier
-//                            .size(70.dp)
-//                            .align(Alignment.Center),
+                        contentDescription = "Dashboard Card"
                     )
+                    Spacer(modifier = Modifier.height(200.dp))
                 }
+            } // end of White rounded container
 
 
 
-                // dashboard icons grid
-
-            } // end of white rounded container
         }
 
 
