@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -39,8 +40,8 @@ fun BottomNavbar(
                 .height(52.dp)
                 .align(Alignment.BottomCenter)
                 .background(
-                    color = Color(0xFFE94F4F),
-                    shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+                    color = colorResource( R.color.instant_connect_button),
+                    shape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)
                 )
         )
 
@@ -59,7 +60,7 @@ fun BottomNavbar(
                     painter = painterResource(id = iconRes),
                     contentDescription = "Nav Icon $index",
                     tint = Color.White,
-                    modifier = Modifier.size(22.dp)
+                    modifier = Modifier.size(30.dp)
                 )
             }
 
@@ -81,7 +82,7 @@ fun BottomNavbar(
             painter = painterResource(id = centerImageResId),
             contentDescription = "Center Image",
             modifier = Modifier
-                .size(70.dp)
+                .size(100.dp)
                 .align(Alignment.BottomCenter)
                 .offset(y = (-18).dp)
         )
