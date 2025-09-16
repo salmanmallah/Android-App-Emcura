@@ -30,7 +30,7 @@ fun BottomNavbar(
 ) {
     Box(
         modifier = Modifier
-            .height(68.dp)
+            .height(75.dp)
             .fillMaxWidth()
     ) {
         // Bottom bar background
@@ -84,7 +84,7 @@ fun BottomNavbar(
             modifier = Modifier
                 .size(100.dp)
                 .align(Alignment.BottomCenter)
-                .offset(y = (-18).dp)
+                .offset(y = (-15).dp)
         )
     }
 }

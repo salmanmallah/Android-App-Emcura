@@ -129,7 +129,7 @@ fun DashboardScreen() {
 
                 // dashboard icons grid
 
-            }
+            } // end of white rounded container
         }
 
 
