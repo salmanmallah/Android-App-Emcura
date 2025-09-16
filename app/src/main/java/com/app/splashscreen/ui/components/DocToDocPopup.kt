@@ -141,7 +141,7 @@ private fun IconWithText(text: String) {
             text = text,
             color = Color.White,
             fontWeight = FontWeight.SemiBold,
-            fontSize = 12.sp
+            fontSize = 10.sp
         )
     }
 }

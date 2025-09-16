@@ -2,6 +2,7 @@ package com.app.splashscreen.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
@@ -21,7 +22,8 @@ import com.app.splashscreen.R
 @Composable
 fun DashboardIconGrid(
     icons: List<Pair<Int, String>>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onIconClick: ((Int) -> Unit)? = null
 ) {
     val iconsPerRow = 3
     val rows = icons.chunked(iconsPerRow)
@@ -31,16 +33,20 @@ fun DashboardIconGrid(
         verticalArrangement = Arrangement.spacedBy(18.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        rows.forEach { rowIcons ->
+        rows.forEachIndexed { rowIndex, rowIcons ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                rowIcons.forEach { (iconResId, label) ->
+                rowIcons.forEachIndexed { colIndex, (iconResId, label) ->
+                    val iconIndex = rowIndex * iconsPerRow + colIndex
                     DashboardCircleIconWithLabel(
                         iconResId = iconResId,
-                        label = label
+                        label = label,
+                        modifier = Modifier.then(
+                            if (onIconClick != null) Modifier.clickable { onIconClick(iconIndex) } else Modifier
+                        )
                     )
                 }
             }

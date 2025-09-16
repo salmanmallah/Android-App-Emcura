@@ -32,6 +32,7 @@ import com.app.splashscreen.ui.components.DashboardStatusCard
 
 @Composable
 fun DashboardScreen() {
+    var showDocToDocPopup by remember { mutableStateOf(false) }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -116,8 +117,18 @@ fun DashboardScreen() {
                             R.drawable.ic_dashboard_call to "Call History",
                             R.drawable.ic_dashboard_connect to "Instant Connect",
                             R.drawable.ic_dashboard_refill to "Refill Request"
-                        )
+                        ),
+                        onIconClick = { index ->
+                            if (index == 0) showDocToDocPopup = true
+                        }
                     )
+        if (showDocToDocPopup) {
+            com.app.splashscreen.ui.components.DocToDocPopup(
+                onDismiss = { showDocToDocPopup = false },
+                onDocToDocClick = { showDocToDocPopup = false },
+                onDocToCpClick = { showDocToDocPopup = false }
+            )
+        }
 
                     Spacer(modifier = Modifier.height(25.dp))
 
