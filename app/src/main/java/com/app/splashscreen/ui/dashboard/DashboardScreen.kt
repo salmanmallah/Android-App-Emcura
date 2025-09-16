@@ -74,13 +74,13 @@ fun DashboardScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Top icons ke liye space
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(70.dp))
 
             // Dashboard Status Card
             DashboardStatusCard()
 
             // Card aur neeche container ke beech gap
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
 
 
