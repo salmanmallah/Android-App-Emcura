@@ -1,0 +1,128 @@
+package com.app.splashscreen.ui.components
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import com.app.splashscreen.R
+
+@Composable
+fun DocToDocPopup(
+    onDismiss: () -> Unit,
+    onDocToDocClick: () -> Unit,
+    onDocToCpClick: () -> Unit
+) {
+    Dialog(onDismissRequest = onDismiss) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(0.9f)
+                .clip(RoundedCornerShape(28.dp))
+                .background(Color.White)
+        ) {
+            // Pattern background
+            Image(
+                painter = painterResource(id = R.drawable.ic_dashboard_background_pattern),
+                contentDescription = null,
+                contentScale = ContentScale.Crop, // 👈 prevent stretching
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(RoundedCornerShape(28.dp))
+            )
+
+            // White scrim overlay for readability
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.White.copy(alpha = 0.85f))
+            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 32.dp, horizontal = 18.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Please select an option below to view\nDoctor Care Providers",
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 16.sp,
+                    color = Color.Black,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.height(18.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(2.dp)
+                        .background(Color(0xFFE94F4F))
+                )
+                Spacer(modifier = Modifier.height(18.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Button(
+                        onClick = onDocToDocClick,
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        IconWithText(text = "DOC TO DOC")
+                    }
+                    Button(
+                        onClick = onDocToCpClick,
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        IconWithText(text = "DOC TO CP")
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun IconWithText(text: String) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_dashboard_bell_patientcare),
+            contentDescription = null,
+            modifier = Modifier.size(20.dp)
+        )
+        Spacer(modifier = Modifier.width(6.dp))
+        Text(
+            text = text,
+            color = Color.White,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 13.sp
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DocToDocPopupPreview() {
+    DocToDocPopup(
+        onDismiss = {},
+        onDocToDocClick = {},
+        onDocToCpClick = {}
+    )
+}
