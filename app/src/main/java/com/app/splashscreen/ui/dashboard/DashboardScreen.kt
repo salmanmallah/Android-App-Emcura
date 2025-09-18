@@ -33,6 +33,7 @@ import com.app.splashscreen.ui.components.DashboardStatusCard
 @Composable
 fun DashboardScreen() {
     var showDocToDocPopup by remember { mutableStateOf(false) }
+    var showInstantConnectPopup by remember { mutableStateOf(false) }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -120,15 +121,26 @@ fun DashboardScreen() {
                         ),
                         onIconClick = { index ->
                             if (index == 0) showDocToDocPopup = true
+                        },
+                        onInstantConnectClick = {
+                            showInstantConnectPopup = true
                         }
                     )
-        if (showDocToDocPopup) {
-            com.app.splashscreen.ui.components.DocToDocPopup(
-                onDismiss = { showDocToDocPopup = false },
-                onDocToDocClick = { showDocToDocPopup = false },
-                onDocToCpClick = { showDocToDocPopup = false }
-            )
-        }
+                    if (showDocToDocPopup) {
+                        com.app.splashscreen.ui.components.DocToDocPopup(
+                            onDismiss = { showDocToDocPopup = false },
+                            onDocToDocClick = { showDocToDocPopup = false },
+                            onDocToCpClick = { showDocToDocPopup = false }
+                        )
+                    }
+                    if (showInstantConnectPopup) {
+                        com.app.splashscreen.ui.components.InstantConnectPopup(
+                            onDismiss = { showInstantConnectPopup = false },
+                            onExistingPatient = { showInstantConnectPopup = false },
+                            onNewPatient = { showInstantConnectPopup = false },
+                            onCancel = { showInstantConnectPopup = false }
+                        )
+                    }
 
                     Spacer(modifier = Modifier.height(25.dp))
 
