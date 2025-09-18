@@ -48,6 +48,8 @@ fun DashboardScreen() {
                 .offset(x = (-16).dp, y = -16.dp),
             alpha = 0.25f // subtle overlay
         )
+
+
         // Top icons row
         Row(
             modifier = Modifier
@@ -68,8 +70,9 @@ fun DashboardScreen() {
                 modifier = Modifier.size(25.dp)
             )
         }
-        // Add DashboardStatusCard below top icons
 
+
+        // Add DashboardStatusCard below top icons
         Column(
             modifier = Modifier
                 .fillMaxSize(),
