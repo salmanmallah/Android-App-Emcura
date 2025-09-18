@@ -25,6 +25,122 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.app.splashscreen.R
 
+// ✅ Extracted content (for preview & reuse)
+@Composable
+private fun InstantConnectPopupContent(
+    onExistingPatient: () -> Unit,
+    onNewPatient: () -> Unit,
+    onCancel: () -> Unit,
+    onDismiss: () -> Unit = {}
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth(0.8f)
+            .wrapContentHeight()
+            .clip(RoundedCornerShape(20.dp))
+            .background(Color.White.copy(alpha = 0.8f))
+    ) {
+        // Pattern background
+        Image(
+            painter = painterResource(id = R.drawable.ic_dashboard_background_pattern),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .matchParentSize()
+                .clip(RoundedCornerShape(20.dp))
+        )
+        // Title and close button
+        Box(modifier = Modifier.fillMaxWidth().padding(top = 18.dp, end = 18.dp)) {
+            Text(
+                text = "Instant Connect",
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                color = Color.Black,
+                modifier = Modifier.align(Alignment.TopCenter)
+            )
+            Box(
+                modifier = Modifier
+                    .size(32.dp)
+                    .align(Alignment.TopEnd)
+                    .clickable { onDismiss() },
+                contentAlignment = Alignment.Center
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(28.dp)
+                        .clip(CircleShape)
+                        .background(colorResource(id = R.color.instant_connect_button)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "X",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+        }
+        // Main content
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 60.dp, bottom = 24.dp, start = 16.dp, end = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Button(
+                onClick = onExistingPatient,
+                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.instant_connect_button)),
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(44.dp)
+            ) {
+                Text(
+                    text = "Existing Patient",
+                    color = Color.White,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 15.sp
+                )
+            }
+            Spacer(modifier = Modifier.height(14.dp))
+            Button(
+                onClick = onNewPatient,
+                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.instant_connect_button)),
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(44.dp)
+            ) {
+                Text(
+                    text = "New Patient",
+                    color = Color.White,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 15.sp
+                )
+            }
+            Spacer(modifier = Modifier.height(18.dp))
+            Button(
+                onClick = onCancel,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF333333)),
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(44.dp)
+            ) {
+                Text(
+                    text = "Cancel",
+                    color = Color.White,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 15.sp
+                )
+            }
+        }
+    }
+}
+
+// ✅ Dialog wrapper for runtime
 @Composable
 fun InstantConnectPopup(
     onDismiss: () -> Unit,
@@ -33,127 +149,29 @@ fun InstantConnectPopup(
     onCancel: () -> Unit
 ) {
     Dialog(onDismissRequest = onDismiss) {
-        Box(
-            modifier = Modifier
-                .width(320.dp)
-                .wrapContentHeight()
-                .clip(RoundedCornerShape(20.dp))
-                .background(Color.White)
-        ) {
-            // Pattern background
-            Image(
-                painter = painterResource(id = R.drawable.ic_dashboard_background_pattern),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .matchParentSize()
-                    .clip(RoundedCornerShape(20.dp))
-            )
-            // White scrim overlay for readability
-            Box(
-                modifier = Modifier
-                    .matchParentSize()
-                    .background(Color.White.copy(alpha = 0.85f))
-            )
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 24.dp, horizontal = 16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                // Title and close button
-                Box(modifier = Modifier.fillMaxWidth()) {
-                    Text(
-                        text = "Instant Connect",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp,
-                        color = Color.Black,
-                        modifier = Modifier.align(Alignment.Center)
-                    )
-                    Box(
-                        modifier = Modifier
-                            .size(32.dp)
-                            .align(Alignment.CenterEnd)
-                            .clickable { onDismiss() },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .size(28.dp)
-                                .clip(CircleShape)
-                                .background(colorResource(id = R.color.instant_connect_button)),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                text = "✕",
-                                color = Color.White,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 18.sp,
-                                textAlign = TextAlign.Center
-                            )
-                        }
-                    }
-                }
-                Spacer(modifier = Modifier.height(18.dp))
-                Button(
-                    onClick = onExistingPatient,
-                    colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.instant_connect_button)),
-                    shape = RoundedCornerShape(8.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(44.dp)
-                ) {
-                    Text(
-                        text = "Existing Patient",
-                        color = Color.White,
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 15.sp
-                    )
-                }
-                Spacer(modifier = Modifier.height(14.dp))
-                Button(
-                    onClick = onNewPatient,
-                    colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.instant_connect_button)),
-                    shape = RoundedCornerShape(8.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(44.dp)
-                ) {
-                    Text(
-                        text = "New Patient",
-                        color = Color.White,
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 15.sp
-                    )
-                }
-                Spacer(modifier = Modifier.height(18.dp))
-                Button(
-                    onClick = onCancel,
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF333333)),
-                    shape = RoundedCornerShape(8.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(44.dp)
-                ) {
-                    Text(
-                        text = "Cancel",
-                        color = Color.White,
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 15.sp
-                    )
-                }
-            }
-        }
+        InstantConnectPopupContent(
+            onExistingPatient = onExistingPatient,
+            onNewPatient = onNewPatient,
+            onCancel = onCancel,
+            onDismiss = onDismiss
+        )
     }
 }
 
-@Preview
+// ✅ Preview without Dialog (safe for design check)
+@Preview(showBackground = true)
 @Composable
 fun InstantConnectPopupPreview() {
-    InstantConnectPopup(
-        onDismiss = {},
-        onExistingPatient = {},
-        onNewPatient = {},
-        onCancel = {}
-    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.LightGray),
+        contentAlignment = Alignment.Center
+    ) {
+        InstantConnectPopupContent(
+            onExistingPatient = {},
+            onNewPatient = {},
+            onCancel = {}
+        )
+    }
 }
