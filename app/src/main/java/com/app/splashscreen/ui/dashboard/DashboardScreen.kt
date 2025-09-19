@@ -27,11 +27,12 @@ import com.app.splashscreen.ui.components.DashboardIconGrid
 import com.app.splashscreen.ui.components.BottomNavbar
 import androidx.compose.runtime.Composable
 import com.app.splashscreen.ui.components.DashboardStatusCard
-
-
+import com.app.splashscreen.ui.components.DocToDocPopup
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun DashboardScreen() {
+fun DashboardScreen(navController: NavController) {
     var showDocToDocPopup by remember { mutableStateOf(false) }
     var showInstantConnectPopup by remember { mutableStateOf(false) }
     Box(
@@ -130,10 +131,11 @@ fun DashboardScreen() {
                         }
                     )
                     if (showDocToDocPopup) {
-                        com.app.splashscreen.ui.components.DocToDocPopup(
+                        DocToDocPopup(
                             onDismiss = { showDocToDocPopup = false },
                             onDocToDocClick = { showDocToDocPopup = false },
-                            onDocToCpClick = { showDocToDocPopup = false }
+                            onDocToCpClick = { showDocToDocPopup = false },
+                            navController = navController
                         )
                     }
                     if (showInstantConnectPopup) {
@@ -190,7 +192,8 @@ fun DashboardScreen() {
 )
 @Composable
 fun DashboardScreenPreview() {
-	DashboardScreen()
+    val navController = rememberNavController()
+    DashboardScreen(navController)
 }
 
 

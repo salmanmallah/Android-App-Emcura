@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,11 +18,11 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
-import com.app.splashscreen.ui.components.DoctorCardList
+import com.app.splashscreen.ui.components.DoctorCard
 import com.app.splashscreen.ui.components.DoctorSearchBar
 
 @Composable
-fun DocToDocScreen(enableScroll: Boolean = true) {   // ✅ parameter added
+fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean = true) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -40,7 +41,8 @@ fun DocToDocScreen(enableScroll: Boolean = true) {   // ✅ parameter added
                 backIconRes = R.drawable.ic_dashboard_arrow_backward,
                 endIconRes = R.drawable.ic_dcd_hospital,
                 showBackIcon = true,
-                showEndIcon = true
+                showEndIcon = true,
+                onBackClick = { navController?.popBackStack() }
             )
         }
 
@@ -123,18 +125,23 @@ fun DocToDocScreen(enableScroll: Boolean = true) {   // ✅ parameter added
                 .padding(top = 8.dp)
                 .then(
                     if (enableScroll) Modifier.verticalScroll(rememberScrollState()) else Modifier
-                )
+                ),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            DoctorCardList(
-                doctors = List(10) { i ->   // thoda zyada items taake scroll test ho
-                    Triple(
-                        if (i % 2 == 0) "Dr. Supak Sookkaskon" else "Supak Sookkaskon",
-                        "Doctor",
-                        i % 2 == 0
-                    )
-                },
-                modifier = Modifier.fillMaxSize()
-            )
+            val doctors = List(10) { i ->
+                Triple(
+                    if (i % 2 == 0) "Dr. Supak Sookkaskon" else "Supak Sookkaskon",
+                    "Doctor",
+                    i % 2 == 0
+                )
+            }
+            doctors.forEach { (name, title, online) ->
+                DoctorCard(
+                    name = name,
+                    title = title,
+                    online = online
+                )
+            }
         }
     }
 }

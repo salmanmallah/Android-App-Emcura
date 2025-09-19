@@ -28,7 +28,8 @@ import com.app.splashscreen.R
 fun DocToDocPopup(
     onDismiss: () -> Unit,
     onDocToDocClick: () -> Unit,
-    onDocToCpClick: () -> Unit
+    onDocToCpClick: () -> Unit,
+    navController: androidx.navigation.NavController? = null
 ) {
     Dialog(onDismissRequest = onDismiss) {
         Box(
@@ -83,7 +84,10 @@ fun DocToDocPopup(
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     Button(
-                        onClick = onDocToDocClick,
+                        onClick = {
+                            onDocToDocClick()
+                            navController?.navigate("doctodoc")
+                        },
                         colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.instant_connect_button)),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.weight(1f).height(44.dp)

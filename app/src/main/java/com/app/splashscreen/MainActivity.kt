@@ -34,6 +34,7 @@ import com.app.splashscreen.ui.newpassword.NewPasswordScreen
 import com.app.splashscreen.ui.forgetpassword.ForgetPasswordScreen
 import com.app.splashscreen.ui.password_otp.PasswordOtpScreen
 import com.app.splashscreen.ui.dashboard.DashboardScreen
+import com.app.splashscreen.ui.doctodoc_screen.DocToDocScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -62,7 +63,8 @@ fun MyApp() {
         composable("home") { HomeScreen() }
         composable("forget_password_email") { ForgetPasswordScreen(navController) }
         composable("password_otp") { PasswordOtpScreen(navController) }
-        composable("dashboard") { DashboardScreen() }
+    composable("dashboard") { DashboardScreen(navController) }
+    composable("doctodoc") { DocToDocScreen(navController) }
     }
 }
 
