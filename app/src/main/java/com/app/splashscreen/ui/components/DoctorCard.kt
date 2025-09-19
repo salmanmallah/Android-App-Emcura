@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
@@ -92,6 +93,7 @@ fun DoctorCard(
                     modifier = Modifier.size(25.dp)
                 )
             }
+            Spacer(modifier = Modifier.height(200.dp))
         }
     }
 }
@@ -117,4 +119,14 @@ fun DoctorCardList(
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DoctorCardPreview() {
+    DoctorCard(
+        name = "Dr. Supak Sookkaskon",
+        title = "Doctor",
+        online = true
+    )
 }
