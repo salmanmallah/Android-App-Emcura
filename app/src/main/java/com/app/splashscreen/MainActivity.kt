@@ -35,7 +35,7 @@ import com.app.splashscreen.ui.forgetpassword.ForgetPasswordScreen
 import com.app.splashscreen.ui.password_otp.PasswordOtpScreen
 import com.app.splashscreen.ui.dashboard.DashboardScreen
 import com.app.splashscreen.ui.doctodoc_screen.DocToDocScreen
-
+import com.app.splashscreen.ui.doctocp.DocToCpScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +65,7 @@ fun MyApp() {
         composable("password_otp") { PasswordOtpScreen(navController) }
     composable("dashboard") { DashboardScreen(navController) }
     composable("doctodoc") { DocToDocScreen(navController) }
+    composable("doctocp") { DocToCpScreen(navController) }
     }
 }
 

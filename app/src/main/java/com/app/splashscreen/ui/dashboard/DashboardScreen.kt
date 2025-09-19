@@ -134,7 +134,10 @@ fun DashboardScreen(navController: NavController) {
                         DocToDocPopup(
                             onDismiss = { showDocToDocPopup = false },
                             onDocToDocClick = { showDocToDocPopup = false },
-                            onDocToCpClick = { showDocToDocPopup = false },
+                            onDocToCpClick = {
+                                showDocToDocPopup = false
+                                navController.navigate("doctocp")
+                            },
                             navController = navController
                         )
                     }

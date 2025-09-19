@@ -58,6 +58,10 @@ fun DocToCpScreen(navController: NavController? = null) {
             )
         }
 
+
+
+
+
         // 🔹 Tabs Row (Doctors / Dropdown)
         Row(
             modifier = Modifier
@@ -144,6 +148,10 @@ fun DocToCpScreen(navController: NavController? = null) {
                 }
             }
         }
+
+
+
+
 
         Spacer(modifier = Modifier.height(16.dp))
 
