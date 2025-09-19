@@ -70,7 +70,7 @@ fun DocToCpScreen(navController: NavController? = null) {
             Button(
                 onClick = { /* TODO: Doctors tab click */ },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = colorResource(id = R.color.ic_launcher_background)
+                    containerColor = colorResource(id = R.color.doc_to_cp_card)
                 ),
                 shape = RoundedCornerShape(50),
                 modifier = Modifier
@@ -93,7 +93,7 @@ fun DocToCpScreen(navController: NavController? = null) {
                 Button(
                     onClick = { expanded = !expanded },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = colorResource(id = R.color.instant_connect_button)
+                        containerColor = colorResource(id = R.color.dashboard_background)
                     ),
                     shape = RoundedCornerShape(50),
                     modifier = Modifier

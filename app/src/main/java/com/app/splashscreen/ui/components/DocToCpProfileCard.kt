@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
+import androidx.compose.ui.res.colorResource
 
 @Composable
 fun DocToCpProfileCard(
@@ -30,13 +31,15 @@ fun DocToCpProfileCard(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(80.dp)
-            .background(Color(0xFFFEEBEE), RoundedCornerShape(12.dp))
+            .background(
+                color = colorResource(id = R.color.doc_to_cp_card),
+                shape = RoundedCornerShape(12.dp)
+            )
             .padding(horizontal = 8.dp, vertical = 8.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxWidth()
         ) {
             // Profile Circle
             Box(
@@ -53,24 +56,30 @@ fun DocToCpProfileCard(
                     modifier = Modifier.size(54.dp)
                 )
             }
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(16.dp))
             // Name, Status, Button
             Column(
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(top = 4.dp),
+                horizontalAlignment = Alignment.Start
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(bottom = 2.dp)
+                ) {
                     Text(
                         text = name,
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp,
+                        fontSize = 17.sp,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
-                    Spacer(modifier = Modifier.width(6.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
                     Box(
                         modifier = Modifier
-                            .size(10.dp)
+                            .size(12.dp)
                             .clip(CircleShape)
                             .background(if (online) Color(0xFF1ED300) else Color(0xFF757575))
                     )
@@ -78,7 +87,8 @@ fun DocToCpProfileCard(
                 Text(
                     text = title,
                     color = Color(0xFF757575),
-                    fontSize = 13.sp
+                    fontSize = 15.sp,
+                    modifier = Modifier.padding(bottom = 4.dp)
                 )
                 Button(
                     onClick = { /* TODO: Message */ },
@@ -86,13 +96,18 @@ fun DocToCpProfileCard(
                         containerColor = Color(0xFFED202E),
                         contentColor = Color.White
                     ),
-                    shape = RoundedCornerShape(8.dp),
+                    shape = RoundedCornerShape(15.dp),
+                    contentPadding = PaddingValues(0.dp),
                     modifier = Modifier
-                        .padding(top = 4.dp)
-                        .height(28.dp)
-                        .width(90.dp)
+                        .height(22.dp)
+                        .width(70.dp)
                 ) {
-                    Text("Message", fontSize = 13.sp)
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text("Message", fontSize = 12.sp, modifier = Modifier.align(Alignment.Center))
+                    }
                 }
             }
         }
