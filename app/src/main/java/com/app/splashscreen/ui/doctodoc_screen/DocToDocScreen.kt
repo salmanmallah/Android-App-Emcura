@@ -1,5 +1,7 @@
 package com.app.splashscreen.ui.doctodoc_screen
 
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,13 +21,13 @@ import com.app.splashscreen.ui.components.DoctorCardList
 import com.app.splashscreen.ui.components.DoctorSearchBar
 
 @Composable
-fun DocToDocScreen() {
+fun DocToDocScreen(enableScroll: Boolean = true) {   // ✅ parameter added
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFF8F8F8))
     ) {
-        // 🔹 Box: TopBar Section
+        // 🔹 TopBar Section
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -44,7 +46,7 @@ fun DocToDocScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Box: Toggle Buttons (Doctors / Specialists)
+        // 🔹 Toggle Buttons (Doctors / Specialists)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -96,7 +98,7 @@ fun DocToDocScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Box: Search Section
+        // 🔹 Search Section
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -111,17 +113,20 @@ fun DocToDocScreen() {
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // 🔹 Box: Doctors List Section
-        Box(
+        // 🔹 Doctors List Section
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
                 .padding(horizontal = 8.dp)
                 .background(Color.White, RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
                 .padding(top = 8.dp)
+                .then(
+                    if (enableScroll) Modifier.verticalScroll(rememberScrollState()) else Modifier
+                )
         ) {
             DoctorCardList(
-                doctors = List(5) { i ->
+                doctors = List(10) { i ->   // thoda zyada items taake scroll test ho
                     Triple(
                         if (i % 2 == 0) "Dr. Supak Sookkaskon" else "Supak Sookkaskon",
                         "Doctor",
@@ -137,5 +142,5 @@ fun DocToDocScreen() {
 @Preview(showBackground = true)
 @Composable
 fun DocToDocScreenPreview() {
-    DocToDocScreen()
+    DocToDocScreen(enableScroll = false)   // ✅ Preview me scroll disable
 }
