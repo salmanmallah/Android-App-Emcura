@@ -126,23 +126,31 @@ fun DocToCpScreen(navController: NavController? = null) {
                     expanded = expanded,
                     onDismissRequest = { expanded = false },
                     modifier = Modifier
-                        .background(Color(0xFFED202E))
+                        .background(colorResource(id = R.color.dashboard_background))
                         .width(180.dp)
                 ) {
                     dropdownOptions.forEach { option ->
                         DropdownMenuItem(
                             text = {
-                                Text(
-                                    text = option,
-                                    color = Color.White,
-                                    fontSize = 15.sp,
-                                    modifier = Modifier.padding(vertical = 2.dp)
-                                )
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Text(
+                                        text = "\u2022 ", // dot
+                                        color = Color.White,
+                                        fontSize = 15.sp,
+                                        modifier = Modifier.padding(end = 1.dp, )
+                                    )
+                                    Text(
+                                        text = option,
+                                        color = Color.White,
+                                        fontSize = 10.sp
+                                    )
+                                }
                             },
                             onClick = {
                                 selectedOption = option
                                 expanded = false
-                            }
+                            },
+                            modifier = Modifier.padding(vertical = 2.dp)
                         )
                     }
                 }
