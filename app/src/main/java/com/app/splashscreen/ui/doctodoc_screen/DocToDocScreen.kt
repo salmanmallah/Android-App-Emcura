@@ -1,23 +1,18 @@
 package com.app.splashscreen.ui.doctodoc_screen
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontWeight
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.DoctorCardList
@@ -30,150 +25,111 @@ fun DocToDocScreen() {
             .fillMaxSize()
             .background(Color(0xFFF8F8F8))
     ) {
-        // Top bar
-        DashboardTopBar(
-            title = "Available Doctors",
-            backIconRes = R.drawable.ic_dashboard_arrow_backward,
-            endIconRes = R.drawable.ic_dcd_hospital,
-            showBackIcon = true,
-            showEndIcon = true
-        )
-
-
-
-        Spacer(modifier = Modifier.height(70.dp))
-
-
-        // Doctors & specialists buttons
-        Row(
+        // 🔹 Box: TopBar Section
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 32.dp),
-            horizontalArrangement = Arrangement.Center
+                .background(Color.White)
+                .padding(vertical = 8.dp),
+            contentAlignment = Alignment.Center
         ) {
-            Button(
-                onClick = {},
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = colorResource(id = R.color.instant_connect_button) // 👈 XML color
-                ),
-                shape = RoundedCornerShape(50),
-                modifier = Modifier
-                    .weight(1f)
-                    .height(30.dp), // kam height
-                contentPadding = PaddingValues(vertical = 0.dp) // 👈 text ko center me karne ke liye
-            ) {
-                Text("DOCTORS", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp)
-            }
-
-            Spacer(modifier = Modifier.width(15.dp))
-
-            Button(
-                onClick = {},
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF8BFC2)),
-                shape = RoundedCornerShape(50),
-                modifier = Modifier
-                    .weight(1f)
-                    .height(30.dp),
-                contentPadding = PaddingValues(vertical = 0.dp) // 👈 text ko center me karne ke liye
-            ) {
-                Text("SPECIALISTS", color = Color(0xFFE94F4F), fontWeight = FontWeight.Bold, fontSize = 12.sp)
-            }
+            DashboardTopBar(
+                title = "Available Doctors",
+                backIconRes = R.drawable.ic_dashboard_arrow_backward,
+                endIconRes = R.drawable.ic_dcd_hospital,
+                showBackIcon = true,
+                showEndIcon = true
+            )
         }
 
+        Spacer(modifier = Modifier.height(16.dp))
 
-
-
-
-
-
-        // Search bar
-        DoctorSearchBar(
-            modifier = Modifier
-                .padding(16.dp)
-        )
-        // Doctor cards
-        DoctorCardList(
-            doctors = List(5) { i ->
-                Triple(
-                    if (i % 2 == 0) "Dr. Supak Sookkaskon" else "Supak Sookkaskon",
-                    "Doctor",
-                    i % 2 == 0
-                )
-            },
+        // 🔹 Box: Toggle Buttons (Doctors / Specialists)
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 8.dp)
-                .weight(1f)
-        )
-    }
-}
-
-@Composable
-fun DoctorCard(name: String, title: String, online: Boolean) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(80.dp)
-            .background(Color(0xFFFEEBEE), RoundedCornerShape(12.dp))
-            .padding(horizontal = 8.dp, vertical = 8.dp)
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxSize()
+                .padding(horizontal = 24.dp)
         ) {
-            Box(
-                modifier = Modifier
-                    .size(60.dp)
-                    .clip(CircleShape)
-                    .background(Color.White)
-                    .border(3.dp, Color(0xFFE94F4F), CircleShape),
-                contentAlignment = Alignment.Center
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_dashboard_profile),
-                    contentDescription = "Profile",
-                    modifier = Modifier.size(54.dp)
-                )
-            }
-            Spacer(modifier = Modifier.width(12.dp))
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(
-                    text = name,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
-                )
-                Text(
-                    text = title,
-                    color = Color(0xFF757575),
-                    fontSize = 13.sp
-                )
-                Box(
+                Button(
+                    onClick = {},
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = colorResource(id = R.color.instant_connect_button)
+                    ),
+                    shape = RoundedCornerShape(50),
                     modifier = Modifier
-                        .padding(top = 2.dp)
-                        .background(
-                            if (online) Color(0xFF1ED300) else Color(0xFF757575),
-                            RoundedCornerShape(8.dp)
-                        )
-                        .padding(horizontal = 8.dp, vertical = 2.dp)
+                        .weight(1f)
+                        .height(36.dp),
+                    contentPadding = PaddingValues(vertical = 0.dp)
                 ) {
                     Text(
-                        text = if (online) "Online" else "Offline",
+                        "DOCTORS",
                         color = Color.White,
-                        fontSize = 10.sp
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 12.sp
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(12.dp))
+
+                Button(
+                    onClick = {},
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF8BFC2)),
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(36.dp),
+                    contentPadding = PaddingValues(vertical = 0.dp)
+                ) {
+                    Text(
+                        "SPECIALISTS",
+                        color = Color(0xFFE94F4F),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 12.sp
                     )
                 }
             }
-            IconButton(onClick = { /* TODO: Navigate */ }) {
-//
-                Image(
-                    painter = painterResource(id = R.drawable.ic_dashboard_arrow_forward),
-                    contentDescription = "Notifications",
-                    modifier = Modifier.size(25.dp)
-                )
-            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // 🔹 Box: Search Section
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .background(Color.White, RoundedCornerShape(12.dp))
+                .padding(8.dp)
+        ) {
+            DoctorSearchBar(
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // 🔹 Box: Doctors List Section
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(horizontal = 8.dp)
+                .background(Color.White, RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
+                .padding(top = 8.dp)
+        ) {
+            DoctorCardList(
+                doctors = List(5) { i ->
+                    Triple(
+                        if (i % 2 == 0) "Dr. Supak Sookkaskon" else "Supak Sookkaskon",
+                        "Doctor",
+                        i % 2 == 0
+                    )
+                },
+                modifier = Modifier.fillMaxSize()
+            )
         }
     }
 }
