@@ -86,40 +86,52 @@ fun PermissionRequestScreen() {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // 🔹 Review & Allow Button
-            Button(
-                onClick = { /* TODO: Handle permission review */ },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
-                modifier = Modifier
-                    .width(300.dp)
-                    .height(48.dp),
-                shape = RoundedCornerShape(12.dp)
+            // 🔹 Review & Allow Button with shadow
+            Surface(
+                shadowElevation = 8.dp,
+                shape = RoundedCornerShape(12.dp),
+                color = Color.Transparent
             ) {
-                Text(
-                    text = "Review and Allow Permission",
-                    color = Color.White,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 16.sp
-                )
+                Button(
+                    onClick = { /* TODO: Handle permission review */ },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
+                    modifier = Modifier
+                        .width(300.dp)
+                        .height(48.dp),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Text(
+                        text = "Review and Allow Permission",
+                        color = Color.White,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 16.sp
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // 🔹 Exit Button
-            Button(
-                onClick = { /* TODO: Handle exit */ },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
-                modifier = Modifier
-                    .width(300.dp)
-                    .height(48.dp),
-                shape = RoundedCornerShape(12.dp)
+            // 🔹 Exit Button with shadow
+            Surface(
+                shadowElevation = 8.dp,
+                shape = RoundedCornerShape(12.dp),
+                color = Color.Transparent
             ) {
-                Text(
-                    text = "Exit Now",
-                    color = Color.White,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 16.sp
-                )
+                Button(
+                    onClick = { /* TODO: Handle exit */ },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
+                    modifier = Modifier
+                        .width(300.dp)
+                        .height(48.dp),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Text(
+                        text = "Exit Now",
+                        color = Color.White,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 16.sp
+                    )
+                }
             }
         }
     }
