@@ -1,107 +1,107 @@
 package com.app.splashscreen.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
-import androidx.compose.ui.res.colorResource
 
 @Composable
 fun RefillRequestDetailsCard(
-    name: String,
-    email: String,
-    mobile: String,
-    imageRes: Int
+    title: String,
+    patient: String,
+    date: String,
+    pharmacy: String,
+    onRefillClick: () -> Unit = {}
 ) {
     Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(100.dp),
-        color = colorResource(id= R.color.doc_to_cp_card),
-        shape = RoundedCornerShape(8.dp)
+        modifier = Modifier.fillMaxWidth(),
+        color = Color(0xFFFFEBEB),
+        shape = RoundedCornerShape(6.dp)
     ) {
         Row(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(start = 12.dp, end = 8.dp),
+                .fillMaxWidth()
+                .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Profile Image with red border
-            Box(
-                modifier = Modifier
-                    .size(60.dp)
-                    .border(3.dp, Color(0xFFE94F4F), CircleShape)
-                    .clip(CircleShape)
-                    .background(Color.White),
-                contentAlignment = Alignment.Center
+            Column(
+                modifier = Modifier.weight(1f)
             ) {
-                Image(
-                    painter = painterResource(id = imageRes),
-                    contentDescription = "Profile Picture",
+                // Title
+                Text(
+                    text = title,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    color = Color.Black
+                )
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                // Divider line
+                Box(
                     modifier = Modifier
-                        .size(54.dp)
-                        .clip(CircleShape),
-                    contentScale = ContentScale.Crop
+                        .width(60.dp)
+                        .height(3.dp)
+                        .background(Color(0xFFE94F4F), RoundedCornerShape(2.dp))
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Patient Info
+                Text(
+                    text = "Patient: $patient",
+                    fontSize = 12.sp,
+                    color = Color.Black
+                )
+                Text(
+                    text = "Date: $date",
+                    fontSize = 12.sp,
+                    color = Color.Black
+                )
+                Text(
+                    text = "Pharmacy: $pharmacy",
+                    fontSize = 12.sp,
+                    color = Color.Black
                 )
             }
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            // Name, Email, Mobile
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.Center
+            // Action Button
+            Button(
+                onClick = onRefillClick,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
+                shape = RoundedCornerShape(50),
+                contentPadding = PaddingValues(horizontal = 18.dp),
+                modifier = Modifier
+                    .height(30.dp)
+                    .width(150.dp)
             ) {
                 Text(
-                    text = name,
+                    text = "Refill Requests",
+                    color = Color.White,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
-                    color = Color.Black,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    fontSize = 10.sp
                 )
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = "Email : $email",
-                    fontSize = 13.sp,
-                    color = Color.Black,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = "Mobil : $mobile",
-                    fontSize = 13.sp,
-                    color = Color.Black,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+
+                // ye spacer text aur icon ke beech jitni jagah bachi hai use le lega
+                Spacer(modifier = Modifier.weight(1f))
+
+                Icon(
+                    painter = painterResource(id = R.drawable.refile_request_arrow_forward),
+                    contentDescription = "Arrow",
+                    tint = Color.White,
+                    modifier = Modifier.size(13.dp)
                 )
             }
         }
@@ -112,9 +112,9 @@ fun RefillRequestDetailsCard(
 @Composable
 fun RefillRequestDetailsCardPreview() {
     RefillRequestDetailsCard(
-        name = "Susan Edward",
-        email = "email2jamal3@yahoo.com",
-        mobile = "5555655555",
-        imageRes = R.drawable.ic_dashboard_profile // Replace with your drawable resource
+        title = "Lipitor 80 MG Oral TABS",
+        patient = "Jack Denial",
+        date = "11/02/2017 to 11/09/2017",
+        pharmacy = "ITC Pharmacy 2"
     )
 }
