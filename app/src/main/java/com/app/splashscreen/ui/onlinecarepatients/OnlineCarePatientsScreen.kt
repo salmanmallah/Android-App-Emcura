@@ -11,9 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.app.splashscreen.R
@@ -129,9 +131,52 @@ fun OnlineCarePatientsScreen(navController: NavController? = null, enableScroll:
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
 
+            Spacer(modifier = Modifier.height(50.dp))
+            SearchPatient()
         }
     }
 }
+
+
+
+@Composable
+fun SearchPatient() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 48.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Icon(
+            painter = painterResource(id = R.drawable.onliecare_patiends_human), // Replace with your actual icon resource
+            contentDescription = "Search Patient",
+            tint = Color(0xFFE94F4F),
+            modifier = Modifier.size(100.dp)
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(
+            text = "Search Patient",
+            color = Color.Black,
+            fontWeight = FontWeight.Medium,
+            fontSize = 16.sp
+        )
+        Spacer(modifier = Modifier.height(24.dp))
+        Text(
+            text = "Please search Patient by first name or last name",
+            color = Color.Black,
+            fontSize = 14.sp,
+            textAlign = TextAlign.Center
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text = "Your search result will appear over here",
+            color = Color.Black,
+            fontSize = 14.sp,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
 
 @Composable
 @Preview(showBackground = true)
