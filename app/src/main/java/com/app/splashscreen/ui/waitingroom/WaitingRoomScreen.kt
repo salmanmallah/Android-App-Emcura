@@ -26,6 +26,7 @@ import androidx.navigation.NavController
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.DocToCpProfileCard
+import com.app.splashscreen.ui.components.WaitingRoomProfileCard
 
 @Composable
 fun WaitingRoomScreen(navController: NavController? = null) {
@@ -59,16 +60,6 @@ fun WaitingRoomScreen(navController: NavController? = null) {
             )
         }
 
-
-
-
-
-
-
-
-
-
-
         Spacer(modifier = Modifier.height(16.dp))
 
         // 🔹 Waiting room docs list
@@ -79,9 +70,21 @@ fun WaitingRoomScreen(navController: NavController? = null) {
                 .weight(1f),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            
+            // ab yahan par waiting room profile card add karna
+
+            item {
+                WaitingRoomProfileCard(
+                    name = "Elizabeth Weisberg",
+                    online = true
+                )
+            }
+
+           
+
 
         }
+
+
     }
 }
 
