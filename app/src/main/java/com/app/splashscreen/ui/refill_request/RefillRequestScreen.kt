@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.OlcOfficeProfileCard
+import com.app.splashscreen.ui.components.RefillRequestDetailsCard
 
 @Composable
 fun RefillRequestScreen(navController: NavController? = null) {
@@ -47,7 +48,7 @@ fun RefillRequestScreen(navController: NavController? = null) {
             contentAlignment = Alignment.Center
         ) {
             DashboardTopBar(
-                title = "OLC Office Visit",
+                title = "Refill Request",
                 backIconRes = R.drawable.ic_dashboard_arrow_backward,
                 endIconRes = R.drawable.ic_dcd_hospital,
                 showBackIcon = true,
@@ -67,16 +68,16 @@ fun RefillRequestScreen(navController: NavController? = null) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Profile Card
-            OlcOfficeProfileCard(
-                name = "Susan Edward",
-                email = "email2jamal3@yahoo.com",
-                mobile = "5555655555",
-                imageRes = R.drawable.ic_dashboard_profile // Replace with actual image resource if needed
-            )
+            RefillRequestDetailsCard()
+
+            Spacer(modifier = Modifier.height(16.dp))
+            RefillRequestDetailsCard()
 
 
-
-
+            Spacer(modifier = Modifier.height(16.dp))
+            RefillRequestDetailsCard()
+            Spacer(modifier = Modifier.height(16.dp))
+            RefillRequestDetailsCard()
 
 
         }
