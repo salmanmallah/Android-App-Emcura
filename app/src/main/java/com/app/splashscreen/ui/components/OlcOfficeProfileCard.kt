@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
+import androidx.compose.ui.res.colorResource
 
 @Composable
 fun OlcOfficeProfileCard(
@@ -44,7 +45,7 @@ fun OlcOfficeProfileCard(
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp),
-        color = Color(0xFFFFF1F1),
+        color = colorResource(id= R.color.doc_to_cp_card),
         shape = RoundedCornerShape(8.dp)
     ) {
         Row(

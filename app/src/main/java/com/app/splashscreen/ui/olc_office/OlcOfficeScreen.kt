@@ -64,21 +64,76 @@ fun WaitingRoomScreen(navController: NavController? = null) {
         Spacer(modifier = Modifier.height(16.dp))
 
         // 🔹 Waiting room docs list
-        LazyColumn(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp)
                 .weight(1f),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            item {
-                OlcOfficeProfileCard(
-                    name = "Susan Edward",
-                    email = "email2jamal3@yahoo.com",
-                    mobile = "5555655555",
-                    imageRes = R.drawable.ic_dashboard_profile // Replace with actual image resource if needed
+            // Profile Card
+            OlcOfficeProfileCard(
+                name = "Susan Edward",
+                email = "email2jamal3@yahoo.com",
+                mobile = "5555655555",
+                imageRes = R.drawable.ic_dashboard_profile // Replace with actual image resource if needed
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Mic Icon with timer
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.olc_screen_mic),
+                    contentDescription = "Mic",
+                    tint = Color(0xFFE94F4F),
+                    modifier = Modifier.size(180.dp)
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "00:55",
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp,
+                    color = Color.Black
                 )
             }
+
+            Spacer(modifier = Modifier.height(100.dp))
+
+            // Stop Recording Button
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Surface(
+                    shape = CircleShape,
+                    color = Color.White,
+                    shadowElevation = 10.dp
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(64.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.olc_screen_stop_recording),
+                            contentDescription = "Stop Recording",
+                            tint = Color(0xFFE94F4F),
+                            modifier = Modifier.size(36.dp)
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "Stop Recording",
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp,
+                    color = Color.Black
+                )
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
         }
 
 
