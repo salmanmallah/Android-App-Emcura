@@ -4,8 +4,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -45,7 +47,8 @@ fun RefillRequestScreen(navController: NavController? = null) {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color.White)
-                .padding(vertical = 8.dp),
+                .padding(vertical = 8.dp)
+            ,
             contentAlignment = Alignment.Center
         ) {
             DashboardTopBar(
@@ -65,7 +68,8 @@ fun RefillRequestScreen(navController: NavController? = null) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp)
-                .weight(1f),
+                .weight(1f)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Profile Card
@@ -77,10 +81,11 @@ fun RefillRequestScreen(navController: NavController? = null) {
 
             Spacer(modifier = Modifier.height(16.dp))
             RefillRequestDetailsCard()
+
             Spacer(modifier = Modifier.height(16.dp))
             RefillRequestDetailsCard()
 
-
+            Spacer(modifier = Modifier.height(200.dp))
         }
     }
 }
