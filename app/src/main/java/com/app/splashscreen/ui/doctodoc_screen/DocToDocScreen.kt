@@ -28,6 +28,7 @@ import com.app.splashscreen.ui.components.DoctorSearchBar
 @Composable
 fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean = true) {
     var selectedTab by remember { mutableStateOf("DOCTORS") }
+    var searchQuery by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -116,6 +117,8 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
                 .padding(8.dp)
         ) {
             DoctorSearchBar(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
                 modifier = Modifier.fillMaxWidth()
             )
         }

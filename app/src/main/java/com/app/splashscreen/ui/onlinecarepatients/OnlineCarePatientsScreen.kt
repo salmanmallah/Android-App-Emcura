@@ -6,7 +6,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,124 +20,176 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
-import com.app.splashscreen.ui.components.DoctorCard
 import com.app.splashscreen.ui.components.DoctorSearchBar
+import com.app.splashscreen.ui.components.OlcOfficeProfileCard
+import com.app.splashscreen.ui.emr_patients.EmrPatients
+
+// Profile data for OnlineCare Patients
+data class ProfileData(
+    val name: String,
+    val email: String,
+    val mobile: String,
+    val imageRes: Int
+)
 
 @Composable
-fun OnlineCarePatientsScreen(navController: NavController? = null, enableScroll: Boolean = true) {
+fun OnlineCarePatientsScreen(
+    navController: NavController? = null,
+    enableScroll: Boolean = true
+) {
+    var selectedTab by remember { mutableStateOf(0) } // 0 = OnlineCare, 1 = EMR
+    var searchQuery by remember { mutableStateOf("") }
+
+    // Dummy data for OnlineCare patients
+    val onlineCarePatients = remember {
+        listOf(
+            ProfileData("John Doe", "john@email.com", "1234567890", com.app.splashscreen.R.drawable.ic_dashboard_profile),
+            ProfileData("Jane Smith", "jane@email.com", "9876543210", com.app.splashscreen.R.drawable.ic_dashboard_profile),
+            ProfileData("Alex Brown", "alex@email.com", "5555555555", com.app.splashscreen.R.drawable.ic_dashboard_profile),
+            ProfileData("Emily White", "emily@email.com", "4444444444", com.app.splashscreen.R.drawable.ic_dashboard_profile)
+        )
+    }
+
+    val filteredPatients = if (searchQuery.isBlank()) {
+        onlineCarePatients
+    } else {
+        onlineCarePatients.filter { it.name.contains(searchQuery, ignoreCase = true) }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFF8F8F8))
     ) {
-        // TopBar Section
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White)
-                .padding(vertical = 8.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            DashboardTopBar(
-                title = "Search Patients",
-                backIconRes = R.drawable.ic_dashboard_arrow_backward,
-                endIconRes = R.drawable.ic_dcd_hospital,
-                showBackIcon = true,
-                showEndIcon = true,
-                onBackClick = { navController?.popBackStack() }
-            )
-        }
+        // 🔹 TopBar
+        DashboardTopBar(
+            title = "Search Patients",
+            backIconRes = R.drawable.ic_dashboard_arrow_backward,
+            endIconRes = R.drawable.ic_dcd_hospital,
+            showBackIcon = true,
+            showEndIcon = true,
+            onBackClick = { navController?.popBackStack() }
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Toggle Buttons (Doctors / Specialists)
-        Box(
+        // 🔹 Tabs (OnlineCare / EMR)
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp)
+                .padding(horizontal = 24.dp),
+            horizontalArrangement = Arrangement.Center
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+            Button(
+                onClick = { selectedTab = 0 },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (selectedTab == 0)
+                        colorResource(id = R.color.instant_connect_button)
+                    else
+                        Color(0xFFF8BFC2)
+                ),
+                shape = RoundedCornerShape(50),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(36.dp),
+                contentPadding = PaddingValues(vertical = 0.dp)
             ) {
-                Button(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = colorResource(id = R.color.instant_connect_button)
-                    ),
-                    shape = RoundedCornerShape(50),
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(36.dp),
-                    contentPadding = PaddingValues(vertical = 0.dp)
-                ) {
-                    Text(
-                        "OnlineCare Patients",
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 12.sp
-                    )
-                }
+                Text(
+                    "OnlineCare Patients",
+                    color = if (selectedTab == 0) Color.White else Color(0xFFE94F4F),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 12.sp
+                )
+            }
 
-                Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(12.dp))
 
-                Button(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF8BFC2)),
-                    shape = RoundedCornerShape(50),
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(36.dp),
-                    contentPadding = PaddingValues(vertical = 0.dp)
-                ) {
-                    Text(
-                        "EMR Patients",
-                        color = Color(0xFFE94F4F),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 12.sp
-                    )
-                }
+            Button(
+                onClick = { selectedTab = 1 },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (selectedTab == 1)
+                        colorResource(id = R.color.instant_connect_button)
+                    else
+                        Color(0xFFF8BFC2)
+                ),
+                shape = RoundedCornerShape(50),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(36.dp),
+                contentPadding = PaddingValues(vertical = 0.dp)
+            ) {
+                Text(
+                    "EMR Patients",
+                    color = if (selectedTab == 1) Color.White else Color(0xFFE94F4F),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 12.sp
+                )
             }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Search Section
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .background(Color.White, RoundedCornerShape(12.dp))
-                .padding(8.dp)
-        ) {
-            DoctorSearchBar(
-                modifier = Modifier.fillMaxWidth()
-            )
+        // 🔹 SearchBar (only for OnlineCare Patients)
+        if (selectedTab == 0) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+                    .background(Color.White, RoundedCornerShape(12.dp))
+                    .padding(8.dp)
+            ) {
+                DoctorSearchBar(
+                    modifier = Modifier.fillMaxWidth(),
+                    value = searchQuery,
+                    onValueChange = { searchQuery = it }
+                )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
         }
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // Doctors List Section
-        Column(
+        // 🔹 Content Section
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
                 .padding(horizontal = 8.dp)
                 .background(Color.White, RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
                 .padding(top = 8.dp)
-                .then(
-                    if (enableScroll) Modifier.verticalScroll(rememberScrollState()) else Modifier
-                ),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-
-            Spacer(modifier = Modifier.height(50.dp))
-            SearchPatient()
+            if (selectedTab == 0) {
+                if (filteredPatients.isEmpty()) {
+                    SearchPatient()
+                } else {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .verticalScroll(rememberScrollState()),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        filteredPatients.forEach {
+                            OlcOfficeProfileCard(
+                                name = it.name,
+                                email = it.email,
+                                mobile = it.mobile,
+                                imageRes = it.imageRes
+                            )
+                        }
+                    }
+                }
+            } else {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    EmrPatients()
+                }
+            }
         }
     }
 }
-
-
 
 @Composable
 fun SearchPatient() {
@@ -148,7 +200,7 @@ fun SearchPatient() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
-            painter = painterResource(id = R.drawable.onliecare_patiends_human), // Replace with your actual icon resource
+            painter = painterResource(id = R.drawable.onliecare_patiends_human),
             contentDescription = "Search Patient",
             tint = Color(0xFFE94F4F),
             modifier = Modifier.size(100.dp)
@@ -177,9 +229,8 @@ fun SearchPatient() {
     }
 }
 
-
+@Preview
 @Composable
-@Preview(showBackground = true)
 fun OnlineCarePatientsScreenPreview() {
     OnlineCarePatientsScreen(enableScroll = false)
 }

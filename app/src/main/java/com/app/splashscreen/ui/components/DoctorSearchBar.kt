@@ -17,9 +17,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.text.input.TextFieldValue
 
 @Composable
 fun DoctorSearchBar(
+    value: String,
+    onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     placeholder: String = "Search"
 ) {
@@ -27,8 +33,8 @@ fun DoctorSearchBar(
         modifier = modifier
             .fillMaxWidth()
             .shadow(
-                elevation = 6.dp, // shadow ki height
-                shape = RoundedCornerShape(24.dp) // same shape jo background me use kiya
+                elevation = 6.dp,
+                shape = RoundedCornerShape(24.dp)
             )
             .background(Color.White, RoundedCornerShape(24.dp))
             .height(44.dp),
@@ -38,13 +44,28 @@ fun DoctorSearchBar(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(horizontal = 16.dp)
         ) {
-            Text(
-                text = placeholder,
-                color = Color(0xFFBDBDBD),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Normal
+            BasicTextField(
+                value = value,
+                onValueChange = onValueChange,
+                singleLine = true,
+                textStyle = androidx.compose.ui.text.TextStyle(
+                    color = Color.Black,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Normal
+                ),
+                decorationBox = { innerTextField ->
+                    if (value.isEmpty()) {
+                        Text(
+                            text = placeholder,
+                            color = Color(0xFFBDBDBD),
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Normal
+                        )
+                    }
+                    innerTextField()
+                },
+                modifier = Modifier.weight(1f)
             )
-            Spacer(modifier = Modifier.weight(1f))
             Icon(
                 painter = painterResource(id = R.drawable.ic_dashboard_search),
                 contentDescription = "Search",
@@ -57,7 +78,8 @@ fun DoctorSearchBar(
 @Preview
 @Composable
 fun DoctorSearchBarPreview() {
+    val (value, setValue) = remember { mutableStateOf("") }
     Column(modifier = Modifier.padding(16.dp)) {
-        DoctorSearchBar()
+        DoctorSearchBar(value = value, onValueChange = setValue)
     }
 }
