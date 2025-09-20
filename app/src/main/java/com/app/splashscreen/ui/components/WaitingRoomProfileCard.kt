@@ -88,6 +88,9 @@ fun WaitingRoomProfileCard(
                     fontSize = 15.sp,
                     modifier = Modifier.padding(bottom = 4.dp)
                 )
+
+
+
                 Button(
                     onClick = { /* TODO: Accept Request */ },
                     colors = ButtonDefaults.buttonColors(
@@ -98,7 +101,7 @@ fun WaitingRoomProfileCard(
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier
                         .height(22.dp)
-                        .width(120.dp)
+                        .width(145.dp)
                 ) {
                     Box(
                         modifier = Modifier.fillMaxSize(),
@@ -107,6 +110,9 @@ fun WaitingRoomProfileCard(
                         Text("Accept Request", fontSize = 12.sp, modifier = Modifier.align(Alignment.Center))
                     }
                 }
+
+
+
             }
         }
     }
