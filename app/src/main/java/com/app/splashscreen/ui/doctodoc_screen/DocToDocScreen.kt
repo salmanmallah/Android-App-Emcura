@@ -7,6 +7,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +27,7 @@ import com.app.splashscreen.ui.components.DoctorSearchBar
 
 @Composable
 fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean = true) {
+    var selectedTab by remember { mutableStateOf("DOCTORS") }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -59,9 +64,9 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
                 horizontalArrangement = Arrangement.Center
             ) {
                 Button(
-                    onClick = {},
+                    onClick = { selectedTab = "DOCTORS" },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = colorResource(id = R.color.instant_connect_button)
+                        containerColor = if (selectedTab == "DOCTORS") colorResource(id = R.color.instant_connect_button) else Color(0xFFF8BFC2)
                     ),
                     shape = RoundedCornerShape(50),
                     modifier = Modifier
@@ -71,7 +76,7 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
                 ) {
                     Text(
                         "DOCTORS",
-                        color = Color.White,
+                        color = if (selectedTab == "DOCTORS") Color.White else Color(0xFFE94F4F),
                         fontWeight = FontWeight.Bold,
                         fontSize = 12.sp
                     )
@@ -80,8 +85,10 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
                 Spacer(modifier = Modifier.width(12.dp))
 
                 Button(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF8BFC2)),
+                    onClick = { selectedTab = "SPECIALISTS" },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (selectedTab == "SPECIALISTS") colorResource(id = R.color.instant_connect_button) else Color(0xFFF8BFC2)
+                    ),
                     shape = RoundedCornerShape(50),
                     modifier = Modifier
                         .weight(1f)
@@ -90,7 +97,7 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
                 ) {
                     Text(
                         "SPECIALISTS",
-                        color = Color(0xFFE94F4F),
+                        color = if (selectedTab == "SPECIALISTS") Color.White else Color(0xFFE94F4F),
                         fontWeight = FontWeight.Bold,
                         fontSize = 12.sp
                     )
@@ -115,32 +122,53 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // 🔹 Doctors List Section
-        Column(
+        // 🔹 Doctors List or No Data Section
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
                 .padding(horizontal = 8.dp)
                 .background(Color.White, RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
                 .padding(top = 8.dp)
-                .then(
-                    if (enableScroll) Modifier.verticalScroll(rememberScrollState()) else Modifier
-                ),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            val doctors = List(10) { i ->
-                Triple(
-                    if (i % 2 == 0) "Dr. Supak Sookkaskon" else "Supak Sookkaskon",
-                    "Doctor",
-                    i % 2 == 0
-                )
-            }
-            doctors.forEach { (name, title, online) ->
-                DoctorCard(
-                    name = name,
-                    title = title,
-                    online = online
-                )
+            if (selectedTab == "DOCTORS") {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .then(
+                            if (enableScroll) Modifier.verticalScroll(rememberScrollState()) else Modifier
+                        ),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    val doctors = List(10) { i ->
+                        Triple(
+                            if (i % 2 == 0) "Dr. Supak Sookkaskon" else "Supak Sookkaskon",
+                            "Doctor",
+                            i % 2 == 0
+                        )
+                    }
+                    doctors.forEach { (name, title, online) ->
+                        DoctorCard(
+                            name = name,
+                            title = title,
+                            online = online
+                        )
+                    }
+                }
+            } else {
+                // No Data Available Centered
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "NO DATA AVAILABLE",
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp
+                    )
+                }
             }
         }
     }
