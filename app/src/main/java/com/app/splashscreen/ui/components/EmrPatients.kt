@@ -1,25 +1,26 @@
 package com.app.splashscreen.ui.emr_patients
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
-
-
 
 @Composable
 fun EmrPatients(
@@ -32,184 +33,101 @@ fun EmrPatients(
     var field4 by remember { mutableStateOf("") }
 
     Surface(
-        shape = RoundedCornerShape(32.dp),
-        shadowElevation = 20.dp,
+        shape = RoundedCornerShape(28.dp),
+        shadowElevation = 16.dp,
         color = Color(0xFFF7F7F7),
         modifier = Modifier
-            .padding(16.dp)
+            .padding(12.dp)
             .fillMaxWidth()
     ) {
         Column(
-            modifier = Modifier
-                .padding(24.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            // First Row
+            // First Row (First Name, Last Name)
             Row(
-                horizontalArrangement = Arrangement.spacedBy(20.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                OutlinedTextField(
+                CustomCenteredField(
                     value = field1,
                     onValueChange = { field1 = it },
-                    placeholder = { Text("First Name", color = Color(0xFFCCCCCC)) },
-                    singleLine = true,
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(60.dp)
-                        .shadow(10.dp, RoundedCornerShape(24.dp)),
-                    trailingIcon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_dashboard_search),
-                            contentDescription = "Search",
-                            tint = Color(0xFFE94F4F)
-                        )
-                    },
-                    shape = RoundedCornerShape(24.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = Color.Transparent,
-                        focusedBorderColor = Color.Transparent,
-                        disabledBorderColor = Color.Transparent,
-                        errorBorderColor = Color.Transparent,
-                        focusedContainerColor = Color(0xFFF7F7F7),
-                        unfocusedContainerColor = Color(0xFFF7F7F7)
-                    ),
-                    textStyle = LocalTextStyle.current.copy(fontSize = 16.sp)
+                    placeholder = "First Name",
+                    modifier = Modifier.weight(1f)
                 )
-                OutlinedTextField(
+                CustomCenteredField(
                     value = field2,
                     onValueChange = { field2 = it },
-                    placeholder = { Text("Last Name", color = Color(0xFFCCCCCC)) },
-                    singleLine = true,
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(60.dp)
-                        .shadow(10.dp, RoundedCornerShape(24.dp)),
-                    trailingIcon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_dashboard_search),
-                            contentDescription = "Search",
-                            tint = Color(0xFFE94F4F)
-                        )
-                    },
-                    shape = RoundedCornerShape(24.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = Color.Transparent,
-                        focusedBorderColor = Color.Transparent,
-                        disabledBorderColor = Color.Transparent,
-                        errorBorderColor = Color.Transparent,
-                        focusedContainerColor = Color(0xFFF7F7F7),
-                        unfocusedContainerColor = Color(0xFFF7F7F7)
-                    ),
-                    textStyle = LocalTextStyle.current.copy(fontSize = 16.sp)
+                    placeholder = "Last Name",
+                    modifier = Modifier.weight(1f)
                 )
             }
-            // Second Row
+
+            // Second Row (Phone, Zipcode)
             Row(
-                horizontalArrangement = Arrangement.spacedBy(20.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                OutlinedTextField(
+                CustomCenteredField(
                     value = field3,
                     onValueChange = { field3 = it },
-                    placeholder = { Text("Phone", color = Color(0xFFCCCCCC)) },
-                    singleLine = true,
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(60.dp)
-                        .shadow(10.dp, RoundedCornerShape(24.dp)),
-                    trailingIcon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_dashboard_search),
-                            contentDescription = "Search",
-                            tint = Color(0xFFE94F4F)
-                        )
-                    },
-                    shape = RoundedCornerShape(24.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = Color.Transparent,
-                        focusedBorderColor = Color.Transparent,
-                        disabledBorderColor = Color.Transparent,
-                        errorBorderColor = Color.Transparent,
-                        focusedContainerColor = Color(0xFFF7F7F7),
-                        unfocusedContainerColor = Color(0xFFF7F7F7)
-                    ),
-                    textStyle = LocalTextStyle.current.copy(fontSize = 16.sp)
+                    placeholder = "Phone",
+                    modifier = Modifier.weight(1f)
                 )
-                OutlinedTextField(
+                CustomCenteredField(
                     value = field4,
                     onValueChange = { field4 = it },
-                    placeholder = { Text("Zipcode", color = Color(0xFFCCCCCC)) },
-                    singleLine = true,
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(60.dp)
-                        .shadow(10.dp, RoundedCornerShape(24.dp)),
-                    trailingIcon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_dashboard_search),
-                            contentDescription = "Search",
-                            tint = Color(0xFFE94F4F)
-                        )
-                    },
-                    shape = RoundedCornerShape(24.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = Color.Transparent,
-                        focusedBorderColor = Color.Transparent,
-                        disabledBorderColor = Color.Transparent,
-                        errorBorderColor = Color.Transparent,
-                        focusedContainerColor = Color(0xFFF7F7F7),
-                        unfocusedContainerColor = Color(0xFFF7F7F7)
-                    ),
-                    textStyle = LocalTextStyle.current.copy(fontSize = 16.sp)
+                    placeholder = "Zipcode",
+                    modifier = Modifier.weight(1f)
                 )
             }
-            // Buttons Row
+
+            // Buttons Row (DOB and Search in one row)
             Row(
-                horizontalArrangement = Arrangement.spacedBy(20.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 // DOB Button
                 Surface(
-                    shape = RoundedCornerShape(16.dp),
-                    shadowElevation = 8.dp,
+                    shape = RoundedCornerShape(14.dp),
+                    shadowElevation = 6.dp,
                     color = Color(0xFFF5F5F5),
                     modifier = Modifier
                         .weight(1f)
-                        .height(60.dp)
+                        .height(44.dp)
                         .clickable { onDobClick() }
                 ) {
                     Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
                     ) {
                         Text(
                             text = "DOB",
                             color = Color(0xFFE94F4F),
                             fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp
+                            fontSize = 15.sp
                         )
                     }
                 }
                 // Search Button
                 Surface(
-                    shape = RoundedCornerShape(16.dp),
-                    shadowElevation = 8.dp,
+                    shape = RoundedCornerShape(14.dp),
+                    shadowElevation = 6.dp,
                     color = Color(0xFFE94F4F),
                     modifier = Modifier
                         .weight(1f)
-                        .height(60.dp)
+                        .height(44.dp)
                         .clickable { onSearchClick() }
                 ) {
                     Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
                     ) {
                         Text(
                             text = "Search",
                             color = Color.White,
                             fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp
+                            fontSize = 15.sp
                         )
                     }
                 }
@@ -218,7 +136,64 @@ fun EmrPatients(
     }
 }
 
-@Preview(showBackground = true)
+@Composable
+fun CustomCenteredField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .height(48.dp)
+            .shadow(6.dp, RoundedCornerShape(20.dp))
+            .background(Color(0xFFF7F7F7), RoundedCornerShape(20.dp))
+            .border(0.dp, Color.Transparent, RoundedCornerShape(20.dp)),
+        contentAlignment = Alignment.CenterStart
+    ) {
+        BasicTextField(
+            value = value,
+            onValueChange = onValueChange,
+            singleLine = true,
+            textStyle = TextStyle(
+                fontSize = 14.sp,
+                color = Color.Black,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            ),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 12.dp),
+            decorationBox = { innerTextField ->
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    if (value.isEmpty()) {
+                        Text(
+                            text = placeholder,
+                            fontSize = 14.sp,
+                            color = Color(0xFFCCCCCC)
+                        )
+                    }
+                    innerTextField()
+                }
+            }
+        )
+
+        // Trailing Search Icon
+        Icon(
+            painter = painterResource(id = R.drawable.ic_dashboard_search),
+            contentDescription = "Search",
+            tint = Color(0xFFE94F4F),
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .padding(end = 12.dp)
+                .size(18.dp)
+        )
+    }
+}
+
+@Preview
 @Composable
 fun EmrPatientsPreview() {
     EmrPatients()
