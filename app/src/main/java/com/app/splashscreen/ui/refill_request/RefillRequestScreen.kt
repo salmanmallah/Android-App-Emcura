@@ -34,6 +34,7 @@ fun RefillRequestScreen(navController: NavController? = null) {
     var expanded by remember { mutableStateOf(false) }
     var selectedOption by remember { mutableStateOf("Other") }
 
+    // refile details column
     Column(
         modifier = Modifier
             .fillMaxSize()
