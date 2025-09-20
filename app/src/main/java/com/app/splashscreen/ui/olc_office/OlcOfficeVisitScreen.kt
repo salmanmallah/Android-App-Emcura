@@ -16,6 +16,7 @@ import androidx.navigation.NavController
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.OlcOfficeProfileCard
+import com.app.splashscreen.ui.components.OlcOfficeVisitNote
 
 @Composable
 fun OlcOfficeVisitScreen(navController: NavController? = null) {
@@ -70,8 +71,10 @@ fun OlcOfficeVisitScreen(navController: NavController? = null) {
             Spacer(modifier = Modifier.height(32.dp))
 
 
+            // Clinic Patient Note Options
+            OlcOfficeVisitNote()
 
-            Spacer(modifier = Modifier.height(100.dp))
+
 
 
 
