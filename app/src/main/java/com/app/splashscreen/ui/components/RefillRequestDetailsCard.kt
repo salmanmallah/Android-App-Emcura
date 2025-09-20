@@ -17,10 +17,10 @@ import com.app.splashscreen.R
 
 @Composable
 fun RefillRequestDetailsCard(
-    title: String,
-    patient: String,
-    date: String,
-    pharmacy: String,
+    title: String = "Lipitor 80 MG Oral TABS",
+    patient: String = "Jack Denial",
+    date: String = "11/02/2017 to 11/09/2017",
+    pharmacy: String = "ITC Pharmacy 2",
     onRefillClick: () -> Unit = {}
 ) {
     Surface(
@@ -111,10 +111,5 @@ fun RefillRequestDetailsCard(
 @Preview(showBackground = true)
 @Composable
 fun RefillRequestDetailsCardPreview() {
-    RefillRequestDetailsCard(
-        title = "Lipitor 80 MG Oral TABS",
-        patient = "Jack Denial",
-        date = "11/02/2017 to 11/09/2017",
-        pharmacy = "ITC Pharmacy 2"
-    )
+    RefillRequestDetailsCard()
 }
