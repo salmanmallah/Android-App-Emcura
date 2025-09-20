@@ -17,6 +17,7 @@ import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.OlcOfficeProfileCard
 import com.app.splashscreen.ui.components.OlcOfficeVisitNote
+import com.app.splashscreen.ui.components.OlcOfficeVisitIconGrid
 
 @Composable
 fun OlcOfficeVisitScreen(navController: NavController? = null) {
@@ -74,6 +75,8 @@ fun OlcOfficeVisitScreen(navController: NavController? = null) {
             // Clinic Patient Note Options
             OlcOfficeVisitNote()
 
+            Spacer(modifier = Modifier.height(100.dp))
+            OlcOfficeVisitIconGrid()
 
 
 
