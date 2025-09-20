@@ -64,6 +64,7 @@ fun MyApp() {
         composable("forget_password_email") { ForgetPasswordScreen(navController) }
         composable("password_otp") { PasswordOtpScreen(navController) }
     composable("dashboard") { DashboardScreen(navController) }
+    composable("onlinecarepatients") { com.app.splashscreen.ui.onlinecarepatients.OnlineCarePatientsScreen(navController) }
     composable("doctodoc") { DocToDocScreen(navController) }
     composable("doctocp") { DocToCpScreen(navController) }
     }

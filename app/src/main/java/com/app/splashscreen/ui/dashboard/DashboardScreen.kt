@@ -124,7 +124,10 @@ fun DashboardScreen(navController: NavController) {
                             R.drawable.ic_dashboard_refill to "Refill Request"
                         ),
                         onIconClick = { index ->
-                            if (index == 0) showDocToDocPopup = true
+                            when (index) {
+                                0 -> showDocToDocPopup = true
+                                1 -> navController.navigate("onlinecarepatients")
+                            }
                         },
                         onInstantConnectClick = {
                             showInstantConnectPopup = true
