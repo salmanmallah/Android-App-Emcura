@@ -65,6 +65,7 @@ fun MyApp() {
         composable("password_otp") { PasswordOtpScreen(navController) }
     composable("dashboard") { DashboardScreen(navController) }
     composable("onlinecarepatients") { com.app.splashscreen.ui.onlinecarepatients.OnlineCarePatientsScreen(navController) }
+    composable("refill_request") { com.app.splashscreen.ui.refill_request.RefillRequestScreen(navController) }
     composable("doctodoc") { DocToDocScreen(navController) }
     composable("doctocp") { DocToCpScreen(navController) }
     }

@@ -127,6 +127,7 @@ fun DashboardScreen(navController: NavController) {
                             when (index) {
                                 0 -> showDocToDocPopup = true
                                 1 -> navController.navigate("onlinecarepatients")
+                                5 -> navController.navigate("refill_request")
                             }
                         },
                         onInstantConnectClick = {
