@@ -96,41 +96,58 @@ fun CancelPrescriptionCard(
                         color = Color(0xFF666666),
                         modifier = Modifier.padding(top = 2.dp)
                     )
+
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.Start
+                    ) {
+                        Text(
+                            text = "Prescription : $prescription",
+                            fontSize = 14.sp,
+                            color = Color(0xFF222222),
+                            fontWeight = FontWeight.Medium
+                        )
+                        Text(
+                            text = "Quantity : $quantity",
+                            fontSize = 14.sp,
+                            color = Color(0xFF222222),
+                            fontWeight = FontWeight.Medium
+                        )
+                        Text(
+                            text = "Direction : $direction",
+                            fontSize = 14.sp,
+                            color = Color(0xFF222222),
+                            fontWeight = FontWeight.Medium
+                        )
+                        Text(
+                            text = "Status : $status",
+                            fontSize = 14.sp,
+                            color = Color(0xFF222222),
+                            fontWeight = FontWeight.Medium
+                        )
+                        Button(
+                            onClick = onCancelClick,
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier
+                                .height(38.dp)
+                                .widthIn(min = 180.dp)
+                        ) {
+                            Text(
+                                text = "Cancel Prescription",
+                                color = Color.White,
+                                fontWeight = FontWeight.Medium,
+                                fontSize = 15.sp
+                            )
+                        }
+                    }
                 }
             }
 
             Spacer(modifier = Modifier.height(8.dp))
 
             // Details block left-aligned
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.Start
-            ) {
-                Text(
-                    text = "Prescription : $prescription",
-                    fontSize = 14.sp,
-                    color = Color(0xFF222222),
-                    fontWeight = FontWeight.Medium
-                )
-                Text(
-                    text = "Quantity : $quantity",
-                    fontSize = 14.sp,
-                    color = Color(0xFF222222),
-                    fontWeight = FontWeight.Medium
-                )
-                Text(
-                    text = "Direction : $direction",
-                    fontSize = 14.sp,
-                    color = Color(0xFF222222),
-                    fontWeight = FontWeight.Medium
-                )
-                Text(
-                    text = "Status : $status",
-                    fontSize = 14.sp,
-                    color = Color(0xFF222222),
-                    fontWeight = FontWeight.Medium
-                )
-            }
+
 
 
 
@@ -164,21 +181,7 @@ fun CancelPrescriptionCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Absolute.Right
             ) {
-                Button(
-                    onClick = onCancelClick,
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
-                    shape = RoundedCornerShape(8.dp),
-                    modifier = Modifier
-                        .height(38.dp)
-                        .widthIn(min = 180.dp)
-                ) {
-                    Text(
-                        text = "Cancel Prescription",
-                        color = Color.White,
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 15.sp
-                    )
-                }
+
             }
         }
     }
