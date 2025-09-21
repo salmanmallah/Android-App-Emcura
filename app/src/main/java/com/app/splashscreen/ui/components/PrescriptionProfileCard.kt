@@ -31,7 +31,7 @@ fun PrescriptionProfileCard(
     sentDate: String = "08/28/2023",
     prescription: String = "Lipitor 80 MG TABS",
     quantity: String = "2",
-    direction: String = "3 times a day after meals",
+    direction: String = "0",
     imageRes: Int = R.drawable.ic_dashboard_profile, // Replace with actual doctor image
     signatureRes: Int = R.drawable.prescription_signature // Add this drawable to your resources
 ) {
@@ -40,14 +40,14 @@ fun PrescriptionProfileCard(
             .fillMaxWidth()
             .wrapContentHeight(),
         color = colorResource(id = R.color.cards_background_color),
-        shape = RoundedCornerShape(22.dp),
+        shape = RoundedCornerShape(0.dp),
         shadowElevation = 0.2.dp
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 18.dp, vertical = 10.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(horizontal = 5.dp, vertical = 10.dp),
+//            verticalAlignment = Alignment.CenterVertically
         ) {
             // Profile Image with red border
             Box(
@@ -117,9 +117,9 @@ fun PrescriptionProfileCard(
                 ) {
                     Text(
                         text = "Prescribed by",
-                        color = Color(0xFFE94F4F),
+                        color = Color(0xFFE82A30),
                         fontWeight = FontWeight.Medium,
-                        fontSize = 11.sp
+                        fontSize = 15.sp
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Image(

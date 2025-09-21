@@ -165,7 +165,7 @@ fun PrescriptionScreen(
                         .verticalScroll(rememberScrollState())
                 ) {
                     Spacer(modifier = Modifier.height(16.dp))
-                    EmrPatients()
+                    PrescriptionProfileCard()
                 }
             }
         }
