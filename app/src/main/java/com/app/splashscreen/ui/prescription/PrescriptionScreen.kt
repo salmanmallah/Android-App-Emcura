@@ -23,6 +23,8 @@ import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.DoctorSearchBar
 import com.app.splashscreen.ui.components.OlcOfficeProfileCard
 import com.app.splashscreen.ui.emr_patients.EmrPatients
+import com.app.splashscreen.ui.components.PrescriptionProfileCard
+
 
 // Profile data for OnlineCare Patients
 // (Keep as is for now, can be moved to a shared model if needed)
@@ -152,12 +154,7 @@ fun PrescriptionScreen(
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         filteredPatients.forEach {
-                            OlcOfficeProfileCard(
-                                name = it.name,
-                                email = it.email,
-                                mobile = it.mobile,
-                                imageRes = it.imageRes
-                            )
+                            PrescriptionProfileCard()
                         }
                     }
                 }
