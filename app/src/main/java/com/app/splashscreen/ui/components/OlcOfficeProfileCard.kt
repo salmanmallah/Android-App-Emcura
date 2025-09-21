@@ -1,4 +1,3 @@
-
 package com.app.splashscreen.ui.components
 
 import androidx.compose.foundation.Image

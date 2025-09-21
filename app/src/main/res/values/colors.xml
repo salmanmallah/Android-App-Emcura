@@ -12,4 +12,5 @@
     <color name="dark_pink">#C2185B</color>
     <color name="soft_red_transparent">#EB474B40</color>
     <color name="instant_connect_button">#E34449</color>
+    <color name="cards_background_color">#FFE4E3</color>
 </resources>
