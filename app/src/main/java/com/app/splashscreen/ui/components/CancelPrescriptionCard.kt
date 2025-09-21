@@ -167,6 +167,14 @@ fun CancelPrescriptionCard(
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically
             ) {
+
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.End
+            ) {
                 Text(
                     text = "Prescribed by",
                     color = Color(0xFFE94F4F),
@@ -181,14 +189,6 @@ fun CancelPrescriptionCard(
                         .size(width = 70.dp, height = 26.dp),
                     contentScale = ContentScale.Fit
                 )
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-
-            // Cancel Prescription Button
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Absolute.Right
-            ) {
 
             }
         }
