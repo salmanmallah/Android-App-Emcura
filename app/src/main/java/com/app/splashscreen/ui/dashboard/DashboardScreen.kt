@@ -127,6 +127,7 @@ fun DashboardScreen(navController: NavController) {
                             when (index) {
                                 0 -> showDocToDocPopup = true
                                 1 -> navController.navigate("onlinecarepatients")
+                                2 -> navController.navigate("prescription")
                                 5 -> navController.navigate("refill_request")
                             }
                         },
