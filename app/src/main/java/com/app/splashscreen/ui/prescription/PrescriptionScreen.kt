@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.app.splashscreen.R
+import com.app.splashscreen.ui.components.CancelPrescriptionCard
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.DoctorSearchBar
 import com.app.splashscreen.ui.components.OlcOfficeProfileCard
@@ -165,7 +166,7 @@ fun PrescriptionScreen(
                         .verticalScroll(rememberScrollState())
                 ) {
                     Spacer(modifier = Modifier.height(16.dp))
-                    PrescriptionProfileCard()
+                    CancelPrescriptionCard()
                 }
             }
         }
