@@ -27,13 +27,13 @@ import androidx.compose.ui.res.colorResource
 @Composable
 
 fun PrescriptionProfileCard(
-    doctorName: String,
-    sentDate: String,
-    prescription: String,
-    quantity: String,
-    direction: String,
-    imageRes: Int,
-    signatureRes: Int
+    doctorName: String = "Dr. Supak Sookkasikon",
+    sentDate: String = "08/28/2023",
+    prescription: String = "Lipitor 80 MG TABS",
+    quantity: String = "2",
+    direction: String = "3 times a day after meals",
+    imageRes: Int = R.drawable.ic_dashboard_profile, // Replace with actual doctor image
+    signatureRes: Int = R.drawable.prescription_signature // Add this drawable to your resources
 ) {
     Surface(
         modifier = Modifier
@@ -141,13 +141,5 @@ fun PrescriptionProfileCard(
 @Preview(showBackground = true)
 @Composable
 fun PrescriptionProfileCardPreview() {
-    PrescriptionProfileCard(
-        doctorName = "Dr. Supak Sookkasikon",
-        sentDate = "08/28/2023",
-        prescription = "Lipitor 80 MG TABS",
-        quantity = "0",
-        direction = "0",
-        imageRes = R.drawable.ic_dashboard_profile, // Replace with actual doctor image
-        signatureRes = R.drawable.prescription_signature // Add this drawable to your resources
-    )
+    PrescriptionProfileCard()
 }
