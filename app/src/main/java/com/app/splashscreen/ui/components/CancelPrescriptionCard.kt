@@ -72,6 +72,14 @@ fun CancelPrescriptionCard(
                             .clip(CircleShape),
                         contentScale = ContentScale.Crop
                     )
+
+
+
+
+
+
+
+
                 }
 
                 Spacer(modifier = Modifier.width(18.dp))
