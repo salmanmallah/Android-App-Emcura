@@ -23,6 +23,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import com.app.splashscreen.ui.components.CallHistoryProfileCard
 import com.app.splashscreen.ui.components.PatientCareProfileCard
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 
 @Composable
 fun CallHistoryScreen(enableScroll: Boolean = true) {
@@ -72,7 +74,6 @@ fun CallHistoryScreen(enableScroll: Boolean = true) {
         Spacer(modifier = Modifier.height(12.dp))
 
         // Doctors List Section (Always visible now)
-        val scrollState = rememberScrollState()
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -87,28 +88,22 @@ fun CallHistoryScreen(enableScroll: Boolean = true) {
                 Triple("Emma Stone", R.drawable.ic_dashboard_profile, "1 hour ago")
             )
             val filteredCalls = callHistory.filter { it.first.contains(searchQuery, ignoreCase = true) }
-            Box(modifier = Modifier.fillMaxSize()) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .verticalScroll(scrollState),
+            if (filteredCalls.isEmpty()) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text("No results found", color = Color.Gray, fontSize = 16.sp)
+                }
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    if (filteredCalls.isEmpty()) {
-                        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                            Text("No results found", color = Color.Gray, fontSize = 16.sp)
-                        }
-                    } else {
-                        filteredCalls.forEach { (name, profileImageRes, timeAgo) ->
-                            CallHistoryProfileCard(name = name, profileImageRes = profileImageRes, timeAgo = timeAgo)
-                        }
+                    items(filteredCalls) { (name, profileImageRes, timeAgo) ->
+                        CallHistoryProfileCard(name = name, profileImageRes = profileImageRes, timeAgo = timeAgo)
                     }
+
                 }
-                // Scrollbar
-                androidx.compose.foundation.VerticalScrollbar(
-                    adapter = androidx.compose.foundation.rememberScrollbarAdapter(scrollState),
-                    modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight()
-                )
+
+
             }
         }
     }
