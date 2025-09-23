@@ -72,6 +72,7 @@ fun CallHistoryScreen(enableScroll: Boolean = true) {
         Spacer(modifier = Modifier.height(12.dp))
 
         // Doctors List Section (Always visible now)
+        val scrollState = rememberScrollState()
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -86,23 +87,28 @@ fun CallHistoryScreen(enableScroll: Boolean = true) {
                 Triple("Emma Stone", R.drawable.ic_dashboard_profile, "1 hour ago")
             )
             val filteredCalls = callHistory.filter { it.first.contains(searchQuery, ignoreCase = true) }
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .then(
-                        if (enableScroll) Modifier.verticalScroll(rememberScrollState()) else Modifier
-                    ),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                if (filteredCalls.isEmpty()) {
-                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                        Text("No results found", color = Color.Gray, fontSize = 16.sp)
-                    }
-                } else {
-                    filteredCalls.forEach { (name, profileImageRes, timeAgo) ->
-                        CallHistoryProfileCard(name = name, profileImageRes = profileImageRes, timeAgo = timeAgo)
+            Box(modifier = Modifier.fillMaxSize()) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .verticalScroll(scrollState),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    if (filteredCalls.isEmpty()) {
+                        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                            Text("No results found", color = Color.Gray, fontSize = 16.sp)
+                        }
+                    } else {
+                        filteredCalls.forEach { (name, profileImageRes, timeAgo) ->
+                            CallHistoryProfileCard(name = name, profileImageRes = profileImageRes, timeAgo = timeAgo)
+                        }
                     }
                 }
+                // Scrollbar
+                androidx.compose.foundation.VerticalScrollbar(
+                    adapter = androidx.compose.foundation.rememberScrollbarAdapter(scrollState),
+                    modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight()
+                )
             }
         }
     }
