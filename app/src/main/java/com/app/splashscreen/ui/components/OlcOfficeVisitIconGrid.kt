@@ -17,7 +17,14 @@ import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.clickable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.navigation.NavController
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+
 
 @Composable
 fun OlcOfficeVisitIconGrid(navController: NavController? = null) {
@@ -27,10 +34,25 @@ fun OlcOfficeVisitIconGrid(navController: NavController? = null) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         // RealTime Notes
+        var pressed1 by remember { mutableStateOf(false) }
+        val scale1 by androidx.compose.animation.core.animateFloatAsState(if (pressed1) 0.92f else 1f, label = "olcOfficeIconScale1")
         Column(horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.clickable {
-                navController?.navigate("olcOffice")
-            }
+            modifier = Modifier
+                .graphicsLayer {
+                    scaleX = scale1
+                    scaleY = scale1
+                }
+                .pointerInteropFilter {
+                    when (it.action) {
+                        android.view.MotionEvent.ACTION_DOWN -> pressed1 = true
+                        android.view.MotionEvent.ACTION_UP -> {
+                            pressed1 = false
+                            navController?.navigate("olcOffice")
+                        }
+                        android.view.MotionEvent.ACTION_CANCEL -> pressed1 = false
+                    }
+                    true
+                }
         ) {
             Surface(
                 shape = CircleShape,
@@ -58,7 +80,23 @@ fun OlcOfficeVisitIconGrid(navController: NavController? = null) {
             )
         }
         // AI Based Notes
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        var pressed2 by remember { mutableStateOf(false) }
+        val scale2 by androidx.compose.animation.core.animateFloatAsState(if (pressed2) 0.92f else 1f, label = "olcOfficeIconScale2")
+        Column(horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .graphicsLayer {
+                    scaleX = scale2
+                    scaleY = scale2
+                }
+                .pointerInteropFilter {
+                    when (it.action) {
+                        android.view.MotionEvent.ACTION_DOWN -> pressed2 = true
+                        android.view.MotionEvent.ACTION_UP -> pressed2 = false
+                        android.view.MotionEvent.ACTION_CANCEL -> pressed2 = false
+                    }
+                    true
+                }
+        ) {
             Surface(
                 shape = CircleShape,
                 color = Color.White,
@@ -85,7 +123,23 @@ fun OlcOfficeVisitIconGrid(navController: NavController? = null) {
             )
         }
         // Dictate Notes
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        var pressed3 by remember { mutableStateOf(false) }
+        val scale3 by androidx.compose.animation.core.animateFloatAsState(if (pressed3) 0.92f else 1f, label = "olcOfficeIconScale3")
+        Column(horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .graphicsLayer {
+                    scaleX = scale3
+                    scaleY = scale3
+                }
+                .pointerInteropFilter {
+                    when (it.action) {
+                        android.view.MotionEvent.ACTION_DOWN -> pressed3 = true
+                        android.view.MotionEvent.ACTION_UP -> pressed3 = false
+                        android.view.MotionEvent.ACTION_CANCEL -> pressed3 = false
+                    }
+                    true
+                }
+        ) {
             Surface(
                 shape = CircleShape,
                 color = Color.White,

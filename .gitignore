@@ -18,3 +18,4 @@ local.properties
 .idea/*
 .idea/misc.xml
 gradle/libs.versions.toml 
+.kotlin/errors/errors-1758665457456.log
