@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import com.app.splashscreen.R
-import com.app.splashscreen.ui.components.SearchBar
 import com.app.splashscreen.ui.components.DashboardIconGrid
 import com.app.splashscreen.ui.components.BottomNavbar
 import androidx.compose.runtime.Composable
