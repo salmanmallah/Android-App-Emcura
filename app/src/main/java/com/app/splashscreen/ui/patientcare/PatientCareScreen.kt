@@ -54,60 +54,6 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Toggle Buttons (Doctors / Specialists)
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Button(
-                    onClick = { selectedTab = "DOCTORS" },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (selectedTab == "DOCTORS") colorResource(id = R.color.instant_connect_button) else Color(0xFFF8BFC2)
-                    ),
-                    shape = RoundedCornerShape(10),
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(36.dp),
-                    contentPadding = PaddingValues(vertical = 0.dp)
-                ) {
-                    Text(
-                        "Patients Name",
-                        color = if (selectedTab == "DOCTORS") Color.White else Color(0xFFE94F4F),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 12.sp
-                    )
-                }
-
-                Spacer(modifier = Modifier.width(12.dp))
-
-                Button(
-                    onClick = { selectedTab = "Number In Queue" },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (selectedTab == "SPECIALISTS") colorResource(id = R.color.instant_connect_button) else Color(0xFFF8BFC2)
-                    ),
-                    shape = RoundedCornerShape(50),
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(36.dp),
-                    contentPadding = PaddingValues(vertical = 0.dp)
-                ) {
-                    Text(
-                        "Number in Queue",
-                        color = if (selectedTab == "SPECIALISTS") Color.White else Color(0xFFE94F4F),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 12.sp
-                    )
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
         // 🔹 Search Section
         Box(
             modifier = Modifier
@@ -122,6 +68,64 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
                 modifier = Modifier.fillMaxWidth()
             )
         }
+
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // 🔹 Toggle Buttons (Doctors / Specialists)
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+
+                Button(
+                    onClick = { selectedTab = "DOCTORS" },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFE94F4F)
+                    ),
+                    shape = RoundedCornerShape(10),
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(36.dp),
+                    contentPadding = PaddingValues(vertical = 0.dp)
+                ) {
+                    Text(
+                        "Patients Name",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 12.sp
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(12.dp))
+
+                Button(
+                    onClick = {}, // No-op: data does not change
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFE94F4F)
+                    ),
+                    shape = RoundedCornerShape(10),
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(36.dp),
+                    contentPadding = PaddingValues(vertical = 0.dp)
+                ) {
+                    Text(
+                        "Number in Queue",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 12.sp
+                    )
+                }
+            }
+        }
+
+
 
         Spacer(modifier = Modifier.height(12.dp))
 
