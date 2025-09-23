@@ -143,6 +143,8 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
             ) {
                 // yahan profile card aaega hamesha
                 PatientCareProfileCard()
+                PatientCareProfileCard("Beemar John Wick", "3", R.drawable.dr_john_wick)
+                PatientCareProfileCard(name="Emma Stone", number = "5")
             }
         }
     }
