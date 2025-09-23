@@ -100,7 +100,9 @@ fun CallHistoryScreen(enableScroll: Boolean = true) {
                     items(filteredCalls) { (name, profileImageRes, timeAgo) ->
                         CallHistoryProfileCard(name = name, profileImageRes = profileImageRes, timeAgo = timeAgo)
                     }
-
+                    item {
+                        Spacer(modifier = Modifier.height(600.dp)) // Extra space at the bottom for scroll
+                    }
                 }
 
 
