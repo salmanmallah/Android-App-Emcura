@@ -81,23 +81,30 @@ fun CallHistoryScreen(enableScroll: Boolean = true) {
                 .background(Color.White, RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
                 .padding(top = 8.dp)
         ) {
+            val callHistory = listOf(
+                Triple("Aslam Chandio", R.drawable.ic_dashboard_profile, "12 min ago"),
+                Triple("Elizabeth Weisberg", R.drawable.ic_dashboard_profile, "5 min ago"),
+                Triple("Dr John Wick Memon", R.drawable.dr_john_wick, "2 min ago"),
+                Triple("Emma Stone", R.drawable.ic_dashboard_profile, "1 hour ago")
+            )
+            val filteredCalls = callHistory.filter { it.first.contains(searchQuery, ignoreCase = true) }
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .then(
                         if (enableScroll) Modifier.verticalScroll(rememberScrollState()) else Modifier
                     ),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                // yahan par calls k card ayengy
-                CallHistoryProfileCard(name="Aslam Chandio")
-                Spacer(modifier = Modifier.height(16.dp))
-                CallHistoryProfileCard()
-                Spacer(modifier = Modifier.height(16.dp))
-                CallHistoryProfileCard()
-                Spacer(modifier = Modifier.height(16.dp))
-                CallHistoryProfileCard(name = "Dr John Wick Memon",profileImageRes = R.drawable.dr_john_wick)
-
+                if (filteredCalls.isEmpty()) {
+                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                        Text("No results found", color = Color.Gray, fontSize = 16.sp)
+                    }
+                } else {
+                    filteredCalls.forEach { (name, profileImageRes, timeAgo) ->
+                        CallHistoryProfileCard(name = name, profileImageRes = profileImageRes, timeAgo = timeAgo)
+                    }
+                }
             }
         }
     }
