@@ -30,6 +30,9 @@ import com.app.splashscreen.ui.components.DashboardStatusCard
 import com.app.splashscreen.ui.components.DocToDocPopup
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+
 
 @Composable
 fun DashboardScreen(navController: NavController) {

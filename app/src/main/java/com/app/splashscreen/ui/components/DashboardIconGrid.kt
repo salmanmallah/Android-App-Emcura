@@ -1,5 +1,6 @@
 package com.app.splashscreen.ui.components
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -19,8 +20,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.material3.Text
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInteropFilter
 import com.app.splashscreen.R
-
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 @Composable
 fun DashboardIconGrid(
     icons: List<Pair<Int, String>>,
@@ -45,15 +51,31 @@ fun DashboardIconGrid(
                 rowIcons.forEachIndexed { colIndex, (iconResId, label) ->
                     val iconIndex = rowIndex * iconsPerRow + colIndex
                     val showRedBorder = iconIndex == 1 || iconIndex == 4 // Center icons
-                    val clickableModifier =
-                        if (onIconClick != null && (iconIndex != 4)) Modifier.clickable { onIconClick(iconIndex) }
-                        else if (iconIndex == 4 && onInstantConnectClick != null) Modifier.clickable { onInstantConnectClick() }
-                        else Modifier
+                    // --- Press animation and action on release ---
+                    var pressed by remember { mutableStateOf(false) }
+                    val scale by animateFloatAsState(if (pressed) 0.92f else 1f, label = "dashboardIconScale$iconIndex")
+                    val pressModifier = Modifier
+                        .graphicsLayer {
+                            scaleX = scale
+                            scaleY = scale
+                        }
+                        .pointerInteropFilter {
+                            when (it.action) {
+                                android.view.MotionEvent.ACTION_DOWN -> pressed = true
+                                android.view.MotionEvent.ACTION_UP -> {
+                                    pressed = false
+                                    if (iconIndex != 4 && onIconClick != null) onIconClick(iconIndex)
+                                    else if (iconIndex == 4 && onInstantConnectClick != null) onInstantConnectClick()
+                                }
+                                android.view.MotionEvent.ACTION_CANCEL -> pressed = false
+                            }
+                            true // consume event, no .clickable needed
+                        }
                     DashboardCircleIconWithLabel(
                         iconResId = iconResId,
                         label = label,
                         showRedBorder = showRedBorder,
-                        modifier = clickableModifier
+                        modifier = pressModifier
                     )
                 }
             }
