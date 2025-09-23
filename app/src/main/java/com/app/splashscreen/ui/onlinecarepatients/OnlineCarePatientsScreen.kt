@@ -175,6 +175,8 @@ fun OnlineCarePatientsScreen(
                                 imageRes = it.imageRes
                             )
                         }
+
+                        Spacer(modifier = Modifier.height(300.dp))
                     }
                 }
             } else {
