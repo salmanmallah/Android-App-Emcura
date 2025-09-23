@@ -62,33 +62,70 @@ fun BottomNavbar(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Left icons
+            // Left icons with press animation and action on release
             icons.take(icons.size / 2).forEachIndexed { index, iconRes ->
+                var pressed by remember { mutableStateOf(false) }
+                val scale by animateFloatAsState(if (pressed) 0.92f else 1f, label = "leftIconScale$index")
                 Icon(
                     painter = painterResource(id = iconRes),
                     contentDescription = "Nav Icon $index",
                     tint = Color.White,
-                    modifier = Modifier.size(30.dp)
+                    modifier = Modifier
+                        .size(30.dp)
+                        .graphicsLayer {
+                            scaleX = scale
+                            scaleY = scale
+                        }
+                        .pointerInteropFilter {
+                            when (it.action) {
+                                android.view.MotionEvent.ACTION_DOWN -> pressed = true
+                                android.view.MotionEvent.ACTION_UP -> {
+                                    pressed = false
+                                    onIconClick(index)
+                                }
+                                android.view.MotionEvent.ACTION_CANCEL -> pressed = false
+                            }
+                            true // consume event, no .clickable needed
+                        }
                 )
             }
 
             Spacer(modifier = Modifier.width(38.dp)) // Space for center card
 
-            // Right icons
+            // Right icons with press animation and action on release
             icons.drop(icons.size / 2).forEachIndexed { index, iconRes ->
+                val actualIndex = index + icons.size / 2
+                var pressed by remember { mutableStateOf(false) }
+                val scale by animateFloatAsState(if (pressed) 0.92f else 1f, label = "rightIconScale$actualIndex")
                 Icon(
                     painter = painterResource(id = iconRes),
-                    contentDescription = "Nav Icon ${index + icons.size / 2}",
+                    contentDescription = "Nav Icon $actualIndex",
                     tint = Color.White,
-                    modifier = Modifier.size(22.dp)
+                    modifier = Modifier
+                        .size(22.dp)
+                        .graphicsLayer {
+                            scaleX = scale
+                            scaleY = scale
+                        }
+                        .pointerInteropFilter {
+                            when (it.action) {
+                                android.view.MotionEvent.ACTION_DOWN -> pressed = true
+                                android.view.MotionEvent.ACTION_UP -> {
+                                    pressed = false
+                                    onIconClick(actualIndex)
+                                }
+                                android.view.MotionEvent.ACTION_CANCEL -> pressed = false
+                            }
+                            true // consume event, no .clickable needed
+                        }
                 )
             }
         }
 
         // Center circular card (now clickable)
-        // --- Animated press effect for center icon ---
-        var pressed by remember { mutableStateOf(false) }
-        val scale by animateFloatAsState(if (pressed) 0.92f else 1f, label = "centerIconScale")
+        // --- Animated press effect for center icon, action on release ---
+        var centerPressed by remember { mutableStateOf(false) }
+        val centerScale by animateFloatAsState(if (centerPressed) 0.92f else 1f, label = "centerIconScale")
         Image(
             painter = painterResource(id = centerImageResId),
             contentDescription = "Center Image",
@@ -97,20 +134,20 @@ fun BottomNavbar(
                 .align(Alignment.BottomCenter)
                 .offset(y = (-15).dp)
                 .graphicsLayer {
-                    scaleX = scale
-                    scaleY = scale
+                    scaleX = centerScale
+                    scaleY = centerScale
                 }
                 .pointerInteropFilter {
                     when (it.action) {
-                        android.view.MotionEvent.ACTION_DOWN -> pressed = true
-                        android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> pressed = false
+                        android.view.MotionEvent.ACTION_DOWN -> centerPressed = true
+                        android.view.MotionEvent.ACTION_UP -> {
+                            centerPressed = false
+                            onIconClick(4)
+                        }
+                        android.view.MotionEvent.ACTION_CANCEL -> centerPressed = false
                     }
-                    false // let clickable handle the click
+                    true // consume event, no .clickable needed
                 }
-                .clickable(
-                    indication = null,
-                    interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }
-                ) { onIconClick(4) }
         )
     }
 }
