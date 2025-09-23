@@ -30,7 +30,7 @@ import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.OlcOfficeProfileCard
 
 @Composable
-fun WaitingRoomScreen(navController: NavController? = null) {
+fun OlcOfficeScreen(navController: NavController? = null) {
     val dropdownOptions = listOf(
         "Nurse", "Nurse Practitioner", "Social Worker", "Dietition", "OT/OPT",
         "Pharmacist", "Office Manager", "Medical Assistant", "Supervisor"
@@ -144,7 +144,7 @@ fun WaitingRoomScreen(navController: NavController? = null) {
 
 @Preview(showBackground = true)
 @Composable
-fun WaitingRoomScreenPreview() {
-    WaitingRoomScreen()
+fun OlcOfficeScreenPreview() {
+    OlcOfficeScreen()
 }
 

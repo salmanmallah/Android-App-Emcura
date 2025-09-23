@@ -36,6 +36,7 @@ import com.app.splashscreen.ui.password_otp.PasswordOtpScreen
 import com.app.splashscreen.ui.dashboard.DashboardScreen
 import com.app.splashscreen.ui.doctodoc_screen.DocToDocScreen
 import com.app.splashscreen.ui.doctocp.DocToCpScreen
+import com.app.splashscreen.ui.olc_office.OlcOfficeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,6 +73,7 @@ fun MyApp() {
         composable("patientcare") { com.app.splashscreen.ui.PatientCare.PatientCare(navController) }
         composable("callhistory") { com.app.splashscreen.ui.callhistory.CallHistoryScreen() }
         composable("olcOfficeVisit") { com.app.splashscreen.ui.olc_office.OlcOfficeVisitScreen(navController) }
+        composable("olcOffice") { OlcOfficeScreen(navController) }
     }
 }
 

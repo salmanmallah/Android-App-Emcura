@@ -76,7 +76,7 @@ fun OlcOfficeVisitScreen(navController: NavController? = null) {
             OlcOfficeVisitNote()
 
             Spacer(modifier = Modifier.height(100.dp))
-            OlcOfficeVisitIconGrid()
+            OlcOfficeVisitIconGrid(navController)
 
 
 
