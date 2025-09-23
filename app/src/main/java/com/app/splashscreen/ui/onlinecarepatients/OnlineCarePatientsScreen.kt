@@ -172,7 +172,10 @@ fun OnlineCarePatientsScreen(
                                 name = it.name,
                                 email = it.email,
                                 mobile = it.mobile,
-                                imageRes = it.imageRes
+                                imageRes = it.imageRes,
+                                onClick = {
+                                    navController?.navigate("olcOfficeVisit")
+                                }
                             )
                         }
 

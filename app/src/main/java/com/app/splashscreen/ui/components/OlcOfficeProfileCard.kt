@@ -3,6 +3,7 @@ package com.app.splashscreen.ui.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,12 +39,14 @@ fun OlcOfficeProfileCard(
     name: String,
     email: String,
     mobile: String,
-    imageRes: Int
+    imageRes: Int,
+    onClick: (() -> Unit)? = null
 ) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(100.dp),
+            .height(100.dp)
+            .let { m -> if (onClick != null) m.clickable { onClick() } else m },
         color = colorResource(id= R.color.doc_to_cp_card),
         shape = RoundedCornerShape(8.dp)
     ) {
