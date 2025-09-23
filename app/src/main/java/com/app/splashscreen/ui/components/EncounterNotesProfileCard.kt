@@ -25,32 +25,34 @@ import androidx.compose.ui.res.colorResource
 
 @Composable
 fun EncounterNotesProfileCard(
-    doctorName: String = "Dr. Supak Sookkasikon",
-    sentDate: String = "08/28/2023",
-    prescription: String = "Lipitor 80 MG TABS",
-    quantity: String = "2",
-    direction: String = "0",
-    imageRes: Int = R.drawable.ic_dashboard_profile, // Replace with actual doctor image
-    signatureRes: Int = R.drawable.prescription_signature // Add this drawable to your resources
+    name: String = "Susan Edward",
+    dob: String = "01/01/1970",
+    gender: String = "F",
+    mobile: String = "5555655555",
+    home: String = "5555535355",
+    email: String = "email2jamal3@yahoo.com",
+    address: String = "3636 Hawthrone Dr MI MI 48502",
+    imageRes: Int = R.drawable.ic_dashboard_profile,
+    micRes: Int = R.drawable.ic_dashboard_mic
 ) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight(),
-        color = colorResource(id = R.color.cards_background_color),
-        shape = RoundedCornerShape(0.dp),
+        color = Color(0xFFFDE6E6),
+        shape = RoundedCornerShape(12.dp),
         shadowElevation = 0.2.dp
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 5.dp, vertical = 10.dp),
+                .padding(horizontal = 10.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            // Profile Image with red border
+            // Profile Image
             Box(
                 modifier = Modifier
-                    .size(78.dp)
-                    .border(4.dp, Color(0xFFE94F4F), CircleShape)
+                    .size(54.dp)
                     .clip(CircleShape)
                     .background(Color.White),
                 contentAlignment = Alignment.Center
@@ -58,75 +60,78 @@ fun EncounterNotesProfileCard(
                 Image(
                     painter = painterResource(id = imageRes),
                     contentDescription = "Profile Picture",
-                    modifier = Modifier
-                        .size(70.dp)
-                        .clip(CircleShape),
+                    modifier = Modifier.size(48.dp).clip(CircleShape),
                     contentScale = ContentScale.Crop
                 )
             }
 
-            Spacer(modifier = Modifier.width(18.dp))
+            Spacer(modifier = Modifier.width(12.dp))
 
             Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(vertical = 2.dp),
+                modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = doctorName,
+                    text = name,
                     fontWeight = FontWeight.Bold,
                     fontSize = 15.sp,
                     color = Color(0xFF222222),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-                Text(
-                    text = "Sent on $sentDate",
-                    fontSize = 11.sp,
-                    color = Color(0xFF666666),
-                    modifier = Modifier.padding(top = 1.dp, bottom = 6.dp)
-                )
-                Text(
-                    text = "Prescription : $prescription",
-                    fontSize = 12.5.sp,
-                    color = Color(0xFF222222),
-                    fontWeight = FontWeight.Medium
-                )
-                Text(
-                    text = "Quantity : $quantity",
-                    fontSize = 12.5.sp,
-                    color = Color(0xFF222222),
-                    fontWeight = FontWeight.Medium
-                )
-                Text(
-                    text = "Direction : $direction",
-                    fontSize = 12.5.sp,
-                    color = Color(0xFF222222),
-                    fontWeight = FontWeight.Medium
-                )
-
-                Spacer(modifier = Modifier.height(6.dp))
-
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.End
-                ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "Prescribed by",
-                        color = Color(0xFFE82A30),
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 15.sp
+                        text = "DOB: $dob",
+                        fontSize = 12.sp,
+                        color = Color(0xFF222222)
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Image(
-                        painter = painterResource(id = signatureRes),
-                        contentDescription = "Signature",
+                    Spacer(modifier = Modifier.width(8.dp))
+                    // Gender red dot
+                    Box(
                         modifier = Modifier
-                            .size(width = 80.dp, height = 30.dp),
-                        contentScale = ContentScale.Fit
+                            .size(8.dp)
+                            .clip(CircleShape)
+                            .background(Color(0xFFE94F4F))
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = "Gender: $gender",
+                        fontSize = 12.sp,
+                        color = Color(0xFF222222)
                     )
                 }
+                Text(
+                    text = "Mobil: $mobile | Home: $home",
+                    fontSize = 12.sp,
+                    color = Color(0xFF222222)
+                )
+                Text(
+                    text = "Email: $email",
+                    fontSize = 12.sp,
+                    color = Color(0xFF222222)
+                )
+                Text(
+                    text = "Address: $address",
+                    fontSize = 12.sp,
+                    color = Color(0xFF222222)
+                )
+            }
+
+            Spacer(modifier = Modifier.width(12.dp))
+
+            // Mic Icon
+            Box(
+                modifier = Modifier
+                    .size(38.dp)
+                    .clip(CircleShape)
+                    .background(Color.White),
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    painter = painterResource(id = micRes),
+                    contentDescription = "Mic",
+                    modifier = Modifier.size(28.dp)
+                )
             }
         }
     }
