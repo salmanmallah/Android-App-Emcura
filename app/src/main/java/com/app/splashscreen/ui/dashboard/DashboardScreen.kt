@@ -121,7 +121,8 @@ fun DashboardScreen(navController: NavController) {
                             R.drawable.ic_dashboard_prescription to "My Prescriptions",
                             R.drawable.ic_dashboard_call to "Call History",
                             R.drawable.ic_dashboard_connect to "Instant Connect",
-                            R.drawable.ic_dashboard_refill to "Refill Request"
+                            R.drawable.ic_dashboard_refill to "Refill Request",
+                            // R.drawable.ic_dashboard_bell_patientcare to "Patient Care"
                         ),
                         onIconClick = { index ->
                             when (index) {
@@ -129,6 +130,7 @@ fun DashboardScreen(navController: NavController) {
                                 1 -> navController.navigate("onlinecarepatients")
                                 2 -> navController.navigate("prescription")
                                 5 -> navController.navigate("refill_request")
+                                // 6 -> navController.navigate("patientcare")
                             }
                         },
                         onInstantConnectClick = {
@@ -185,7 +187,13 @@ fun DashboardScreen(navController: NavController) {
                     R.drawable.ic_dashboard_masseges,
                 ),
                 centerImageResId = R.drawable.ic_dashboard_bell_patientcare,
-                onIconClick = {}
+                onIconClick = { index ->
+                    // 0: Power, 1: Waiting Room, 2: Support, 3: Messages, 4: Center (Patient Care)
+                    if (index == 4) {
+                        navController.navigate("patientcare")
+                    }
+                    // ...yahan baqi icons ke triggers bhi add kar sakte hain...
+                }
             )
         }
 

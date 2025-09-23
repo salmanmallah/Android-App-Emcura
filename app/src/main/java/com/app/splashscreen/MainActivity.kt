@@ -63,12 +63,13 @@ fun MyApp() {
         composable("home") { HomeScreen() }
         composable("forget_password_email") { ForgetPasswordScreen(navController) }
         composable("password_otp") { PasswordOtpScreen(navController) }
-    composable("dashboard") { DashboardScreen(navController) }
-    composable("onlinecarepatients") { com.app.splashscreen.ui.onlinecarepatients.OnlineCarePatientsScreen(navController) }
-    composable("refill_request") { com.app.splashscreen.ui.refill_request.RefillRequestScreen(navController) }
-    composable("prescription") { com.app.splashscreen.ui.prescription.PrescriptionScreen(navController) }
-    composable("doctodoc") { DocToDocScreen(navController) }
-    composable("doctocp") { DocToCpScreen(navController) }
+        composable("dashboard") { DashboardScreen(navController) }
+        composable("onlinecarepatients") { com.app.splashscreen.ui.onlinecarepatients.OnlineCarePatientsScreen(navController) }
+        composable("refill_request") { com.app.splashscreen.ui.refill_request.RefillRequestScreen(navController) }
+        composable("prescription") { com.app.splashscreen.ui.prescription.PrescriptionScreen(navController) }
+        composable("doctodoc") { DocToDocScreen(navController) }
+        composable("doctocp") { DocToCpScreen(navController) }
+        composable("patientcare") { com.app.splashscreen.ui.PatientCare.PatientCare(navController) }
     }
 }
 

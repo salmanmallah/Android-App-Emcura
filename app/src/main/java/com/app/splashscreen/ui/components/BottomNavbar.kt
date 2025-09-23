@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -77,7 +78,7 @@ fun BottomNavbar(
             }
         }
 
-        // Center circular card
+        // Center circular card (now clickable)
         Image(
             painter = painterResource(id = centerImageResId),
             contentDescription = "Center Image",
@@ -85,6 +86,7 @@ fun BottomNavbar(
                 .size(100.dp)
                 .align(Alignment.BottomCenter)
                 .offset(y = (-15).dp)
+                .clickable { onIconClick(4) }
         )
     }
 }
