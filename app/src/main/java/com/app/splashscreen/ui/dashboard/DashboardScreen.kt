@@ -125,15 +125,14 @@ fun DashboardScreen(navController: NavController) {
                             R.drawable.ic_dashboard_call to "Call History",
                             R.drawable.ic_dashboard_connect to "Instant Connect",
                             R.drawable.ic_dashboard_refill to "Refill Request",
-                            // R.drawable.ic_dashboard_bell_patientcare to "Patient Care"
                         ),
                         onIconClick = { index ->
                             when (index) {
                                 0 -> showDocToDocPopup = true
                                 1 -> navController.navigate("onlinecarepatients")
                                 2 -> navController.navigate("prescription")
+                                3 -> navController.navigate("callhistory")
                                 5 -> navController.navigate("refill_request")
-                                // 6 -> navController.navigate("patientcare")
                             }
                         },
                         onInstantConnectClick = {

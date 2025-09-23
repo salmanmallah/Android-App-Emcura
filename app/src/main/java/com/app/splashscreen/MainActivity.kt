@@ -69,7 +69,8 @@ fun MyApp() {
         composable("prescription") { com.app.splashscreen.ui.prescription.PrescriptionScreen(navController) }
         composable("doctodoc") { DocToDocScreen(navController) }
         composable("doctocp") { DocToCpScreen(navController) }
-        composable("patientcare") { com.app.splashscreen.ui.PatientCare.PatientCare(navController) }
+    composable("patientcare") { com.app.splashscreen.ui.PatientCare.PatientCare(navController) }
+    composable("callhistory") { com.app.splashscreen.ui.callhistory.CallHistoryScreen() }
     }
 }
 
