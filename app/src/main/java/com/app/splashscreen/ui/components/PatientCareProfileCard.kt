@@ -27,9 +27,10 @@ import java.util.*
 
 @Composable
 fun PatientCareProfileCard(
-    name: String,
-    online: Boolean,
-    number: String,
+    name: String = "Elizabeth weisberg",
+    number: String = "1",
+    profileImageRes: Int = R.drawable.ic_dashboard_profile,
+    online: Boolean = true,
     onArrowClick: () -> Unit = {}
 ) {
 //    Box(
@@ -53,7 +54,7 @@ fun PatientCareProfileCard(
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ic_dashboard_profile),
+                        painter = painterResource(id = profileImageRes),
                         contentDescription = "Profile",
                         modifier = Modifier.size(34.dp)
                     )
@@ -101,9 +102,5 @@ fun PatientCareProfileCard(
 @Preview(showBackground = true)
 @Composable
 fun PatientCareProfileCardPreview() {
-    PatientCareProfileCard(
-        name = "Elizabeth weisberg",
-        online = true,
-        number = "1"
-    )
+    PatientCareProfileCard()
 }

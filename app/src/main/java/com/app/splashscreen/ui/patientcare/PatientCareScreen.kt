@@ -22,6 +22,7 @@ import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.DoctorSearchBar
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.app.splashscreen.ui.components.PatientCareProfileCard
 
 @Composable
 fun PatientCare(navController: NavController? = null, enableScroll: Boolean = true) {
@@ -141,6 +142,7 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 // yahan profile card aaega hamesha
+                PatientCareProfileCard()
             }
         }
     }
