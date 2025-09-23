@@ -32,12 +32,15 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.app.splashscreen.ui.components.DoctorSearchBar
 
 
 @Composable
 fun DashboardScreen(navController: NavController) {
     var showDocToDocPopup by remember { mutableStateOf(false) }
     var showInstantConnectPopup by remember { mutableStateOf(false) }
+    var searchQuery by remember { mutableStateOf("") }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -109,9 +112,9 @@ fun DashboardScreen(navController: NavController) {
                         .padding(horizontal = 24.dp, vertical = 24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    SearchBar(
-                        value = "",
-                        onValueChange = {},
+                    DoctorSearchBar(
+                        value = searchQuery,
+                        onValueChange = { searchQuery = it },
                         modifier = Modifier.fillMaxWidth()
                     )
 
