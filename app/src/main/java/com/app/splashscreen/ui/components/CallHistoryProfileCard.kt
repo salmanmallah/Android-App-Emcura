@@ -88,8 +88,8 @@ fun CallHistoryProfileCard(
                     // Status Icon (incoming/outgoing)
                     Box(
                         modifier = Modifier
-                            .size(18.dp)
-                            .background(Color.White, CircleShape),
+                            .size(18.dp),
+//                            .background(Color.White, CircleShape),
 //                            .border(2.dp, statusColor, CircleShape),
                         contentAlignment = Alignment.Center
                     ) {

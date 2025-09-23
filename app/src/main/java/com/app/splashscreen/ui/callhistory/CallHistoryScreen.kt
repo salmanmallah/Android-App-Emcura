@@ -21,6 +21,7 @@ import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.DoctorSearchBar
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.app.splashscreen.ui.components.CallHistoryProfileCard
 import com.app.splashscreen.ui.components.PatientCareProfileCard
 
 @Composable
@@ -89,7 +90,13 @@ fun CallHistoryScreen(enableScroll: Boolean = true) {
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 // yahan par calls k card ayengy
-                PatientCareProfileCard()
+                CallHistoryProfileCard(name="Aslam Chandio")
+                Spacer(modifier = Modifier.height(16.dp))
+                CallHistoryProfileCard()
+                Spacer(modifier = Modifier.height(16.dp))
+                CallHistoryProfileCard()
+                Spacer(modifier = Modifier.height(16.dp))
+                CallHistoryProfileCard(name = "Dr John Wick Memon",profileImageRes = R.drawable.dr_john_wick)
 
             }
         }
