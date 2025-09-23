@@ -38,6 +38,10 @@ fun EncounterNotesScreen(navController: NavController? = null) {
                 onBackClick = { navController?.popBackStack() }
             )
         }
+
+        // Profile Card below header
+        com.app.splashscreen.ui.components.EncounterNotesProfileCard()
+
         // ...yahan baaki screen ka content aayega...
     }
 }

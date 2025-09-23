@@ -53,6 +53,7 @@ fun EncounterNotesProfileCard(
             Box(
                 modifier = Modifier
                     .size(54.dp)
+                    .border(2.dp, Color(0xFFE94F4F), CircleShape)
                     .clip(CircleShape)
                     .background(Color.White),
                 contentAlignment = Alignment.Center
