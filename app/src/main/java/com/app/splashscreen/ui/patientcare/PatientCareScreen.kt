@@ -7,28 +7,26 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
-import com.app.splashscreen.ui.components.DoctorCard
 import com.app.splashscreen.ui.components.DoctorSearchBar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 @Composable
 fun PatientCare(navController: NavController? = null, enableScroll: Boolean = true) {
-    var selectedTab by remember { mutableStateOf("DOCTORS") }
     var searchQuery by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -69,10 +67,9 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
             )
         }
 
-
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Toggle Buttons (Doctors / Specialists)
+        // 🔹 Static Buttons Row (No Tabs)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -82,9 +79,8 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-
                 Button(
-                    onClick = { selectedTab = "DOCTORS" },
+                    onClick = { /* static button - Patients Name */ },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFE94F4F)
                     ),
@@ -105,7 +101,7 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
                 Spacer(modifier = Modifier.width(12.dp))
 
                 Button(
-                    onClick = {}, // No-op: data does not change
+                    onClick = { /* static button - Queue Number */ },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFE94F4F)
                     ),
@@ -125,11 +121,9 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
             }
         }
 
-
-
         Spacer(modifier = Modifier.height(12.dp))
 
-        // 🔹 Doctors List or No Data Section
+        // 🔹 Doctors List Section (Always visible now)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -138,31 +132,15 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
                 .background(Color.White, RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
                 .padding(top = 8.dp)
         ) {
-            if (selectedTab == "DOCTORS") {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .then(
-                            if (enableScroll) Modifier.verticalScroll(rememberScrollState()) else Modifier
-                        ),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                   // here the profile card will be appering.
-                }
-            } else {
-                // No Data Available Centered
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "NO DATA AVAILABLE",
-                        color = Color.Black,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
-                    )
-                }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .then(
+                        if (enableScroll) Modifier.verticalScroll(rememberScrollState()) else Modifier
+                    ),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                // yahan profile card aaega hamesha
             }
         }
     }
@@ -171,5 +149,5 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
 @Preview(showBackground = true)
 @Composable
 fun PatientCarePreview() {
-    PatientCare(enableScroll = false)   // ✅ Preview me scroll disable
+    PatientCare(enableScroll = false)
 }
