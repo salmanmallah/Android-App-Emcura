@@ -76,7 +76,8 @@ fun EncounterNotesScreen(navController: NavController? = null) {
                 Text(
                     text = "As an AI model developed by OpenAI, I regret to inform you that I can't create a SOAP note as there is no medical content provided in the given statement Recording screen Could you Please provide relevant medical information or a medical scenario?",
                     fontSize = 13.sp,
-                    color = Color(0xFF222222)
+                    color = Color(0xFF222222),
+
                 )
             }
         }
@@ -85,7 +86,7 @@ fun EncounterNotesScreen(navController: NavController? = null) {
 
         // Save Notes Button
         Button(
-            onClick = { /* TODO: Save notes logic */ },
+            onClick = { navController?.popBackStack() },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp)
