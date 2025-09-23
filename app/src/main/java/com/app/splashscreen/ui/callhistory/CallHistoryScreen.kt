@@ -31,7 +31,6 @@ fun CallHistoryScreen(enableScroll: Boolean = true) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8F8F8))
     ) {
         // TopBar Section
         Box(
@@ -58,7 +57,7 @@ fun CallHistoryScreen(enableScroll: Boolean = true) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
-                .background(Color.White, RoundedCornerShape(12.dp))
+//                .background(Color.White, RoundedCornerShape(12.dp))
                 .padding(8.dp)
         ) {
             DoctorSearchBar(
@@ -78,7 +77,6 @@ fun CallHistoryScreen(enableScroll: Boolean = true) {
                 .fillMaxWidth()
                 .weight(1f)
                 .padding(horizontal = 8.dp)
-                .background(Color.White, RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
                 .padding(top = 8.dp)
         ) {
             val callHistory = listOf(
