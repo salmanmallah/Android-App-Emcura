@@ -137,7 +137,10 @@ fun OlcOfficeVisitIconGrid(navController: NavController? = null) {
                 .pointerInteropFilter {
                     when (it.action) {
                         android.view.MotionEvent.ACTION_DOWN -> pressed3 = true
-                        android.view.MotionEvent.ACTION_UP -> pressed3 = false
+                        android.view.MotionEvent.ACTION_UP -> {
+                            pressed3 = false
+                            navController?.navigate("encounternotes")
+                        }
                         android.view.MotionEvent.ACTION_CANCEL -> pressed3 = false
                     }
                     true
