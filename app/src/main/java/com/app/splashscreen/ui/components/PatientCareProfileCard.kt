@@ -1,5 +1,6 @@
 package com.app.splashscreen.ui.components
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -11,10 +12,14 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -24,6 +29,9 @@ import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
 import java.text.SimpleDateFormat
 import java.util.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+
 
 @Composable
 fun PatientCareProfileCard(
@@ -34,11 +42,29 @@ fun PatientCareProfileCard(
     onArrowClick: () -> Unit = {}
 ) {
 //    Box(
+        // --- Press animation and action on release for the whole card ---
+        var pressed by remember { mutableStateOf(false) }
+        val scale by animateFloatAsState(if (pressed) 0.96f else 1f, label = "profileCardScale")
         Box(
             modifier = Modifier
                 .fillMaxWidth()
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                }
                 .background(color = androidx.compose.ui.res.colorResource(id = R.color.doc_to_cp_card), shape = RoundedCornerShape(12.dp))
                 .padding(horizontal = 8.dp, vertical = 8.dp)
+                .pointerInteropFilter {
+                    when (it.action) {
+                        android.view.MotionEvent.ACTION_DOWN -> pressed = true
+                        android.view.MotionEvent.ACTION_UP -> {
+                            pressed = false
+                            onArrowClick()
+                        }
+                        android.view.MotionEvent.ACTION_CANCEL -> pressed = false
+                    }
+                    true // consume event, no .clickable needed
+                }
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
