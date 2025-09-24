@@ -79,8 +79,20 @@ fun CallHistoryOptionScreen(navController: NavController) {
                     .fillMaxWidth()
                     .weight(1f)
                     .clip(RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp))
-                    .background(Color.White)
-                    .verticalScroll(rememberScrollState()) // scroll added to the container
+                    .background(
+                        brush = androidx.compose.ui.graphics.Brush.verticalGradient(
+                            colors = listOf(
+                                Color(0xFFF8F8F8),
+                                Color.White,
+                                Color(0xFFF8F8F8),
+                                Color(0xFFFDE6EA),
+                                Color(0xFFD3A8AC)
+                            ),
+                            startY = 0f,
+                            endY = 1200f
+                        )
+                    )
+                    .verticalScroll(rememberScrollState())
             ) {
                 Column(
                     modifier = Modifier
