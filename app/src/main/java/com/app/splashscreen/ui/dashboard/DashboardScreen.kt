@@ -193,13 +193,12 @@ fun DashboardScreen(navController: NavController) {
                 centerImageResId = R.drawable.ic_dashboard_bell_patientcare,
                 onIconClick = { index ->
                     // 0: Power, 1: Waiting Room, 2: Support, 3: Messages, 4: Center (Patient Care)
-                    if (index == 3) {
-                        navController.navigate("messages")
+                    when (index) {
+                        1 -> navController.navigate("waitingroom")
+                        3 -> navController.navigate("messages")
+                        4 -> navController.navigate("patientcare")
+                        // Add other icon triggers as needed
                     }
-                    if (index == 4) {
-                        navController.navigate("patientcare")
-                    }
-                    // ...yahan baqi icons ke triggers bhi add kar sakte hain...
                 }
             )
         }

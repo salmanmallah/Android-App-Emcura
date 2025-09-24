@@ -1,3 +1,4 @@
+
 package com.app.splashscreen
 
 
@@ -78,6 +79,7 @@ fun MyApp() {
         composable("messagechat") { com.app.splashscreen.ui.messages.MessageChatScreen(onBackClick = { navController.popBackStack() }) }
         composable("olcOffice") { OlcOfficeScreen(navController) }
         composable("encounternotes") { com.app.splashscreen.ui.encounternotes.EncounterNotesScreen(navController) }
+        composable("waitingroom") { com.app.splashscreen.ui.waitingroom.WaitingRoomScreen(navController) }
     }
 }
 
