@@ -35,89 +35,110 @@ import com.app.splashscreen.R
 import androidx.compose.ui.res.colorResource
 
 @Composable
+
 fun MessageCard(
     name: String,
-    email: String,
-    mobile: String,
+    message: String,
+    time: String,
     imageRes: Int,
+    unreadCount: Int = 0,
     onClick: (() -> Unit)? = null
 ) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(100.dp)
             .let { m -> if (onClick != null) m.clickable { onClick() } else m },
-        color = colorResource(id= R.color.doc_to_cp_card),
+        color = Color(0xFFFFE3E3), // light pink
         shape = RoundedCornerShape(8.dp)
     ) {
         Row(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(start = 12.dp, end = 8.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.Top
         ) {
-            // Profile Image with red border
+            // Profile Image with red circle background
             Box(
                 modifier = Modifier
-                    .size(60.dp)
-                    .border(3.dp, Color(0xFFE94F4F), CircleShape)
-                    .clip(CircleShape)
-                    .background(Color.White),
+                    .size(44.dp)
+                    .background(Color(0xFFE94F4F), CircleShape)
+                    .clip(CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
                     painter = painterResource(id = imageRes),
                     contentDescription = "Profile Picture",
                     modifier = Modifier
-                        .size(54.dp)
+                        .size(36.dp)
                         .clip(CircleShape),
                     contentScale = ContentScale.Crop
                 )
             }
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(10.dp))
 
-            // Name, Email, Mobile
             Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.Center
+                modifier = Modifier.weight(1f)
             ) {
-                Text(
-                    text = name,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
-                    color = Color.Black,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = name,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 15.sp,
+                        color = Color.Black,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Spacer(modifier = Modifier.weight(1f))
+                    Text(
+                        text = time,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 12.sp,
+                        color = Color(0xFF6B6B6B)
+                    )
+                }
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = "Email : $email",
-                    fontSize = 13.sp,
-                    color = Color.Black,
-                    maxLines = 1,
+                    text = message,
+                    fontSize = 12.sp,
+                    color = Color(0xFF6B6B6B),
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = "Mobil : $mobile",
-                    fontSize = 13.sp,
-                    color = Color.Black,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
+            }
+
+            if (unreadCount > 0) {
+                Spacer(modifier = Modifier.width(10.dp))
+                Box(
+                    modifier = Modifier
+                        .background(Color(0xFFE94F4F), CircleShape)
+                        .size(22.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "+$unreadCount",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 11.sp
+                    )
+                }
             }
         }
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun MessageCardPreview() {
     MessageCard(
-        name = "Susan Edward",
-        email = "email2jamal3@yahoo.com",
-        mobile = "5555655555",
-        imageRes = R.drawable.ic_dashboard_profile // Replace with your drawable resource
+        name = "Dr. Supak Sookkasikon",
+        message = "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work",
+        time = "12:58 PM",
+        imageRes = R.drawable.ic_dashboard_profile,
+        unreadCount = 3
     )
 }
