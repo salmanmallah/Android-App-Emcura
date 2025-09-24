@@ -65,13 +65,13 @@ fun CallHistoryOptionScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Top icons ke liye space
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(30.dp))
 
             // Dashboard Status Card
             CallHistoryOptionsProfileCard()
 
             // Card aur neeche container ke beech gap
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             // White rounded container
             Box(

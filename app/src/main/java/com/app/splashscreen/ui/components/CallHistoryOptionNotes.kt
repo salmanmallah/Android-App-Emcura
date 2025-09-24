@@ -41,19 +41,19 @@ fun CallHistoryOptionNotes(
                 text = "NOTES BY:",
                 color = Color(0xFFED202E),
                 fontWeight = FontWeight.Bold,
-                fontSize = 22.sp
+                fontSize = 13.sp
             )
             Text(
                 text = notesBy,
                 color = Color.Black,
                 fontWeight = FontWeight.Normal,
-                fontSize = 21.sp
+                fontSize = 12.sp
             )
             Text(
                 text = doctorName,
                 color = Color.Black,
                 fontWeight = FontWeight.Bold,
-                fontSize = 22.sp
+                fontSize = 13.sp
             )
             Spacer(modifier = Modifier.height(4.dp))
             Box(
@@ -72,13 +72,13 @@ fun CallHistoryOptionNotes(
                         text = "Start Time",
                         color = Color(0xFFED202E),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
+                        fontSize = 10.sp
                     )
                     Text(
                         text = startTime,
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
+                        fontSize = 9.sp
                     )
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -86,13 +86,13 @@ fun CallHistoryOptionNotes(
                         text = "End Time",
                         color = Color(0xFFED202E),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
+                        fontSize = 10.sp
                     )
                     Text(
                         text = endTime,
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
+                        fontSize = 9.sp
                     )
                 }
                 Column(horizontalAlignment = Alignment.End) {
@@ -100,13 +100,13 @@ fun CallHistoryOptionNotes(
                         text = "Duration",
                         color = Color(0xFFED202E),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
+                        fontSize = 10.sp
                     )
                     Text(
                         text = duration,
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
+                        fontSize = 9.sp
                     )
                 }
             }
@@ -115,23 +115,22 @@ fun CallHistoryOptionNotes(
                 text = "Encounter Notes",
                 color = Color(0xFFED202E),
                 fontWeight = FontWeight.Bold,
-                fontSize = 22.sp
+                fontSize = 13.sp
             )
             Spacer(modifier = Modifier.height(8.dp))
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(180.dp)
+                    .height(120.dp)
                     .background(Color.White, RoundedCornerShape(24.dp))
-                    // .shadow(8.dp, RoundedCornerShape(24.dp))
             ) {
                 Text(
                     text = encounterNotes,
                     color = Color.Black,
-                    fontSize = 16.sp,
+                    fontSize = 10.sp,
                     modifier = Modifier
                         .align(Alignment.TopStart)
-                        .padding(16.dp)
+                        .padding(8.dp)
                 )
             }
         }
