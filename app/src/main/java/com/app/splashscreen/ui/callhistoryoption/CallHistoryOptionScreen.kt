@@ -30,6 +30,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.app.splashscreen.ui.components.CallHistoryOptionsProfileCard
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.DoctorSearchBar
 
@@ -44,15 +45,6 @@ fun CallHistoryOptionScreen(navController: NavController) {
             .fillMaxSize()
             .background(colorResource(id = R.color.dashboard_background))
     ) {
-//        Image(
-//            painter = painterResource(id = R.drawable.ic_dashboard_background_pattern),
-//            contentDescription = null,
-//            modifier = Modifier
-//                .size(280.dp)
-//                .align(Alignment.TopEnd)
-//                .offset(x = (-16).dp, y = -16.dp),
-//            alpha = 0.25f // subtle overlay
-//        )
 
         DashboardTopBar(
             title = "Available Doctors",
@@ -71,10 +63,10 @@ fun CallHistoryOptionScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Top icons ke liye space
-            Spacer(modifier = Modifier.height(70.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
             // Dashboard Status Card
-            DashboardStatusCard()
+            CallHistoryOptionsProfileCard()
 
             // Card aur neeche container ke beech gap
             Spacer(modifier = Modifier.height(40.dp))
@@ -94,63 +86,12 @@ fun CallHistoryOptionScreen(navController: NavController) {
                         .padding(horizontal = 24.dp, vertical = 24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    DoctorSearchBar(
-                        value = searchQuery,
-                        onValueChange = { searchQuery = it },
-                        modifier = Modifier.fillMaxWidth()
-                    )
+
 
                     Spacer(modifier = Modifier.height(25.dp))
 
-                    DashboardIconGrid(
-                        icons = listOf(
-                            R.drawable.ic_dashboard_connect to "Doc to Doc",
-                            R.drawable.ic_dashboard_mic to "Clinic Patient",
-                            R.drawable.ic_dashboard_prescription to "My Prescriptions",
-                            R.drawable.ic_dashboard_call to "Call History",
-                            R.drawable.ic_dashboard_connect to "Instant Connect",
-                            R.drawable.ic_dashboard_refill to "Refill Request",
-                        ),
-                        onIconClick = { index ->
-                            when (index) {
-                                0 -> showDocToDocPopup = true
-                                1 -> navController.navigate("onlinecarepatients")
-                                2 -> navController.navigate("prescription")
-                                3 -> navController.navigate("callhistory")
-                                5 -> navController.navigate("refill_request")
-                            }
-                        },
-                        onInstantConnectClick = {
-                            showInstantConnectPopup = true
-                        }
-                    )
-                    if (showDocToDocPopup) {
-                        DocToDocPopup(
-                            onDismiss = { showDocToDocPopup = false },
-                            onDocToDocClick = { showDocToDocPopup = false },
-                            onDocToCpClick = {
-                                showDocToDocPopup = false
-                                navController.navigate("doctocp")
-                            },
-                            navController = navController
-                        )
-                    }
-                    if (showInstantConnectPopup) {
-                        com.app.splashscreen.ui.components.InstantConnectPopup(
-                            navController = navController,
-                            onDismiss = { showInstantConnectPopup = false },
-                            onNewPatient = { showInstantConnectPopup = false },
-                            onCancel = { showInstantConnectPopup = false }
-                        )
-                    }
 
-                    Spacer(modifier = Modifier.height(25.dp))
 
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_dashboard_card),
-                        contentDescription = "Dashboard Card"
-                    )
-                    Spacer(modifier = Modifier.height(200.dp))
                 }
             } // end of White rounded container
         }
@@ -159,25 +100,10 @@ fun CallHistoryOptionScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
+                .background(colorResource(R.color.dark_pink))
+                .height(200.dp)
         ) {
-            BottomNavbar(
-                icons = listOf(
-                    R.drawable.ic_dashboard_power,
-                    R.drawable.ic_dashboard_waitingroom,
-                    R.drawable.ic_dashboard_support,
-                    R.drawable.ic_dashboard_masseges,
-                ),
-                centerImageResId = R.drawable.ic_dashboard_bell_patientcare,
-                onIconClick = { index ->
-                    // 0: Power, 1: Waiting Room, 2: Support, 3: Messages, 4: Center (Patient Care)
-                    when (index) {
-                        1 -> navController.navigate("waitingroom")
-                        3 -> navController.navigate("messages")
-                        4 -> navController.navigate("patientcare")
-                        // Add other icon triggers as needed
-                    }
-                }
-            )
+           // idhr ayengy saary icons
         }
     }
 }
