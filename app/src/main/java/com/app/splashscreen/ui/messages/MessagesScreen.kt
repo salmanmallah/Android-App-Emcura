@@ -1,6 +1,7 @@
 package com.app.splashscreen.ui.messages
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.*
@@ -14,9 +15,10 @@ import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.MessageCard
 import com.app.splashscreen.ui.components.MessagesNavbar
-
+import androidx.navigation.NavController
 @Composable
-fun MessagesScreen(onBackClick: (() -> Unit)? = null) {
+fun MessagesScreen(navController: NavController, onBackClick: (() -> Unit)? = null) {
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -61,13 +63,17 @@ fun MessagesScreen(onBackClick: (() -> Unit)? = null) {
                 ) {
                     items(messages.size) { idx ->
                         val (name, msg, time) = messages[idx]
-                        MessageCard(
-                            name = name,
-                            message = msg,
-                            time = time,
-                            imageRes = R.drawable.ic_dashboard_profile,
-                            unreadCount = if (idx == 0) 3 else 0
-                        )
+                        Box(modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { navController?.navigate("messagechat") }) {
+                            MessageCard(
+                                name = name,
+                                message = msg,
+                                time = time,
+                                imageRes = R.drawable.ic_dashboard_profile,
+                                unreadCount = if (idx == 0) 3 else 0
+                            )
+                        }
                         Spacer(modifier = Modifier.height(16.dp))
                     }
                     item {
@@ -93,5 +99,5 @@ fun MessagesScreen(onBackClick: (() -> Unit)? = null) {
 @Composable
 @Preview(showBackground = true)
 fun MessagesScreenPreview() {
-    MessagesScreen()
+    MessagesScreen(navController = androidx.navigation.compose.rememberNavController())
 }

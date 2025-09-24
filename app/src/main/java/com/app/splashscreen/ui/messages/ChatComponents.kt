@@ -168,11 +168,12 @@ fun InputBar(
         }
         Spacer(modifier = Modifier.width(8.dp))
         IconButton(onClick = onSendClick) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_dashboard_arrow_backward),
-                contentDescription = "Send",
-                tint = Color(0xFFE94F4F),
-                modifier = Modifier.size(36.dp)
+            Image(
+                painter = painterResource(id = R.drawable.message_send_icon),
+                contentDescription = "Profile Picture",
+                modifier = Modifier
+                    .size(48.dp)
+                    .background(Color.White, CircleShape)
             )
         }
     }

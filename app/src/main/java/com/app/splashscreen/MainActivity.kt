@@ -64,19 +64,20 @@ fun MyApp() {
         composable("home") { HomeScreen() }
         composable("forget_password_email") { ForgetPasswordScreen(navController) }
         composable("password_otp") { PasswordOtpScreen(navController) }
-    composable("dashboard") { DashboardScreen(navController) }
-    composable("onlinecarepatients") { com.app.splashscreen.ui.onlinecarepatients.OnlineCarePatientsScreen(navController) }
-    composable("refill_request") { com.app.splashscreen.ui.refill_request.RefillRequestScreen(navController) }
-    composable("prescription") { com.app.splashscreen.ui.prescription.PrescriptionScreen(navController) }
-    composable("doctodoc") { DocToDocScreen(navController) }
-    composable("doctocp") { DocToCpScreen(navController) }
-    composable("selectsymptoms") { com.app.splashscreen.ui.selectsymptoms.SelectSymptomsScreen(navController) }
+        composable("dashboard") { DashboardScreen(navController) }
+        composable("onlinecarepatients") { com.app.splashscreen.ui.onlinecarepatients.OnlineCarePatientsScreen(navController) }
+        composable("refill_request") { com.app.splashscreen.ui.refill_request.RefillRequestScreen(navController) }
+        composable("prescription") { com.app.splashscreen.ui.prescription.PrescriptionScreen(navController) }
+        composable("doctodoc") { DocToDocScreen(navController) }
+        composable("doctocp") { DocToCpScreen(navController) }
+        composable("selectsymptoms") { com.app.splashscreen.ui.selectsymptoms.SelectSymptomsScreen(navController) }
         composable("patientcare") { com.app.splashscreen.ui.PatientCare.PatientCare(navController) }
         composable("callhistory") { com.app.splashscreen.ui.callhistory.CallHistoryScreen() }
-    composable("olcOfficeVisit") { com.app.splashscreen.ui.olc_office.OlcOfficeVisitScreen(navController) }
-            composable("olcOffice") { OlcOfficeScreen(navController) }
-            composable("messages") { com.app.splashscreen.ui.messages.MessagesScreen(onBackClick = { navController.popBackStack() }) }
-    composable("encounternotes") { com.app.splashscreen.ui.encounternotes.EncounterNotesScreen(navController) }
+        composable("olcOfficeVisit") { com.app.splashscreen.ui.olc_office.OlcOfficeVisitScreen(navController) }
+        composable("messages") { com.app.splashscreen.ui.messages.MessagesScreen(navController, onBackClick = { navController.popBackStack() }) }
+        composable("messagechat") { com.app.splashscreen.ui.messages.MessageChatScreen(onBackClick = { navController.popBackStack() }) }
+        composable("olcOffice") { OlcOfficeScreen(navController) }
+        composable("encounternotes") { com.app.splashscreen.ui.encounternotes.EncounterNotesScreen(navController) }
     }
 }
 
