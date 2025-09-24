@@ -111,22 +111,20 @@ fun CallHistoryOptionNotes(
                 fontSize = 13.sp
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(120.dp)
-                    .background(Color.White, RoundedCornerShape(24.dp))
-            ) {
-                Text(
-                    text = encounterNotes,
-                    color = Color.Black,
-                    fontSize = 10.sp,
+                androidx.compose.material3.OutlinedTextField(
+                    value = encounterNotes,
+                    onValueChange = {}, // TODO: Pass a state and update logic here
                     modifier = Modifier
-                        .align(Alignment.TopStart)
-                        .padding(8.dp)
-                        
+                        .fillMaxWidth()
+                        .height(120.dp),
+                    textStyle = androidx.compose.ui.text.TextStyle(fontSize = 10.sp),
+                    shape = RoundedCornerShape(24.dp),
+                    singleLine = false,
+                    maxLines = 6,
+                    placeholder = {
+                        Text("Enter notes...", fontSize = 10.sp)
+                    }
                 )
-            }
         }
     }
 }
