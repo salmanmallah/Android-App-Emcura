@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.splashscreen.R
@@ -114,26 +115,46 @@ fun InstantConnectScreen(navController: NavController) {
         )
 
         if (showDatePicker) {
-            DatePickerDialog(
-                onDismissRequest = { showDatePicker = false },
-                confirmButton = {
-                    TextButton(onClick = {
-                        val millis = datePickerState.selectedDateMillis
-                        if (millis != null) {
-                            birthdate = formatMillisToDate(millis)
+            Dialog(onDismissRequest = { showDatePicker = false }) {
+                Box(
+                    modifier = Modifier
+                        .width(260.dp)
+                        .sizeIn(maxWidth = 280.dp)
+                        .wrapContentHeight()
+                ) {
+                    Surface(
+                        shape = RoundedCornerShape(18.dp),
+                        tonalElevation = 8.dp,
+                        color = MaterialTheme.colorScheme.background,
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(8.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            DatePicker(state = datePickerState)
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.End
+                            ) {
+                                TextButton(onClick = { showDatePicker = false }) {
+                                    Text("Cancel")
+                                }
+                                Spacer(modifier = Modifier.width(4.dp))
+                                TextButton(onClick = {
+                                    val millis = datePickerState.selectedDateMillis
+                                    if (millis != null) {
+                                        birthdate = formatMillisToDate(millis)
+                                    }
+                                    showDatePicker = false
+                                }) {
+                                    Text("OK")
+                                }
+                            }
                         }
-                        showDatePicker = false
-                    }) {
-                        Text("OK")
-                    }
-                },
-                dismissButton = {
-                    TextButton(onClick = { showDatePicker = false }) {
-                        Text("Cancel")
                     }
                 }
-            ) {
-                DatePicker(state = datePickerState)
             }
         }
 
