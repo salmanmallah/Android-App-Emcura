@@ -62,23 +62,23 @@ fun CallHistoryOptionButton(iconRes: Int, text: String) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(64.dp)
-            .background(Color.White, RoundedCornerShape(18.dp))
-            .padding(horizontal = 18.dp),
+            .height(38.dp)
+            .background(Color.White, RoundedCornerShape(12.dp))
+            .padding(horizontal = 8.dp),
         contentAlignment = Alignment.CenterStart
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
                 painter = painterResource(id = iconRes),
                 contentDescription = text,
-                modifier = Modifier.size(32.dp)
+                modifier = Modifier.size(16.dp)
             )
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(6.dp))
             Text(
                 text = text,
                 color = Color(0xFF222222),
                 fontWeight = FontWeight.Medium,
-                fontSize = 17.sp
+                fontSize = 10.sp
             )
         }
     }

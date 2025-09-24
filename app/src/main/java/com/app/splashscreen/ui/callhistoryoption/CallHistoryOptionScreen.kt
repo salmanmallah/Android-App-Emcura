@@ -30,6 +30,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.app.splashscreen.ui.components.CallHistoryOptionBottomButtons
+import com.app.splashscreen.ui.components.CallHistoryOptionNotes
 import com.app.splashscreen.ui.components.CallHistoryOptionsProfileCard
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.DoctorSearchBar
@@ -89,9 +91,10 @@ fun CallHistoryOptionScreen(navController: NavController) {
 
 
                     Spacer(modifier = Modifier.height(25.dp))
+                    CallHistoryOptionNotes()
 
-
-
+                    Spacer(modifier = Modifier.height(25.dp))
+                    CallHistoryOptionNotes()
                 }
             } // end of White rounded container
         }
@@ -100,10 +103,16 @@ fun CallHistoryOptionScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .background(colorResource(R.color.dark_pink))
-                .height(200.dp)
         ) {
            // idhr ayengy saary icons
+            CallHistoryOptionBottomButtons(
+                recallIcon = R.drawable.ic_recall,
+                notesIcon = R.drawable.ic_encounter_notes,
+                labIcon = R.drawable.ic_lab_requests,
+                messageIcon = R.drawable.ic_message,
+                prescriptionIcon = R.drawable.ic_prescription,
+                dischargeIcon = R.drawable.ic_discharge_summary
+            )
         }
     }
 }
