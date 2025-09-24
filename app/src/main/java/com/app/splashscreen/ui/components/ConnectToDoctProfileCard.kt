@@ -24,8 +24,8 @@ import java.util.*
 
 @Composable
 fun ConnectToDoctProfileCard(
-    name: String,
-    online: Boolean,
+    name: String = "Elizabeth weisberg",
+    online: Boolean = true,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -155,8 +155,5 @@ fun ConnectToDoctProfileCard(
 @Preview(showBackground = true)
 @Composable
 fun ConnectToDoctProfileCardPreview() {
-    ConnectToDoctProfileCard(
-        name = "Elizabeth weisberg",
-        online = true
-    )
+    ConnectToDoctProfileCard()
 }

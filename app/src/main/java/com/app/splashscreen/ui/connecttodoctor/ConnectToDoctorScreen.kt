@@ -25,6 +25,7 @@ import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.DocToCpProfileCard
 import com.app.splashscreen.ui.components.WaitingRoomProfileCard
+import com.app.splashscreen.ui.components.ConnectToDoctProfileCard
 
 @Composable
 fun ConnectToDoctorScreen(navController: NavController? = null) {
@@ -69,10 +70,7 @@ fun ConnectToDoctorScreen(navController: NavController? = null) {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             item {
-                WaitingRoomProfileCard(
-                    name = "Elizabeth Weisberg",
-                    online = true
-                )
+                ConnectToDoctProfileCard()
             }
         }
     }
