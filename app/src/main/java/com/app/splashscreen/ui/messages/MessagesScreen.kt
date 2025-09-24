@@ -41,7 +41,6 @@ fun MessagesScreen(onBackClick: (() -> Unit)? = null) {
                 )
             }
 
-            // Message list
             Spacer(modifier = Modifier.height(16.dp))
             val messages = listOf(
                 Triple("Dr. Supak Sookkasikon", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "12:58 PM"),
@@ -51,16 +50,22 @@ fun MessagesScreen(onBackClick: (() -> Unit)? = null) {
                 Triple("Dr. Deniel James", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "07/30/2024"),
                 Triple("Dr. Gerard Lucas", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "07/30/2024")
             )
-            Column(modifier = Modifier.weight(1f)) {
-                messages.forEachIndexed { idx, (name, msg, time) ->
-                    MessageCard(
-                        name = name,
-                        message = msg,
-                        time = time,
-                        imageRes = R.drawable.ic_dashboard_profile,
-                        unreadCount = if (idx == 0) 3 else 0
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
+            Box(modifier = Modifier.weight(1f)) {
+                androidx.compose.foundation.lazy.LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(bottom = 100.dp),
+                ) {
+                    items(messages.size) { idx ->
+                        val (name, msg, time) = messages[idx]
+                        MessageCard(
+                            name = name,
+                            message = msg,
+                            time = time,
+                            imageRes = R.drawable.ic_dashboard_profile,
+                            unreadCount = if (idx == 0) 3 else 0
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
                 }
             }
         }
