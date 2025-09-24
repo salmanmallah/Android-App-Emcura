@@ -14,9 +14,39 @@ import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.MessageCard
 import com.app.splashscreen.ui.components.MessagesNavbar
+import com.app.splashscreen.ui.messages.ProfileHeader
+import com.app.splashscreen.ui.messages.ChatBubble
+import com.app.splashscreen.ui.messages.ImageBubble
+import com.app.splashscreen.ui.messages.InputBar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 @Composable
+
 fun MessageChatScreen(onBackClick: (() -> Unit)? = null) {
+
+
+
+    androidx.compose.runtime.LaunchedEffect(Unit) {}
+    var chatInput by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf("") }
+    var loadedMessages by androidx.compose.runtime.remember {
+        androidx.compose.runtime.mutableStateOf(
+            20
+        )
+    }
+    val allMessages = List(100) {
+        if (it == 5) {
+            Triple("image", "", "")
+        } else {
+            Triple(
+                "Dr. Deniel James",
+                "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work",
+                "06:57"
+            )
+        }
+    }
+    val messages = allMessages.take(loadedMessages)
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -41,57 +71,59 @@ fun MessageChatScreen(onBackClick: (() -> Unit)? = null) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
-            // Dummy messages
-            val messages = listOf(
-                Triple("Dr. Supak Sookkasikon", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "12:58 PM"),
-                Triple("Dr. Diallo S Jabari", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "YESTERDAY"),
-                Triple("Dr. Bobby Anderson", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "07/30/2024"),
-                Triple("Dr. Ariana Chloe", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "07/30/2024"),
-                Triple("Dr. Deniel James", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "07/30/2024"),
-                Triple("Dr. Gerard Lucas", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "07/30/2024")
+            // Profile header
+            ProfileHeader(
+                name = "Dr. Deniel James",
+                status = "Online",
+                imageRes = R.drawable.ic_dashboard_profile
             )
 
-            // Messages list
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Messages list with pagination
             Box(modifier = Modifier.weight(1f)) {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(bottom = 100.dp),
+                    reverseLayout = false
                 ) {
                     items(messages.size) { idx ->
-                        val (name, msg, time) = messages[idx]
-                        MessageCard(
-                            name = name,
-                            message = msg,
-                            time = time,
-                            imageRes = R.drawable.ic_dashboard_profile,
-                            unreadCount = if (idx == 0) 3 else 0
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
-                    }
-                    item {
-                        Spacer(modifier = Modifier.height(200.dp))
+                        val msg = messages[idx]
+                        if (msg.first == "image") {
+                            ImageBubble(imageRes = R.drawable.ic_dashboard_profile)
+                        } else {
+                            ChatBubble(
+                                message = msg.second,
+                                time = msg.third,
+                                isSent = idx % 2 == 0
+                            )
+                        }
+                        // Pagination trigger
+                        if (idx == messages.size - 1 && messages.size < allMessages.size) {
+                            androidx.compose.runtime.LaunchedEffect(messages.size) {
+                                loadedMessages += 20
+                            }
+                        }
                     }
                 }
             }
-        }
 
-        // Floating navbar at bottom
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 24.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            MessagesNavbar()
+            // Input bar
+            InputBar(
+                value = chatInput,
+                onValueChange = { chatInput = it },
+                onSendClick = {
+                    // Add message logic here
+                }
+            )
         }
     }
 }
 
-@Composable
 @Preview(showBackground = true)
+@Composable
 fun MessageChatScreenPreview() {
     MessageChatScreen()
 }
