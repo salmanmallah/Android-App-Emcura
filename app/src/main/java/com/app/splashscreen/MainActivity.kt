@@ -66,7 +66,8 @@ fun MyApp() {
         composable("forget_password_email") { ForgetPasswordScreen(navController) }
         composable("password_otp") { PasswordOtpScreen(navController) }
         composable("dashboard") { DashboardScreen(navController) }
-        composable("onlinecarepatients") { com.app.splashscreen.ui.onlinecarepatients.OnlineCarePatientsScreen(navController) }
+    composable("onlinecarepatients") { com.app.splashscreen.ui.onlinecarepatients.OnlineCarePatientsScreen(navController) }
+    composable("instantconnect") { com.app.splashscreen.ui.instantconnect.InstantConnectScreen(navController) }
         composable("refill_request") { com.app.splashscreen.ui.refill_request.RefillRequestScreen(navController) }
         composable("prescription") { com.app.splashscreen.ui.prescription.PrescriptionScreen(navController) }
         composable("doctodoc") { DocToDocScreen(navController) }

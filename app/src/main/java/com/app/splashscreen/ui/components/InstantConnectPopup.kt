@@ -155,7 +155,10 @@ fun InstantConnectPopup(
                 navController?.navigate("onlineCarePatients")
                 onDismiss()
             },
-            onNewPatient = onNewPatient,
+            onNewPatient = {
+                navController?.navigate("instantconnect")
+                onDismiss()
+            },
             onCancel = onCancel,
             onDismiss = onDismiss
         )
