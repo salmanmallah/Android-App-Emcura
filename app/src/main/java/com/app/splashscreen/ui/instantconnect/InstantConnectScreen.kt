@@ -323,26 +323,33 @@ fun InputField(
     Column(modifier = modifier.fillMaxWidth()) {
         Text(label, fontWeight = FontWeight.Bold, fontSize = 15.sp, color = Color.Black)
         Spacer(modifier = Modifier.height(6.dp))
-        TextField(
-            value = value,
-            onValueChange = onValueChange,
-            placeholder = { if (placeholder.isNotEmpty()) Text(placeholder, color = Color(0xFFBDBDBD)) },
-            trailingIcon = trailingIcon,
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = Color.White,
-                focusedContainerColor = Color.White,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            ),
-            shape = RoundedCornerShape(24.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .heightIn(min = 48.dp)
-                .background(Color.White, RoundedCornerShape(24.dp)),
-            singleLine = singleLine,
-            minLines = minLines,
-            textStyle = TextStyle(fontSize = 15.sp, color = Color.Black)
-        )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .shadow(6.dp, RoundedCornerShape(24.dp))
+                    .border(1.5.dp, Color(0xFFED202E), RoundedCornerShape(24.dp))
+                    .background(Color.White, RoundedCornerShape(24.dp))
+            ) {
+                TextField(
+                    value = value,
+                    onValueChange = onValueChange,
+                    placeholder = { if (placeholder.isNotEmpty()) Text(placeholder, color = Color(0xFFBDBDBD)) },
+                    trailingIcon = trailingIcon,
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = Color.Transparent,
+                        focusedContainerColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
+                    ),
+                    shape = RoundedCornerShape(24.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(min = 48.dp),
+                    singleLine = singleLine,
+                    minLines = minLines,
+                    textStyle = LocalTextStyle.current.copy(fontSize = 15.sp, color = Color.Black)
+                )
+            }
     }
 }
 
