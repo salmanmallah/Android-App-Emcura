@@ -42,7 +42,7 @@ fun MessagesScreen(onBackClick: (() -> Unit)? = null) {
             }
 
             // Message list
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             val messages = listOf(
                 Triple("Dr. Supak Sookkasikon", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "12:58 PM"),
                 Triple("Dr. Diallo S Jabari", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "YESTERDAY"),
@@ -60,7 +60,7 @@ fun MessagesScreen(onBackClick: (() -> Unit)? = null) {
                         imageRes = R.drawable.ic_dashboard_profile,
                         unreadCount = if (idx == 0) 3 else 0
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(16.dp))
                 }
             }
         }
