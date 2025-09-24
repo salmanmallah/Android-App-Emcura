@@ -111,9 +111,10 @@ fun CallHistoryOptionNotes(
                 fontSize = 13.sp
             )
             Spacer(modifier = Modifier.height(8.dp))
+                var notesText = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(encounterNotes) }
                 androidx.compose.material3.OutlinedTextField(
-                    value = encounterNotes,
-                    onValueChange = {}, // TODO: Pass a state and update logic here
+                    value = notesText.value,
+                    onValueChange = { notesText.value = it },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(120.dp),
