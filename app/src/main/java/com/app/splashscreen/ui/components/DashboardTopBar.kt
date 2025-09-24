@@ -22,7 +22,8 @@ fun DashboardTopBar(
     backIconRes: Int = R.drawable.ic_dashboard_arrow_backward,
     endIconRes: Int = R.drawable.ic_dcd_hospital,
     showBackIcon: Boolean = true,
-    showEndIcon: Boolean = true
+    showEndIcon: Boolean = true,
+    textColor: androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color.Black
 ) {
     Row(
         modifier = modifier
@@ -46,7 +47,7 @@ fun DashboardTopBar(
         Spacer(modifier = Modifier.weight(1f))
         Text(
             text = title,
-            color = androidx.compose.ui.graphics.Color.Black,
+            color = textColor,
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp
         )
