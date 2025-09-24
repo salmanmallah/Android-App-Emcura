@@ -27,13 +27,6 @@ fun CallHistoryOptionNotes(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(Color.White, Color(0xFFF8E9E9)),
-                    startY = 0f, endY = 800f
-                ),
-                shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
-            )
             .padding(18.dp)
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
@@ -131,6 +124,7 @@ fun CallHistoryOptionNotes(
                     modifier = Modifier
                         .align(Alignment.TopStart)
                         .padding(8.dp)
+                        
                 )
             }
         }

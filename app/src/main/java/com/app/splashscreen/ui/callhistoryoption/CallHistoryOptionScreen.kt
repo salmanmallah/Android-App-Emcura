@@ -71,7 +71,7 @@ fun CallHistoryOptionScreen(navController: NavController) {
             CallHistoryOptionsProfileCard()
 
             // Card aur neeche container ke beech gap
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(5.dp))
 
             // White rounded container
             Box(
@@ -90,11 +90,11 @@ fun CallHistoryOptionScreen(navController: NavController) {
                 ) {
 
 
-                    Spacer(modifier = Modifier.height(25.dp))
+                    Spacer(modifier = Modifier.height(15.dp))
                     CallHistoryOptionNotes()
-
-                    Spacer(modifier = Modifier.height(25.dp))
+                    Spacer(modifier = Modifier.height(15.dp))
                     CallHistoryOptionNotes()
+                    Spacer(modifier = Modifier.height(200.dp))
                 }
             } // end of White rounded container
         }
