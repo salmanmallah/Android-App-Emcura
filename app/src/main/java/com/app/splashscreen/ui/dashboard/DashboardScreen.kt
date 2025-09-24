@@ -154,8 +154,8 @@ fun DashboardScreen(navController: NavController) {
                     }
                     if (showInstantConnectPopup) {
                         com.app.splashscreen.ui.components.InstantConnectPopup(
+                            navController = navController,
                             onDismiss = { showInstantConnectPopup = false },
-                            onExistingPatient = { showInstantConnectPopup = false },
                             onNewPatient = { showInstantConnectPopup = false },
                             onCancel = { showInstantConnectPopup = false }
                         )

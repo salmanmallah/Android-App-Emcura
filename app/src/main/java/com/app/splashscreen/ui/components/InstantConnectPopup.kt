@@ -10,6 +10,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -143,14 +144,17 @@ private fun InstantConnectPopupContent(
 // ✅ Dialog wrapper for runtime
 @Composable
 fun InstantConnectPopup(
+    navController: NavController?,
     onDismiss: () -> Unit,
-    onExistingPatient: () -> Unit,
     onNewPatient: () -> Unit,
     onCancel: () -> Unit
 ) {
     Dialog(onDismissRequest = onDismiss) {
         InstantConnectPopupContent(
-            onExistingPatient = onExistingPatient,
+            onExistingPatient = {
+                navController?.navigate("onlineCarePatients")
+                onDismiss()
+            },
             onNewPatient = onNewPatient,
             onCancel = onCancel,
             onDismiss = onDismiss
@@ -168,8 +172,9 @@ fun InstantConnectPopupPreview() {
             .background(Color.LightGray),
         contentAlignment = Alignment.Center
     ) {
-        InstantConnectPopupContent(
-            onExistingPatient = {},
+        InstantConnectPopup(
+            navController = null,
+            onDismiss = {},
             onNewPatient = {},
             onCancel = {}
         )
