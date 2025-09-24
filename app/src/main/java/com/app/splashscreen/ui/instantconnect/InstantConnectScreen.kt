@@ -224,10 +224,17 @@ fun InstantConnectScreen(navController: NavController) {
 /* ---------- Helpers / sub-composables ---------- */
 
 @Composable
-fun GenderSelector(selectedGender: String, onGenderSelected: (String) -> Unit, maleIcon: Painter, femaleIcon: Painter) {
+fun GenderSelector(
+    selectedGender: String,
+    onGenderSelected: (String) -> Unit,
+    maleIcon: Painter,
+    femaleIcon: Painter
+) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp), // thoda padding for balance
+        horizontalArrangement = Arrangement.spacedBy(16.dp), // equal space
         verticalAlignment = Alignment.CenterVertically
     ) {
         GenderCard(
@@ -235,14 +242,16 @@ fun GenderSelector(selectedGender: String, onGenderSelected: (String) -> Unit, m
             icon = maleIcon,
             label = "Male",
             color = Color(0xFF00B2FF),
-            onClick = { onGenderSelected("Male") }
+            onClick = { onGenderSelected("Male") },
+            modifier = Modifier.weight(1f) // equal size
         )
         GenderCard(
             selected = selectedGender == "Female",
             icon = femaleIcon,
             label = "Female",
             color = Color(0xFFFF2D92),
-            onClick = { onGenderSelected("Female") }
+            onClick = { onGenderSelected("Female") },
+            modifier = Modifier.weight(1f)
         )
     }
 }
@@ -253,11 +262,11 @@ fun GenderCard(
     icon: Painter,
     label: String,
     color: Color,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = Modifier
-//            .weight(1f) // ✅ Yaha lagao (Row ke andar jab call hoga)
+    Box(
+        modifier = modifier
             .clip(RoundedCornerShape(12.dp))
             .background(if (selected) color.copy(alpha = 0.08f) else Color.White)
             .border(
@@ -267,24 +276,26 @@ fun GenderCard(
             )
             .clickable { onClick() }
             .padding(vertical = 12.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center // ✅ Center align karega
+        contentAlignment = Alignment.Center
     ) {
-        Icon(
-            painter = icon,
-            contentDescription = label,
-            tint = color,
-            modifier = Modifier.size(32.dp)
-        )
-        Spacer(modifier = Modifier.height(6.dp))
-        Text(
-            text = label,
-            fontWeight = FontWeight.Bold,
-            fontSize = 15.sp,
-            color = color
-        )
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Icon(
+                painter = icon,
+                contentDescription = label,
+                tint = color,
+                modifier = Modifier.size(32.dp)
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = label,
+                fontWeight = FontWeight.Bold,
+                fontSize = 15.sp,
+                color = color
+            )
+        }
     }
 }
+
 
 
 /**
@@ -327,7 +338,7 @@ fun InputField(
                 modifier = Modifier
                     .fillMaxWidth()
                     .shadow(6.dp, RoundedCornerShape(24.dp))
-                    .border(1.5.dp, Color(0xFFED202E), RoundedCornerShape(24.dp))
+                    // .border(1.5.dp, RoundedCornerShape(24.dp))
                     .background(Color.White, RoundedCornerShape(24.dp))
             ) {
                 TextField(
