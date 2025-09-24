@@ -9,6 +9,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InstantConnectScreen(navController: NavController) {
     // painters (callable from a Composable)
@@ -42,6 +46,13 @@ fun InstantConnectScreen(navController: NavController) {
     var cellNumber by remember { mutableStateOf("") }
     var birthdate by remember { mutableStateOf("") }
     var showDatePicker by remember { mutableStateOf(false) }
+    val datePickerState = rememberDatePickerState()
+    fun formatMillisToDate(millis: Long): String {
+        val calendar = java.util.Calendar.getInstance()
+        calendar.timeInMillis = millis
+        val sdf = java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault())
+        return sdf.format(calendar.time)
+    }
     var gender by remember { mutableStateOf("Male") }
     var address by remember { mutableStateOf("") }
     var city by remember { mutableStateOf("") }
@@ -104,12 +115,26 @@ fun InstantConnectScreen(navController: NavController) {
 
         if (showDatePicker) {
             DatePickerDialog(
-                onDateSelected = {
-                    birthdate = it
-                    showDatePicker = false
+                onDismissRequest = { showDatePicker = false },
+                confirmButton = {
+                    TextButton(onClick = {
+                        val millis = datePickerState.selectedDateMillis
+                        if (millis != null) {
+                            birthdate = formatMillisToDate(millis)
+                        }
+                        showDatePicker = false
+                    }) {
+                        Text("OK")
+                    }
                 },
-                onDismiss = { showDatePicker = false }
-            )
+                dismissButton = {
+                    TextButton(onClick = { showDatePicker = false }) {
+                        Text("Cancel")
+                    }
+                }
+            ) {
+                DatePicker(state = datePickerState)
+            }
         }
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -298,27 +323,7 @@ fun GenderCard(
 
 
 
-/**
- * Simple date picker dialog stub for preview/testing.
- * Replace with MaterialDatePicker or AndroidView-based date picker if you need a real calendar.
- */
-@Composable
-fun DatePickerDialog(onDateSelected: (String) -> Unit, onDismiss: () -> Unit) {
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("Select Date") },
-        text = {
-            Column {
-                Spacer(modifier = Modifier.height(6.dp))
-                Button(onClick = { onDateSelected("01/01/2000") }) { Text("01/01/2000") }
-                Spacer(modifier = Modifier.height(6.dp))
-                Button(onClick = { onDateSelected("24/09/2025") }) { Text("24/09/2025") }
-            }
-        },
-        confirmButton = {},
-        dismissButton = {}
-    )
-}
+// Removed stub DatePickerDialog, now using Material3 DatePickerDialog above
 
 @Composable
 fun InputField(
