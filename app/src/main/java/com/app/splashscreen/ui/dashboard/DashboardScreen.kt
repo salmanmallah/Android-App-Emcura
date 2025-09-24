@@ -193,6 +193,9 @@ fun DashboardScreen(navController: NavController) {
                 centerImageResId = R.drawable.ic_dashboard_bell_patientcare,
                 onIconClick = { index ->
                     // 0: Power, 1: Waiting Room, 2: Support, 3: Messages, 4: Center (Patient Care)
+                    if (index == 3) {
+                        navController.navigate("messages")
+                    }
                     if (index == 4) {
                         navController.navigate("patientcare")
                     }

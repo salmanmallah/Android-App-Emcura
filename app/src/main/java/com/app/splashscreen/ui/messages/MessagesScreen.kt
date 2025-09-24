@@ -66,7 +66,10 @@ fun MessagesScreen(onBackClick: (() -> Unit)? = null) {
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                     }
+
+
                 }
+                Spacer(modifier = Modifier.height(200.dp))
             }
         }
         // Floating navbar at bottom
