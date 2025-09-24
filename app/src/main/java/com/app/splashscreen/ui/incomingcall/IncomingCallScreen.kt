@@ -92,7 +92,7 @@ fun IncomingCallScreen(
                     Image(
                         painter = painterResource(id = R.drawable.call_accept),
                         contentDescription = "Accept Call",
-                        modifier = Modifier.size(60.dp)
+                        modifier = Modifier.size(100.dp)
                     )
                 }
                 Spacer(modifier = Modifier.width(48.dp))
@@ -108,11 +108,11 @@ fun IncomingCallScreen(
                     Image(
                         painter = painterResource(id = R.drawable.call_reject),
                         contentDescription = "Reject Call",
-                        modifier = Modifier.size(60.dp)
+                        modifier = Modifier.size(100.dp)
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(60.dp))
             Button(
                 onClick = onSendMessage,
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
