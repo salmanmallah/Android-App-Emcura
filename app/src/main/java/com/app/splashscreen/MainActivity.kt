@@ -75,6 +75,7 @@ fun MyApp() {
         composable("patientcare") { com.app.splashscreen.ui.PatientCare.PatientCare(navController) }
         composable("callhistory") { com.app.splashscreen.ui.callhistory.CallHistoryScreen() }
         composable("olcOfficeVisit") { com.app.splashscreen.ui.olc_office.OlcOfficeVisitScreen(navController) }
+        composable("incomingcall") { com.app.splashscreen.ui.incomingcall.IncomingCallScreen() }
         composable("messages") { com.app.splashscreen.ui.messages.MessagesScreen(navController, onBackClick = { navController.popBackStack() }) }
         composable("messagechat") { com.app.splashscreen.ui.messages.MessageChatScreen(onBackClick = { navController.popBackStack() }) }
         composable("olcOffice") { OlcOfficeScreen(navController) }
