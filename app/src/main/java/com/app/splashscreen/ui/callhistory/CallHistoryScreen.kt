@@ -25,9 +25,10 @@ import com.app.splashscreen.ui.components.CallHistoryProfileCard
 import com.app.splashscreen.ui.components.PatientCareProfileCard
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.navigation.NavController
 
 @Composable
-fun CallHistoryScreen(enableScroll: Boolean = true) {
+fun CallHistoryScreen(navController: NavController? = null, enableScroll: Boolean = true) {
     var searchQuery by remember { mutableStateOf("") }
 
     Column(
@@ -98,7 +99,14 @@ fun CallHistoryScreen(enableScroll: Boolean = true) {
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     items(filteredCalls) { (name, profileImageRes, timeAgo) ->
-                        CallHistoryProfileCard(name = name, profileImageRes = profileImageRes, timeAgo = timeAgo)
+                        CallHistoryProfileCard(
+                            name = name,
+                            profileImageRes = profileImageRes,
+                            timeAgo = timeAgo,
+                            onArrowClick = {
+                                navController?.navigate("callhistoryoption")
+                            }
+                        )
                     }
                     item {
                         Spacer(modifier = Modifier.height(600.dp)) // Extra space at the bottom for scroll

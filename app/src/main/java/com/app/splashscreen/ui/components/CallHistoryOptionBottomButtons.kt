@@ -39,7 +39,7 @@ fun CallHistoryOptionBottomButtons(
         ) {
             Column(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(18.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 CallHistoryOptionButton(iconRes = recallIcon, text = "Recall")
                 CallHistoryOptionButton(iconRes = notesIcon, text = "Add Encounter Notes")
@@ -47,7 +47,7 @@ fun CallHistoryOptionBottomButtons(
             }
             Column(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(18.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 CallHistoryOptionButton(iconRes = messageIcon, text = "Message")
                 CallHistoryOptionButton(iconRes = prescriptionIcon, text = "Send Prescription")

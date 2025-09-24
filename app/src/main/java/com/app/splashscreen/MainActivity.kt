@@ -66,15 +66,16 @@ fun MyApp() {
         composable("forget_password_email") { ForgetPasswordScreen(navController) }
         composable("password_otp") { PasswordOtpScreen(navController) }
         composable("dashboard") { DashboardScreen(navController) }
-    composable("onlinecarepatients") { com.app.splashscreen.ui.onlinecarepatients.OnlineCarePatientsScreen(navController) }
-    composable("instantconnect") { com.app.splashscreen.ui.instantconnect.InstantConnectScreen(navController) }
+        composable("onlinecarepatients") { com.app.splashscreen.ui.onlinecarepatients.OnlineCarePatientsScreen(navController) }
+        composable("instantconnect") { com.app.splashscreen.ui.instantconnect.InstantConnectScreen(navController) }
         composable("refill_request") { com.app.splashscreen.ui.refill_request.RefillRequestScreen(navController) }
         composable("prescription") { com.app.splashscreen.ui.prescription.PrescriptionScreen(navController) }
         composable("doctodoc") { DocToDocScreen(navController) }
         composable("doctocp") { DocToCpScreen(navController) }
         composable("selectsymptoms") { com.app.splashscreen.ui.selectsymptoms.SelectSymptomsScreen(navController) }
         composable("patientcare") { com.app.splashscreen.ui.PatientCare.PatientCare(navController) }
-        composable("callhistory") { com.app.splashscreen.ui.callhistory.CallHistoryScreen() }
+    composable("callhistory") { com.app.splashscreen.ui.callhistory.CallHistoryScreen(navController) }
+        composable("callhistoryoption") { com.app.splashscreen.ui.callhistoryoption.CallHistoryOptionScreen(navController) }
         composable("olcOfficeVisit") { com.app.splashscreen.ui.olc_office.OlcOfficeVisitScreen(navController) }
         composable("incomingcall") { com.app.splashscreen.ui.incomingcall.IncomingCallScreen() }
         composable("messages") { com.app.splashscreen.ui.messages.MessagesScreen(navController, onBackClick = { navController.popBackStack() }) }

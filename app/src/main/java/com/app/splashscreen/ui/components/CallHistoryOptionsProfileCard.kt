@@ -61,9 +61,9 @@ fun CallHistoryOptionsProfileCard(
                     text = doctorName,
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp
+                    fontSize = 13.sp
                 )
-                Spacer(modifier = Modifier.height(6.dp))
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = "• Start Time : $startTime\n" +
                            "• End Time : $endTime\n" +
@@ -71,8 +71,8 @@ fun CallHistoryOptionsProfileCard(
                            "• Phone : $phone\n" +
                            "• Address : $address",
                     color = Color.White,
-                    fontSize = 14.sp,
-                    lineHeight = 20.sp
+                    fontSize = 11.sp,
+                    lineHeight = 15.sp
                 )
             }
         }
