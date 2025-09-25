@@ -90,24 +90,24 @@ fun PatientDetailsScreen(navController: NavController) {
                         ),
                         modifier = Modifier.padding(5.dp)
                     )
-
-                    // Live Map Card
-                    val cameraPositionState = rememberCameraPositionState {
-                        position = com.google.android.gms.maps.model.CameraPosition.fromLatLngZoom(LatLng(24.8607, 67.0011), 12f)
-                    }
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 24.dp)
-                            .aspectRatio(1.3f)
-                            .clip(RoundedCornerShape(24.dp)),
-                        elevation = CardDefaults.cardElevation(8.dp)
-                    ) {
-                        GoogleMap(
-                            modifier = Modifier.fillMaxSize(),
-                            cameraPositionState = cameraPositionState
-                        )
-                    }
+//
+//                    // Live Map Card
+//                    val cameraPositionState = rememberCameraPositionState {
+//                        position = com.google.android.gms.maps.model.CameraPosition.fromLatLngZoom(LatLng(24.8607, 67.0011), 12f)
+//                    }
+//                    Card(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .padding(top = 24.dp)
+//                            .aspectRatio(1.3f)
+//                            .clip(RoundedCornerShape(24.dp)),
+//                        elevation = CardDefaults.cardElevation(8.dp)
+//                    ) {
+//                        GoogleMap(
+//                            modifier = Modifier.fillMaxSize(),
+//                            cameraPositionState = cameraPositionState
+//                        )
+//                    }
 
 
                     Spacer(modifier = Modifier.height(200.dp))

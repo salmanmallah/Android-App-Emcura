@@ -142,9 +142,9 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 // yahan profile card aaega hamesha
-                PatientCareProfileCard()
-                PatientCareProfileCard("Beemar John Wick", "3", R.drawable.dr_john_wick)
-                PatientCareProfileCard(name="Emma Stone", number = "5")
+                PatientCareProfileCard(onArrowClick = { navController?.navigate("patientdetails") })
+                PatientCareProfileCard("Beemar John Wick", "3", R.drawable.dr_john_wick, onArrowClick = { navController?.navigate("patientdetails") })
+                PatientCareProfileCard(name="Emma Stone", number = "5", onArrowClick = { navController?.navigate("patientdetails") })
             }
         }
     }

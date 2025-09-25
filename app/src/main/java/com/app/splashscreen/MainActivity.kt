@@ -74,7 +74,8 @@ fun MyApp() {
         composable("doctocp") { DocToCpScreen(navController) }
         composable("selectsymptoms") { com.app.splashscreen.ui.selectsymptoms.SelectSymptomsScreen(navController) }
         composable("patientcare") { com.app.splashscreen.ui.PatientCare.PatientCare(navController) }
-    composable("callhistory") { com.app.splashscreen.ui.callhistory.CallHistoryScreen(navController) }
+        composable("patientdetails") { com.app.splashscreen.ui.patientdetails.PatientDetailsScreen(navController) }
+        composable("callhistory") { com.app.splashscreen.ui.callhistory.CallHistoryScreen(navController) }
         composable("callhistoryoption") { com.app.splashscreen.ui.callhistoryoption.CallHistoryOptionScreen(navController) }
         composable("olcOfficeVisit") { com.app.splashscreen.ui.olc_office.OlcOfficeVisitScreen(navController) }
         composable("incomingcall") { com.app.splashscreen.ui.incomingcall.IncomingCallScreen() }
