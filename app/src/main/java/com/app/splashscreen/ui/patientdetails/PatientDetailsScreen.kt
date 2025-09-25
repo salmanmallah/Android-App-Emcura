@@ -66,14 +66,14 @@ fun PatientDetailsScreen(navController: NavController) {
                     // Dashboard icon grid
                     com.app.splashscreen.ui.components.DashboardIconGrid(
                         icons = listOf(
-                            R.drawable.ic_dashboard_connect to "Send Message",
-                            R.drawable.ic_dashboard_mic to "Video Checkup",
-                            R.drawable.ic_dashboard_prescription to "Remove Patient",
+                            R.drawable.pd_message to "Send Message",
+                            R.drawable.pd_video_checkup to "Video Checkup",
+                            R.drawable.pd_remove_patient to "Remove Patient",
                             R.drawable.ic_dashboard_call to "Call History",
-                            R.drawable.ic_dashboard_connect to "AI Suggested Diagnosis",
-                            R.drawable.ic_dashboard_refill to "Med History"
+                            R.drawable.pd_ai_diagnosis to "AI Suggested Diagnosis",
+                            R.drawable.pd_med_history to "Med History"
                         ),
-                        modifier = Modifier.padding(18.dp)
+                        modifier = Modifier.padding(5.dp)
                     )
 
 
