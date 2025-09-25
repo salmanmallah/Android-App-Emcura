@@ -64,8 +64,8 @@ fun DashboardIconGrid(
                                 android.view.MotionEvent.ACTION_DOWN -> pressed = true
                                 android.view.MotionEvent.ACTION_UP -> {
                                     pressed = false
-                                    if (iconIndex != 4 && onIconClick != null) onIconClick(iconIndex)
-                                    else if (iconIndex == 4 && onInstantConnectClick != null) onInstantConnectClick()
+                                    if (label == "Instant Connect" && onInstantConnectClick != null) onInstantConnectClick()
+                                    else if (onIconClick != null) onIconClick(iconIndex)
                                 }
                                 android.view.MotionEvent.ACTION_CANCEL -> pressed = false
                             }

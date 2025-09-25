@@ -79,16 +79,23 @@ fun PatientDetailsScreen(navController: NavController) {
                     )
 
                     // Dashboard icon grid
+                    val patientIcons = listOf(
+                        R.drawable.pd_message to "Send Message",
+                        R.drawable.pd_video_checkup to "Video Checkup",
+                        R.drawable.pd_remove_patient to "Remove Patient",
+                        R.drawable.ic_dashboard_call to "Call History",
+                        R.drawable.pd_ai_diagnosis to "AI Suggested Diagnosis",
+                        R.drawable.pd_med_history to "Med History"
+                    )
                     com.app.splashscreen.ui.components.DashboardIconGrid(
-                        icons = listOf(
-                            R.drawable.pd_message to "Send Message",
-                            R.drawable.pd_video_checkup to "Video Checkup",
-                            R.drawable.pd_remove_patient to "Remove Patient",
-                            R.drawable.ic_dashboard_call to "Call History",
-                            R.drawable.pd_ai_diagnosis to "AI Suggested Diagnosis",
-                            R.drawable.pd_med_history to "Med History"
-                        ),
-                        modifier = Modifier.padding(5.dp)
+                        icons = patientIcons,
+                        modifier = Modifier.padding(5.dp),
+                        onIconClick = { index ->
+                            // Navigate to AI Suggested Diagnosis if that icon is clicked
+                            if (patientIcons[index].second == "AI Suggested Diagnosis") {
+                                navController.navigate("aisuggesteddiagnosis")
+                            }
+                        }
                     )
 //
 //                    // Live Map Card
