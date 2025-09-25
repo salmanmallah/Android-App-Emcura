@@ -33,8 +33,8 @@ fun VideoCallNavBar(
     val hangupButtonSize = 72.dp
     val hangupButtonElevation = 16.dp
     val navBarColor = Color(0xFFF45B5B)
-    val iconSize = 32.dp
-    val iconPadding = 18.dp
+    val iconSize = 24.dp // smaller icons for better fit
+    val iconPadding = 12.dp
 
     Box(
         modifier = modifier
@@ -43,28 +43,29 @@ fun VideoCallNavBar(
             .background(Color.Transparent),
         contentAlignment = Alignment.BottomCenter
     ) {
-        // Custom background with curved cutout
+        // Custom background with deeper curved cutout
         androidx.compose.foundation.Canvas(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(navBarHeight)
         ) {
             val hangupButtonSizePx = hangupButtonSize.toPx()
-            val cutoutRadius = hangupButtonSizePx / 2f + 12.dp.toPx()
+            val cutoutRadius = hangupButtonSizePx * 0.8f // more curve
             val width = size.width
             val height = size.height
             val cutoutCenterX = width / 2f
+            val curveDepth = hangupButtonSizePx * 0.7f // deeper
             val path = Path().apply {
                 moveTo(0f, 0f)
                 lineTo(cutoutCenterX - cutoutRadius, 0f)
                 cubicTo(
-                    cutoutCenterX - cutoutRadius / 2, 0f,
-                    cutoutCenterX - cutoutRadius / 2, cutoutRadius,
-                    cutoutCenterX, cutoutRadius
+                    cutoutCenterX - cutoutRadius / 1.5f, 0f,
+                    cutoutCenterX - cutoutRadius * 0.7f, curveDepth,
+                    cutoutCenterX, curveDepth
                 )
                 cubicTo(
-                    cutoutCenterX + cutoutRadius / 2, cutoutRadius,
-                    cutoutCenterX + cutoutRadius / 2, 0f,
+                    cutoutCenterX + cutoutRadius * 0.7f, curveDepth,
+                    cutoutCenterX + cutoutRadius / 1.5f, 0f,
                     cutoutCenterX + cutoutRadius, 0f
                 )
                 lineTo(width, 0f)
@@ -75,17 +76,15 @@ fun VideoCallNavBar(
             drawPath(path, color = navBarColor, style = Fill)
         }
 
-        // Icons and hangup button
+        // Left side buttons
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 0.dp)
+                .align(Alignment.CenterStart)
+                .padding(start = iconPadding)
                 .height(navBarHeight),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Spacer(modifier = Modifier.width(iconPadding))
-            // Left Camera
             Image(
                 painter = painterResource(id = R.drawable.vc_camera),
                 contentDescription = "Camera",
@@ -93,8 +92,6 @@ fun VideoCallNavBar(
                     .size(iconSize)
                     .clickable { onLeftCamera() }
             )
-            Spacer(modifier = Modifier.width(8.dp))
-            // Star
             Image(
                 painter = painterResource(id = R.drawable.vc_shooting_star),
                 contentDescription = "Star",
@@ -102,8 +99,6 @@ fun VideoCallNavBar(
                     .size(iconSize)
                     .clickable { onStar() }
             )
-            Spacer(modifier = Modifier.width(8.dp))
-            // More
             Image(
                 painter = painterResource(id = R.drawable.vc_three_dots),
                 contentDescription = "More",
@@ -111,8 +106,17 @@ fun VideoCallNavBar(
                     .size(iconSize)
                     .clickable { onMore() }
             )
-            Spacer(modifier = Modifier.width(hangupButtonSize / 2 + 8.dp)) // Space for hangup button
-            // Right Camera
+        }
+
+        // Right side buttons
+        Row(
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .padding(end = iconPadding)
+                .height(navBarHeight),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             Image(
                 painter = painterResource(id = R.drawable.vc_camera),
                 contentDescription = "Camera",
@@ -120,8 +124,6 @@ fun VideoCallNavBar(
                     .size(iconSize)
                     .clickable { onRightCamera() }
             )
-            Spacer(modifier = Modifier.width(8.dp))
-            // Mic
             Image(
                 painter = painterResource(id = R.drawable.vc_mic),
                 contentDescription = "Mic",
@@ -129,17 +131,15 @@ fun VideoCallNavBar(
                     .size(iconSize)
                     .clickable { onMic() }
             )
-            Spacer(modifier = Modifier.width(iconPadding))
         }
 
-        // Hangup button (center, above curve)
+        // Hangup button (center, above curve) with no background behind
         Box(
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .offset(y = (-hangupButtonElevation))
                 .size(hangupButtonSize)
                 .clip(CircleShape)
-                .background(navBarColor)
                 .clickable { onHangup() },
             contentAlignment = Alignment.Center
         ) {
