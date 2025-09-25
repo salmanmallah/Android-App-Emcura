@@ -16,6 +16,8 @@ import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.MessageCard
 import com.app.splashscreen.ui.components.MessagesNavbar
 import androidx.navigation.NavController
+
+
 @Composable
 fun MessagesScreen(navController: NavController, onBackClick: (() -> Unit)? = null) {
 
