@@ -21,7 +21,7 @@ import com.app.splashscreen.ui.components.CallHistoryOptionsProfileCard
 import com.app.splashscreen.ui.components.DashboardTopBar
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-
+import com.app.splashscreen.ui.components.ReviewCurrentSymptomsButton
 @Composable
 fun PatientDetailsScreen(navController: NavController) {
     Box(
@@ -61,7 +61,13 @@ fun PatientDetailsScreen(navController: NavController) {
                         .padding(horizontal = 24.dp, vertical = 24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Spacer(modifier = Modifier.height(15.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
+
+
+                    // Review Current Symptoms Button
+                    ReviewCurrentSymptomsButton(
+                        modifier = Modifier.padding(bottom = 18.dp)
+                    )
 
                     // Dashboard icon grid
                     com.app.splashscreen.ui.components.DashboardIconGrid(
@@ -104,3 +110,4 @@ fun PatientDetailsScreenPreview() {
     val navController = rememberNavController()
     PatientDetailsScreen(navController)
 }
+
