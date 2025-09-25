@@ -115,12 +115,8 @@ fun PatientDetailsScreen(navController: NavController) {
             }
 
             // google map box below
-                
-
 
         } // end of column
-
-//
     }
 }
 
