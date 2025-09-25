@@ -111,7 +111,7 @@ fun DashboardCircleIconWithLabel(
                 contentDescription = label,
                 modifier = Modifier
                     .fillMaxSize(0.62f)
-                    .clip(CircleShape)
+//                    .clip(CircleShape)
             )
         }
 
