@@ -75,6 +75,17 @@ fun VideoCallScreen(
                 contentScale = androidx.compose.ui.layout.ContentScale.Crop
             )
 
+            // Floating self video preview (top right, draggable)
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.TopEnd
+            ) {
+                com.app.splashscreen.ui.videocall.FloatingVideoPreview(
+                    modifier = Modifier.padding(top = 24.dp, end = 16.dp)
+                )
+            }
+
             // Bottom navbar overlay
             Box(
                 modifier = Modifier
@@ -83,7 +94,6 @@ fun VideoCallScreen(
             ) {
                 com.app.splashscreen.ui.videocall.VideoCallNavBar()
             }
-            // TODO: Add overlays (small user video, controls) in next steps
         }
     }
 }
