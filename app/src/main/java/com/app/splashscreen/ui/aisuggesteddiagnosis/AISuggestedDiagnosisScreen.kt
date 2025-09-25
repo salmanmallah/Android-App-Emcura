@@ -30,6 +30,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.app.splashscreen.ui.components.AISuggestedDiagnosisButtonCard
 import com.app.splashscreen.ui.components.AISuggestedDiagnosisTextCard
 import com.app.splashscreen.ui.components.CallHistoryOptionBottomButtons
 import com.app.splashscreen.ui.components.CallHistoryOptionNotes
@@ -98,11 +99,11 @@ fun AISuggestedDiagnosisScreen(navController: NavController) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 24.dp, vertical = 24.dp),
+                        .padding(horizontal = 10.dp, vertical = 24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
-
+                    AISuggestedDiagnosisButtonCard()
                 }
             } // end of White rounded container
         }
