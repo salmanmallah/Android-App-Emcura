@@ -67,13 +67,22 @@ fun VideoCallScreen(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            // Background image (replace with your actual drawable resource)
+            // Background image
             androidx.compose.foundation.Image(
                 painter = painterResource(id = R.drawable.video_call_image),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = androidx.compose.ui.layout.ContentScale.Crop
             )
+
+            // Bottom navbar overlay
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                com.app.splashscreen.ui.videocall.VideoCallNavBar()
+            }
             // TODO: Add overlays (small user video, controls) in next steps
         }
     }

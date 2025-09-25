@@ -29,9 +29,9 @@ fun VideoCallNavBar(
     onRightCamera: () -> Unit = {},
     onMic: () -> Unit = {}
 ) {
-    val navBarHeight = 88.dp
-    val hangupButtonSize = 72.dp
-    val hangupButtonElevation = 16.dp
+    val navBarHeight = 68.dp
+    val hangupButtonSize = 64.dp
+    val hangupButtonElevation = 10.dp
     val navBarColor = Color(0xFFF45B5B)
     val iconSize = 24.dp // smaller icons for better fit
     val iconPadding = 12.dp
@@ -50,22 +50,22 @@ fun VideoCallNavBar(
                 .height(navBarHeight)
         ) {
             val hangupButtonSizePx = hangupButtonSize.toPx()
-            val cutoutRadius = hangupButtonSizePx * 0.8f // more curve
+            val cutoutRadius = hangupButtonSizePx * 1.05f // even more curve
             val width = size.width
             val height = size.height
             val cutoutCenterX = width / 2f
-            val curveDepth = hangupButtonSizePx * 0.7f // deeper
+            val curveDepth = hangupButtonSizePx * 1.05f // much deeper
             val path = Path().apply {
                 moveTo(0f, 0f)
                 lineTo(cutoutCenterX - cutoutRadius, 0f)
                 cubicTo(
-                    cutoutCenterX - cutoutRadius / 1.5f, 0f,
+                    cutoutCenterX - cutoutRadius / 1.2f, 0f,
                     cutoutCenterX - cutoutRadius * 0.7f, curveDepth,
                     cutoutCenterX, curveDepth
                 )
                 cubicTo(
                     cutoutCenterX + cutoutRadius * 0.7f, curveDepth,
-                    cutoutCenterX + cutoutRadius / 1.5f, 0f,
+                    cutoutCenterX + cutoutRadius / 1.2f, 0f,
                     cutoutCenterX + cutoutRadius, 0f
                 )
                 lineTo(width, 0f)
@@ -117,6 +117,7 @@ fun VideoCallNavBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+
             Image(
                 painter = painterResource(id = R.drawable.vc_camera),
                 contentDescription = "Camera",
