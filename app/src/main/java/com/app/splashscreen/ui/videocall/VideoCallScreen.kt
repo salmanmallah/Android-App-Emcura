@@ -34,54 +34,51 @@ data class VideoCallProfileData(
 )
 
 @Composable
+
 fun VideoCallScreen(
     navController: NavController? = null,
     enableScroll: Boolean = true
 ) {
-    var selectedTab by remember { mutableStateOf(0) } // 0 = VideoCall, 1 = EMR
-    var searchQuery by remember { mutableStateOf("") }
-
-    // Dummy data for Video Call patients
-    val videoCallPatients = remember {
-        listOf(
-            VideoCallProfileData("John Doe", "john@email.com", "1234567890", com.app.splashscreen.R.drawable.ic_dashboard_profile),
-            VideoCallProfileData("Jane Smith", "jane@email.com", "9876543210", com.app.splashscreen.R.drawable.ic_dashboard_profile),
-            VideoCallProfileData("Alex Brown", "alex@email.com", "5555555555", com.app.splashscreen.R.drawable.ic_dashboard_profile),
-            VideoCallProfileData("Emily White", "emily@email.com", "4444444444", com.app.splashscreen.R.drawable.ic_dashboard_profile)
-        )
-    }
-
-    val filteredPatients = if (searchQuery.isBlank()) {
-        videoCallPatients
-    } else {
-        videoCallPatients.filter { it.name.contains(searchQuery, ignoreCase = true) }
-    }
-
+    // Navigation bar and white area remain at the top
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFF8F8F8))
     ) {
-        // 🔹 TopBar
+        // TopBar (navigation)
         DashboardTopBar(
             title = "00:58",
             backIconRes = R.drawable.ic_dashboard_arrow_backward,
             endIconRes = R.drawable.ic_dcd_hospital,
             showBackIcon = true,
             showEndIcon = true,
-            onBackClick = { navController?.popBackStack() }
+            onBackClick = { navController?.popBackStack() },
+            modifier = Modifier.padding(bottom = 0.dp)
         )
-        // 
-
-
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-
-
-
+        // White area below top bar (matches screenshot)
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(8.dp)
+                .background(Color.White)
+        )
+        // The rest of the screen: background image and overlays
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            // Background image (replace with your actual drawable resource)
+            androidx.compose.foundation.Image(
+                painter = painterResource(id = R.drawable.video_call_image),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = androidx.compose.ui.layout.ContentScale.Crop
+            )
+            // TODO: Add overlays (small user video, controls) in next steps
+        }
     }
 }
+
 
 
 
