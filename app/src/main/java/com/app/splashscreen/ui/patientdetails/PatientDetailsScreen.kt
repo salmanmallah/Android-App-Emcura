@@ -22,6 +22,15 @@ import com.app.splashscreen.ui.components.DashboardTopBar
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.splashscreen.ui.components.ReviewCurrentSymptomsButton
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.rememberCameraPositionState
+import com.google.android.gms.maps.model.LatLng
+import androidx.compose.material3.Card
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.material3.CardDefaults
+import com.google.android.gms.maps.GoogleMap
+
 @Composable
 fun PatientDetailsScreen(navController: NavController) {
     Box(
@@ -82,25 +91,36 @@ fun PatientDetailsScreen(navController: NavController) {
                         modifier = Modifier.padding(5.dp)
                     )
 
+                    // Live Map Card
+                    val cameraPositionState = rememberCameraPositionState {
+                        position = com.google.android.gms.maps.model.CameraPosition.fromLatLngZoom(LatLng(24.8607, 67.0011), 12f)
+                    }
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 24.dp)
+                            .aspectRatio(1.3f)
+                            .clip(RoundedCornerShape(24.dp)),
+                        elevation = CardDefaults.cardElevation(8.dp)
+                    ) {
+                        GoogleMap(
+                            modifier = Modifier.fillMaxSize(),
+                            cameraPositionState = cameraPositionState
+                        )
+                    }
+
 
                     Spacer(modifier = Modifier.height(200.dp))
                 }
             }
-        }
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter)
-        ) {
-            CallHistoryOptionBottomButtons(
-                recallIcon = R.drawable.ic_recall,
-                notesIcon = R.drawable.ic_encounter_notes,
-                labIcon = R.drawable.ic_lab_requests,
-                messageIcon = R.drawable.ic_message,
-                prescriptionIcon = R.drawable.ic_prescription,
-                dischargeIcon = R.drawable.ic_discharge_summary
-            )
-        }
+
+            // google map box below
+                
+
+
+        } // end of column
+
+//
     }
 }
 
