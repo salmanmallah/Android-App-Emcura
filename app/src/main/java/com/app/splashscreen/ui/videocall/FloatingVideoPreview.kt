@@ -42,8 +42,8 @@ fun FloatingVideoPreview(
             .offset(x = offsetX.dp, y = offsetY.dp)
             .shadow(10.dp, shape)
             .clip(shape)
-            .background(Color.White)
-            .border(3.dp, Color.White, shape)
+//            .background(Color.White)
+            //.border(3.dp, Color.White, shape)
             .pointerInput(Unit) {
                 detectDragGestures { change, dragAmount ->
                     change.consume()
