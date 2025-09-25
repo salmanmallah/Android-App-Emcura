@@ -52,7 +52,7 @@ fun CallHistoryOptionNotes(
             Box(
                 modifier = Modifier
                     .height(2.dp)
-                    .width(120.dp)
+                    .width(70.dp)
                     .background(Color(0xFFED202E), RoundedCornerShape(2.dp))
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -121,10 +121,7 @@ fun CallHistoryOptionNotes(
                     textStyle = androidx.compose.ui.text.TextStyle(fontSize = 10.sp),
                     shape = RoundedCornerShape(24.dp),
                     singleLine = false,
-                    maxLines = 6,
-                    placeholder = {
-                        Text("Enter notes...", fontSize = 10.sp)
-                    }
+                    maxLines = 6
                 )
         }
     }
