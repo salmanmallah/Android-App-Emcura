@@ -2,6 +2,7 @@ package com.app.splashscreen.ui.aisuggesteddiagnosis
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -104,6 +105,61 @@ fun AISuggestedDiagnosisScreen(navController: NavController) {
                 ) {
 
                     AISuggestedDiagnosisButtonCard()
+
+                    Spacer(modifier = Modifier.height(18.dp))
+
+                    // Description
+                    Text(
+                        text = "Description:",
+                        color = Color(0xFFED202E),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        modifier = Modifier
+                            .align(Alignment.Start)
+                            .padding(start = 8.dp, bottom = 4.dp)
+                    )
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(140.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(Color.White)
+                            .border(1.dp, Color(0xFFBDBDBD), RoundedCornerShape(12.dp))
+                    ) {}
+
+                    Spacer(modifier = Modifier.height(18.dp))
+
+                    // Care Plan
+                    Text(
+                        text = "Care Plan:",
+                        color = Color(0xFFED202E),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        modifier = Modifier
+                            .align(Alignment.Start)
+                            .padding(start = 8.dp, bottom = 4.dp)
+                    )
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(140.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(Color.White)
+                            .border(1.dp, Color(0xFFBDBDBD), RoundedCornerShape(12.dp))
+                    ) {}
+
+                    Spacer(modifier = Modifier.height(32.dp))
+
+                    Button(
+                        onClick = { /* TODO: Done action */ },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFED202E)),
+                        shape = RoundedCornerShape(16.dp),
+                        modifier = Modifier
+                            .fillMaxWidth(0.5f)
+                            .height(48.dp)
+                    ) {
+                        Text("Done", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                    }
                 }
             } // end of White rounded container
         }
