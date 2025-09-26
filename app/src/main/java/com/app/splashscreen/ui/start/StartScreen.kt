@@ -68,16 +68,15 @@ fun StartScreen(onStartClick: () -> Unit) {
             }, label = "OnboardingAnimation"
         ) { step ->
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Spacer(modifier = Modifier.height(80.dp))
                 Box(
-                    modifier = Modifier
-                        .height(180.dp)
-                        .fillMaxWidth(0.85f)
-                        .align(Alignment.CenterHorizontally)
+                    modifier = Modifier.fillMaxWidth(),
+                    contentAlignment = Alignment.Center
                 ) {
                     Image(
                         painter = painterResource(id = imageRes),
                         contentDescription = "Onboarding Image",
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxWidth(0.85f) // 85% width
                     )
                 }
                 Spacer(modifier = Modifier.height(32.dp))
