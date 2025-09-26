@@ -61,7 +61,7 @@ fun MyApp() {
             }
         }
         composable("login") { LoginScreen(navController) }
-        composable("permission_request") { com.app.splashscreen.ui.permission_request.PermissionRequestScreen() }
+        composable("permission_request") { com.app.splashscreen.ui.permission_request.PermissionRequestScreen(navController) }
         composable("new_password") { NewPasswordScreen(navController) }
         composable("home") { HomeScreen() }
         composable("forget_password_email") { ForgetPasswordScreen(navController) }

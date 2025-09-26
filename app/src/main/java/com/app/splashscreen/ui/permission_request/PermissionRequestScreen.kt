@@ -6,6 +6,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -21,10 +23,11 @@ import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
 
 @Composable
-fun PermissionRequestScreen() {
+fun PermissionRequestScreen(navController: NavController? = null) {
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
     val density = LocalDensity.current
     val screenHeightPx = with(density) { screenHeight.toPx() }
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -97,7 +100,11 @@ fun PermissionRequestScreen() {
                 color = Color.Transparent
             ) {
                 Button(
-                    onClick = { /* TODO: Handle permission review */ },
+                    onClick = {
+                        navController?.navigate("login") {
+                            popUpTo("permission_request") { inclusive = true }
+                        }
+                    },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
                     modifier = Modifier
                         .width(300.dp)
@@ -122,7 +129,12 @@ fun PermissionRequestScreen() {
                 color = Color.Transparent
             ) {
                 Button(
-                    onClick = { /* TODO: Handle exit */ },
+                    onClick = {
+                        if (navController != null && navController.popBackStack().not()) {
+                            // If can't go back, finish the activity
+                            (context as? android.app.Activity)?.finish()
+                        }
+                    },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
                     modifier = Modifier
                         .width(300.dp)
