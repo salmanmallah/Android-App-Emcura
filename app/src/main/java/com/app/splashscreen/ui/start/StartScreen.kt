@@ -88,7 +88,8 @@ fun StartScreen(onStartClick: () -> Unit) {
                     Box(
                         modifier = Modifier
                             .height(180.dp)
-                            .fillMaxWidth()
+                            .fillMaxWidth(0.85f)
+                            .align(Alignment.CenterHorizontally)
                     ) {
                         Image(
                             painter = painterResource(id = imageRes),
@@ -96,7 +97,7 @@ fun StartScreen(onStartClick: () -> Unit) {
                             modifier = Modifier.fillMaxSize()
                         )
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
+//                    Spacer(modifier = Modifier.height(16.dp))
                     Spacer(modifier = Modifier.height(32.dp))
                     Text(
                         text = "Here to Heal\nHere to Help",
@@ -135,7 +136,7 @@ fun StartScreen(onStartClick: () -> Unit) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(80.dp))
             if (currentStep < steps - 1) {
                 Button(
                     onClick = { currentStep++ },
