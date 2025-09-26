@@ -55,12 +55,13 @@ fun MyApp() {
         composable("splash") { SplashScreen(navController) }
         composable("start") {
             com.app.splashscreen.ui.start.StartScreen {
-                navController.navigate("login") {
+                navController.navigate("permission_request") {
                     popUpTo("start") { inclusive = true }
                 }
             }
         }
         composable("login") { LoginScreen(navController) }
+        composable("permission_request") { com.app.splashscreen.ui.permission_request.PermissionRequestScreen() }
         composable("new_password") { NewPasswordScreen(navController) }
         composable("home") { HomeScreen() }
         composable("forget_password_email") { ForgetPasswordScreen(navController) }
@@ -76,8 +77,8 @@ fun MyApp() {
         composable("patientcare") { com.app.splashscreen.ui.PatientCare.PatientCare(navController) }
         composable("patientdetails") { com.app.splashscreen.ui.patientdetails.PatientDetailsScreen(navController) }
         composable("callhistory") { com.app.splashscreen.ui.callhistory.CallHistoryScreen(navController) }
-    composable("callhistoryoption") { com.app.splashscreen.ui.callhistoryoption.CallHistoryOptionScreen(navController) }
-    composable("aisuggesteddiagnosis") { com.app.splashscreen.ui.aisuggesteddiagnosis.AISuggestedDiagnosisScreen(navController) }
+        composable("callhistoryoption") { com.app.splashscreen.ui.callhistoryoption.CallHistoryOptionScreen(navController) }
+        composable("aisuggesteddiagnosis") { com.app.splashscreen.ui.aisuggesteddiagnosis.AISuggestedDiagnosisScreen(navController) }
         composable("olcOfficeVisit") { com.app.splashscreen.ui.olc_office.OlcOfficeVisitScreen(navController) }
         composable("incomingcall") { com.app.splashscreen.ui.incomingcall.IncomingCallScreen() }
         composable("messages") { com.app.splashscreen.ui.messages.MessagesScreen(navController, onBackClick = { navController.popBackStack() }) }

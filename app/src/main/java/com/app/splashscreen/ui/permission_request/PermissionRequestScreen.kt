@@ -10,6 +10,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -20,19 +22,21 @@ import com.app.splashscreen.R
 
 @Composable
 fun PermissionRequestScreen() {
+    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
+    val density = LocalDensity.current
+    val screenHeightPx = with(density) { screenHeight.toPx() }
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color.White,
-                        Color(0xFFFFE6E6),
-                        Color(0xFFFAD2D2),
-                        Color(0xFFFAD2D2)
+                        Color.White,           // top 70% pure white
+                        Color(0xFFFFE6E6),    // start pink
+                        Color(0xFFFAD2D2)     // darker pink
                     ),
-                    startY = 0f,
-                    endY = 1200f
+                    startY = screenHeightPx * 0.7f,   // 70% height se gradient start
+                    endY = screenHeightPx            // bottom tak
                 )
             ),
         contentAlignment = Alignment.TopCenter
