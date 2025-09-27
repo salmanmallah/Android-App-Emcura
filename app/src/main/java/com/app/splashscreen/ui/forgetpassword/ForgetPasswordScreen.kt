@@ -51,12 +51,15 @@ fun ForgetPasswordScreen(navController: NavController) {
                 .padding(top = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(32.dp))
-            // Logo
+            Spacer(modifier = Modifier.height(100.dp))
+
+            // 🔹 Logo
             Image(
                 painter = painterResource(id = R.drawable.red_logo),
                 contentDescription = "Emcura Logo",
-                modifier = Modifier.width(200.dp).height(100.dp)
+                modifier = Modifier
+                    .width(280.dp)
+                    .height(64.dp)
             )
             Spacer(modifier = Modifier.height(16.dp))
             Row(
