@@ -22,27 +22,26 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun LoginScreen(navController: NavController = rememberNavController()) {
+    val configuration = androidx.compose.ui.platform.LocalConfiguration.current
+    val screenHeightPx = with(androidx.compose.ui.platform.LocalDensity.current) { configuration.screenHeightDp.dp.toPx() }
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFF8F8F8),
-                        Color.White,
-                        Color(0xFFF8F8F8),
-                        Color(0xFFFDE6EA),
-                        Color(0xFFD3A8AC)
+                        Color.White,           // top 70% pure white
+                        Color(0xFFFFE6E6),    // start pink
+                        Color(0xFFFAD2D2)     // darker pink
                     ),
-                    startY = 0f,
-                    endY = 2500f
+                    startY = screenHeightPx * 0.5f,   // 70% height se gradient start
+                    endY = screenHeightPx            // bottom tak
                 )
             )
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.TopCenter)
                 .padding(top = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

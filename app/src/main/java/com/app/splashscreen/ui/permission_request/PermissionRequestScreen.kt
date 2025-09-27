@@ -24,26 +24,12 @@ import com.app.splashscreen.R
 
 @Composable
 fun PermissionRequestScreen(navController: NavController? = null) {
-    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
-    val density = LocalDensity.current
-    val screenHeightPx = with(density) { screenHeight.toPx() }
     val context = LocalContext.current
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color.White,           // top 70% pure white
-                        Color(0xFFFFE6E6),    // start pink
-                        Color(0xFFFAD2D2)     // darker pink
-                    ),
-                    startY = screenHeightPx * 0.5f,   // 70% height se gradient start
-                    endY = screenHeightPx            // bottom tak
-                )
-            ),
-        contentAlignment = Alignment.TopCenter
-    ) {
+//    com.app.splashscreen.ui.common.GradientBackground {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.TopCenter
+        ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -151,8 +137,9 @@ fun PermissionRequestScreen(navController: NavController? = null) {
                 }
             }
         }
+        }
     }
-}
+
 
 @Preview(showBackground = true)
 @Composable

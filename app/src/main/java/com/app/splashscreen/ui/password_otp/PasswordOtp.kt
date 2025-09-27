@@ -30,27 +30,27 @@ fun PasswordOtpScreen(navController: NavController) {
     var code3 by remember { mutableStateOf("") }
     var code4 by remember { mutableStateOf("") }
 
+    val configuration = androidx.compose.ui.platform.LocalConfiguration.current
+    val screenHeightPx = with(androidx.compose.ui.platform.LocalDensity.current) { configuration.screenHeightDp.dp.toPx() }
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFF8F8F8),
-                        Color.White,
-                        Color(0xFFF8F8F8),
-                        Color(0xFFFDE6EA),
-                        Color(0xFFD3A8AC)
+                        Color.White,           // top 70% pure white
+                        Color(0xFFFFE6E6),    // start pink
+                        Color(0xFFFAD2D2)     // darker pink
                     ),
-                    startY = 0f,
-                    endY = 2500f
+                    startY = screenHeightPx * 0.5f,   // 70% height se gradient start
+                    endY = screenHeightPx            // bottom tak
                 )
             )
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.TopCenter)
+//                .align(Alignment.TopCenter)
                 .padding(top = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -79,13 +79,18 @@ fun PasswordOtpScreen(navController: NavController) {
                 Divider(modifier = Modifier.weight(1f), color = Color(0xFFBDBDBD))
             }
             Spacer(modifier = Modifier.height(32.dp))
-            Text(
-                text = "Enter Verification Code:",
-                fontWeight = FontWeight.Medium,
-                fontSize = 14.sp,
-                color = Color(0xFF222222),
-                modifier = Modifier.align(Alignment.Start).padding(start = 55.dp)
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Enter Verification Code:",
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp,
+                    color = Color(0xFF222222),
+                    modifier = Modifier.padding(start = 55.dp)
+                )
+            }
             Spacer(modifier = Modifier.height(16.dp))
             Row(
                 horizontalArrangement = Arrangement.spacedBy(14.dp),

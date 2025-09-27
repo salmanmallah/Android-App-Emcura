@@ -24,6 +24,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.with
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.style.TextAlign
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -44,120 +45,138 @@ fun StartScreen(onStartClick: () -> Unit) {
         "Instant Scheduling",
         "Seamless Experience"
     )
-
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+    val configuration = androidx.compose.ui.platform.LocalConfiguration.current
+    val screenHeightPx =
+        with(androidx.compose.ui.platform.LocalDensity.current) { configuration.screenHeightDp.dp.toPx() }
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color.White,           // top 70% pure white
+                        Color(0xFFFFE6E6),    // start pink
+                        Color(0xFFFAD2D2)     // darker pink
+                    ),
+                    startY = screenHeightPx * 0.5f,   // 70% height se gradient start
+                    endY = screenHeightPx            // bottom tak
+                )
+            )
     ) {
-        AnimatedContent(
-            targetState = currentStep,
-            transitionSpec = {
-                if (direction > 0) {
-                    slideInHorizontally(
-                        initialOffsetX = { it }, animationSpec = tween(350)
-                    ) with slideOutHorizontally(
-                        targetOffsetX = { -it }, animationSpec = tween(350)
-                    )
-                } else {
-                    slideInHorizontally(
-                        initialOffsetX = { -it }, animationSpec = tween(350)
-                    ) with slideOutHorizontally(
-                        targetOffsetX = { it }, animationSpec = tween(350)
-                    )
-                }
-            }, label = "OnboardingAnimation"
-        ) { step ->
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Spacer(modifier = Modifier.height(80.dp))
-                Box(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Image(
-                        painter = painterResource(id = imageRes),
-                        contentDescription = "Onboarding Image",
-                        modifier = Modifier.fillMaxWidth(0.85f) // 85% width
-                    )
-                }
-                Spacer(modifier = Modifier.height(32.dp))
-                Text(
-                    text = titles[step],
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF222222),
-                    lineHeight = 38.sp,
-                    textAlign = TextAlign.Center
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = subtitles[step],
-                    fontSize = 18.sp,
-                    color = Color(0xFF888888),
-                    textAlign = TextAlign.Center
-                )
-                Spacer(modifier = Modifier.height(32.dp))
-            }
-        }
-
-        // Dots
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth()
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            repeat(steps) { index ->
-                Box(
+            AnimatedContent(
+                targetState = currentStep,
+                transitionSpec = {
+                    if (direction > 0) {
+                        slideInHorizontally(
+                            initialOffsetX = { it }, animationSpec = tween(350)
+                        ) with slideOutHorizontally(
+                            targetOffsetX = { -it }, animationSpec = tween(350)
+                        )
+                    } else {
+                        slideInHorizontally(
+                            initialOffsetX = { -it }, animationSpec = tween(350)
+                        ) with slideOutHorizontally(
+                            targetOffsetX = { it }, animationSpec = tween(350)
+                        )
+                    }
+                }, label = "OnboardingAnimation"
+            ) { step ->
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Spacer(modifier = Modifier.height(80.dp))
+                    Box(
+                        modifier = Modifier.fillMaxWidth(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = imageRes),
+                            contentDescription = "Onboarding Image",
+                            modifier = Modifier.fillMaxWidth(0.85f) // 85% width
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(32.dp))
+                    Text(
+                        text = titles[step],
+                        fontSize = 32.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF222222),
+                        lineHeight = 38.sp,
+                        textAlign = TextAlign.Center
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = subtitles[step],
+                        fontSize = 18.sp,
+                        color = Color(0xFF888888),
+                        textAlign = TextAlign.Center
+                    )
+                    Spacer(modifier = Modifier.height(32.dp))
+                }
+            }
+
+            // Dots
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                repeat(steps) { index ->
+                    Box(
+                        modifier = Modifier
+                            .size(
+                                width = if (index == currentStep) 40.dp else 16.dp,
+                                height = 8.dp
+                            )
+                            .background(
+                                if (index == currentStep) Color(0xFFE94F4F) else Color(0xFFE0E0E0),
+                                RoundedCornerShape(4.dp)
+                            )
+                            .clickable {
+                                direction = if (index > currentStep) 1 else -1
+                                currentStep = index
+                            }
+                    )
+                    if (index < steps - 1) {
+                        Spacer(modifier = Modifier.width(8.dp))
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(80.dp))
+
+            // Buttons
+            if (currentStep < steps - 1) {
+                Button(
+                    onClick = {
+                        direction = 1
+                        currentStep++
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
+                    shape = RoundedCornerShape(8.dp),
                     modifier = Modifier
-                        .size(
-                            width = if (index == currentStep) 40.dp else 16.dp,
-                            height = 8.dp
-                        )
-                        .background(
-                            if (index == currentStep) Color(0xFFE94F4F) else Color(0xFFE0E0E0),
-                            RoundedCornerShape(4.dp)
-                        )
-                        .clickable {
-                            direction = if (index > currentStep) 1 else -1
-                            currentStep = index
-                        }
-                )
-                if (index < steps - 1) {
-                    Spacer(modifier = Modifier.width(8.dp))
+                        .fillMaxWidth(0.7f)
+                        .height(56.dp)
+                ) {
+                    Text(text = "Next", color = Color.White, fontSize = 20.sp)
+                }
+            } else {
+                Button(
+                    onClick = onStartClick,
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
+                    shape = RoundedCornerShape(8.dp),
+                    modifier = Modifier
+                        .fillMaxWidth(0.7f)
+                        .height(56.dp)
+                ) {
+                    Text(text = "Start", color = Color.White, fontSize = 20.sp)
                 }
             }
         }
 
-        Spacer(modifier = Modifier.height(80.dp))
 
-        // Buttons
-        if (currentStep < steps - 1) {
-            Button(
-                onClick = {
-                    direction = 1
-                    currentStep++
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth(0.7f)
-                    .height(56.dp)
-            ) {
-                Text(text = "Next", color = Color.White, fontSize = 20.sp)
-            }
-        } else {
-            Button(
-                onClick = onStartClick,
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth(0.7f)
-                    .height(56.dp)
-            ) {
-                Text(text = "Start", color = Color.White, fontSize = 20.sp)
-            }
-        }
     }
-
-
 }
 
 @Preview(showBackground = true)

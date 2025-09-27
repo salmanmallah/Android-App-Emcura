@@ -24,32 +24,33 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
+
 @Composable
 fun ForgetPasswordScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
+    val configuration = androidx.compose.ui.platform.LocalConfiguration.current
+    val screenHeightPx = with(androidx.compose.ui.platform.LocalDensity.current) { configuration.screenHeightDp.dp.toPx() }
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFF8F8F8),
-                        Color.White,
-                        Color(0xFFF8F8F8),
-                        Color(0xFFFDE6EA),
-                        Color(0xFFD3A8AC)
+                        Color.White,           // top 70% pure white
+                        Color(0xFFFFE6E6),    // start pink
+                        Color(0xFFFAD2D2)     // darker pink
                     ),
-                    startY = 0f,
-                    endY = 2000f
+                    startY = screenHeightPx * 0.5f,   // 70% height se gradient start
+                    endY = screenHeightPx            // bottom tak
                 )
             )
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.TopCenter)
                 .padding(top = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
         ) {
             Spacer(modifier = Modifier.height(100.dp))
 
@@ -76,13 +77,18 @@ fun ForgetPasswordScreen(navController: NavController) {
                 Divider(modifier = Modifier.weight(1f), color = Color(0xFFBDBDBD))
             }
             Spacer(modifier = Modifier.height(24.dp))
-            Text(
-                text = "Enter Email Address:",
-                fontWeight = FontWeight.Medium,
-                fontSize = 14.sp,
-                color = Color(0xFF222222),
-                modifier = Modifier.align(Alignment.Start).padding(start = 32.dp)
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Enter Email Address:",
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp,
+                    color = Color(0xFF222222),
+                    modifier = Modifier.padding(start = 32.dp)
+                )
+            }
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
                 value = email,
