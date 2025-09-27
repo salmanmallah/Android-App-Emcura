@@ -38,7 +38,7 @@ fun PermissionRequestScreen(navController: NavController? = null) {
                         Color(0xFFFFE6E6),    // start pink
                         Color(0xFFFAD2D2)     // darker pink
                     ),
-                    startY = screenHeightPx * 0.7f,   // 70% height se gradient start
+                    startY = screenHeightPx * 0.5f,   // 70% height se gradient start
                     endY = screenHeightPx            // bottom tak
                 )
             ),
@@ -50,14 +50,15 @@ fun PermissionRequestScreen(navController: NavController? = null) {
                 .padding(horizontal = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(100.dp))
 
             // 🔹 Logo
             Image(
                 painter = painterResource(id = R.drawable.red_logo),
                 contentDescription = "Emcura Logo",
                 modifier = Modifier
-                    .size(200.dp)
+                    .width(280.dp)
+                    .height(64.dp)
             )
 
             Spacer(modifier = Modifier.height(32.dp))

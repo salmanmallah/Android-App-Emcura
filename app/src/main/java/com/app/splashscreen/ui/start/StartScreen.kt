@@ -156,6 +156,8 @@ fun StartScreen(onStartClick: () -> Unit) {
             }
         }
     }
+
+
 }
 
 @Preview(showBackground = true)
