@@ -1,5 +1,6 @@
 package com.app.splashscreen.ui.doctodoc_screen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.background
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,6 +31,24 @@ import com.app.splashscreen.ui.components.DoctorSearchBar
 fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean = true) {
     var selectedTab by remember { mutableStateOf("DOCTORS") }
     var searchQuery by remember { mutableStateOf("") }
+
+    // Sample doctor data
+    val doctors = List(10) { i ->
+        Triple(
+            if (i % 2 == 0) "Dr. Supak Sookkaskon" else "Supak Sookkaskon",
+            "Doctor",
+            i % 2 == 0
+        )
+    }
+
+    // Filter doctors by search query
+    val filteredDoctors = remember(searchQuery) {
+        if (searchQuery.isBlank()) doctors
+        else doctors.filter { (name, title, _) ->
+            name.contains(searchQuery, ignoreCase = true) ||
+            title.contains(searchQuery, ignoreCase = true)
+        }
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -119,11 +139,36 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
                         .fillMaxWidth()
                         .padding(8.dp)
                 ) {
-                    DoctorSearchBar(
+                    OutlinedTextField(
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = { Text("Search") },
+                        singleLine = true,
+                        trailingIcon = {
+                            if (searchQuery.isNotEmpty()) {
+                                // ❌ Cross image
+                                IconButton(onClick = { searchQuery = "" }) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.dashboard_cross),
+                                        contentDescription = "Clear Search"
+                                    )
+                                }
+                            } else {
+                                // 🔍 Search image
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_dashboard_search),
+                                    contentDescription = "Search Icon"
+                                )
+                            }
+                        },
+                        shape = RoundedCornerShape(24.dp),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = Color(0xFFC2185B),
+                            unfocusedBorderColor = Color(0xFFE0E0E0)
+                        )
                     )
+
                 }
             }
         }
@@ -148,14 +193,7 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
                         ),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    val doctors = List(10) { i ->
-                        Triple(
-                            if (i % 2 == 0) "Dr. Supak Sookkaskon" else "Supak Sookkaskon",
-                            "Doctor",
-                            i % 2 == 0
-                        )
-                    }
-                    doctors.forEach { (name, title, online) ->
+                    filteredDoctors.forEach { (name, title, online) ->
                         DoctorCard(
                             name = name,
                             title = title,
