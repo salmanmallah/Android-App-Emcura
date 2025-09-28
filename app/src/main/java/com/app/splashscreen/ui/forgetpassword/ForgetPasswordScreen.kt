@@ -83,7 +83,7 @@ fun ForgetPasswordScreen(navController: NavController) {
             ) {
                 Text(
                     text = "Enter Email Address:",
-                    fontWeight = FontWeight.Medium,
+                    fontWeight = FontWeight.W600,
                     fontSize = 14.sp,
                     color = Color(0xFF222222),
                     modifier = Modifier.padding(start = 32.dp)
@@ -95,7 +95,7 @@ fun ForgetPasswordScreen(navController: NavController) {
                 onValueChange = { email = it },
                 leadingIcon = {
                     Image(
-                        painter = painterResource(id = R.drawable.email_username),
+                        painter = painterResource(id = R.drawable.login_profile),
                         contentDescription = null,
                         modifier = Modifier.size(24.dp)
                     )
@@ -109,7 +109,7 @@ fun ForgetPasswordScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(24.dp))
             Button(
                 onClick = { navController.navigate("password_otp") },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEB474B)),
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier
                     .fillMaxWidth(0.7f)

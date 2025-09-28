@@ -79,7 +79,7 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
             Spacer(modifier = Modifier.height(24.dp))
             Text(
                 text = "Sign in using email if or username:",
-                fontWeight = FontWeight.Medium,
+                fontWeight = FontWeight.W600,
                 fontSize = 14.sp,
                 color = Color.Black
             )

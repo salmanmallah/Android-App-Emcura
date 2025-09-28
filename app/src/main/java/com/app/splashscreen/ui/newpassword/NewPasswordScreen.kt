@@ -89,7 +89,7 @@ fun NewPasswordScreen(navController: NavController) {
                     label = { Text("New Password") },
                     leadingIcon = {
                         Image(
-                            painter = painterResource(id = R.drawable.password),
+                            painter = painterResource(id = R.drawable.login_key),
                             contentDescription = null,
                             modifier = Modifier.size(24.dp)
                         )
@@ -123,7 +123,7 @@ fun NewPasswordScreen(navController: NavController) {
                     label = { Text("Confirm Password") },
                     leadingIcon = {
                         Image(
-                            painter = painterResource(id = R.drawable.password),
+                            painter = painterResource(id = R.drawable.login_key),
                             contentDescription = null,
                             modifier = Modifier.size(24.dp)
                         )
@@ -142,7 +142,7 @@ fun NewPasswordScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(24.dp))
             Button(
                 onClick = { navController.navigate("dashboard") },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFC2185B)),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEB474B)),
                 modifier = Modifier
                     .fillMaxWidth(0.6f)
                     .height(48.dp),
