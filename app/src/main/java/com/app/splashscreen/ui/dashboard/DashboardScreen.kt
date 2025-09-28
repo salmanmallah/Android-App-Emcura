@@ -40,6 +40,25 @@ fun DashboardScreen(navController: NavController) {
     var showInstantConnectPopup by remember { mutableStateOf(false) }
     var searchQuery by remember { mutableStateOf("") }
 
+    // List of all icons with tags for search
+    val allIcons = listOf(
+        Triple(R.drawable.ic_dashboard_connect, "Doc to Doc", "doc"),
+        Triple(R.drawable.ic_dashboard_mic, "Clinic Patient", "patient"),
+        Triple(R.drawable.ic_dashboard_prescription, "My Prescriptions", "prescription"),
+        Triple(R.drawable.ic_dashboard_call, "Call History", "call"),
+        Triple(R.drawable.ic_dashboard_connect, "Instant Connect", "instant doc"),
+        Triple(R.drawable.ic_dashboard_refill, "Refill Request", "refill"),
+    )
+
+    // Filter icons by search query
+    val filteredIcons = remember(searchQuery) {
+        if (searchQuery.isBlank()) allIcons
+        else allIcons.filter { triple ->
+            triple.second.contains(searchQuery, ignoreCase = true) ||
+            triple.third.contains(searchQuery, ignoreCase = true)
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -111,30 +130,50 @@ fun DashboardScreen(navController: NavController) {
                         .padding(horizontal = 24.dp, vertical = 24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    DoctorSearchBar(
+                    OutlinedTextField(
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = { Text("Search") },
+                        singleLine = true,
+                        trailingIcon = {
+                            if (searchQuery.isNotEmpty()) {
+                                // ❌ Cross image
+                                IconButton(onClick = { searchQuery = "" }) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.dashboard_cross),
+                                        contentDescription = "Clear Search"
+                                    )
+                                }
+                            } else {
+                                // 🔍 Search image
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_dashboard_search),
+                                    contentDescription = "Search Icon"
+                                )
+                            }
+                        },
+                        shape = RoundedCornerShape(24.dp),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = Color(0xFFC2185B),
+                            unfocusedBorderColor = Color(0xFFE0E0E0)
+                        )
                     )
 
                     Spacer(modifier = Modifier.height(25.dp))
 
                     DashboardIconGrid(
-                        icons = listOf(
-                            R.drawable.ic_dashboard_connect to "Doc to Doc",
-                            R.drawable.ic_dashboard_mic to "Clinic Patient",
-                            R.drawable.ic_dashboard_prescription to "My Prescriptions",
-                            R.drawable.ic_dashboard_call to "Call History",
-                            R.drawable.ic_dashboard_connect to "Instant Connect",
-                            R.drawable.ic_dashboard_refill to "Refill Request",
-                        ),
+                        icons = filteredIcons.map { it.first to it.second },
                         onIconClick = { index ->
-                            when (index) {
-                                0 -> showDocToDocPopup = true
-                                1 -> navController.navigate("onlinecarepatients")
-                                2 -> navController.navigate("prescription")
-                                3 -> navController.navigate("callhistory")
-                                5 -> navController.navigate("refill_request")
+                            // Map index to filteredIcons
+                            val label = filteredIcons.getOrNull(index)?.second ?: ""
+                            when (label) {
+                                "Doc to Doc" -> showDocToDocPopup = true
+                                "Clinic Patient" -> navController.navigate("onlinecarepatients")
+                                "My Prescriptions" -> navController.navigate("prescription")
+                                "Call History" -> navController.navigate("callhistory")
+                                "Refill Request" -> navController.navigate("refill_request")
+                                "Instant Connect" -> showInstantConnectPopup = true
                             }
                         },
                         onInstantConnectClick = {
