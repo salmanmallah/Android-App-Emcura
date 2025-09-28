@@ -32,7 +32,7 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8F8F8))
+            .background(Color.White)
     ) {
         // 🔹 TopBar Section
         Box(
@@ -54,73 +54,78 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Toggle Buttons (Doctors / Specialists)
+        // 🔹 Toggle Buttons (Doctors / Specialists) & SearchBar with full white background
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp)
+                .background(Color.White)
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
             ) {
-                Button(
-                    onClick = { selectedTab = "DOCTORS" },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (selectedTab == "DOCTORS") colorResource(id = R.color.instant_connect_button) else Color(0xFFF8BFC2)
-                    ),
-                    shape = RoundedCornerShape(50),
+                Row(
                     modifier = Modifier
-                        .weight(1f)
-                        .height(36.dp),
-                    contentPadding = PaddingValues(vertical = 0.dp)
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                        .padding(top = 16.dp),
+                    horizontalArrangement = Arrangement.Center
                 ) {
-                    Text(
-                        "DOCTORS",
-                        color = if (selectedTab == "DOCTORS") Color.White else Color(0xFFE94F4F),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 12.sp
-                    )
+                    Button(
+                        onClick = { selectedTab = "DOCTORS" },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (selectedTab == "DOCTORS") colorResource(id = R.color.instant_connect_button) else Color(0xFFF8BFC2)
+                        ),
+                        shape = RoundedCornerShape(50),
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(36.dp),
+                        contentPadding = PaddingValues(vertical = 0.dp)
+                    ) {
+                        Text(
+                            "DOCTORS",
+                            color = if (selectedTab == "DOCTORS") Color.White else Color(0xFFE94F4F),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 12.sp
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.width(12.dp))
+
+                    Button(
+                        onClick = { selectedTab = "SPECIALISTS" },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (selectedTab == "SPECIALISTS") colorResource(id = R.color.instant_connect_button) else Color(0xFFF8BFC2)
+                        ),
+                        shape = RoundedCornerShape(50),
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(36.dp),
+                        contentPadding = PaddingValues(vertical = 0.dp)
+                    ) {
+                        Text(
+                            "SPECIALISTS",
+                            color = if (selectedTab == "SPECIALISTS") Color.White else Color(0xFFE94F4F),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 12.sp
+                        )
+                    }
                 }
 
-                Spacer(modifier = Modifier.width(12.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-                Button(
-                    onClick = { selectedTab = "SPECIALISTS" },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (selectedTab == "SPECIALISTS") colorResource(id = R.color.instant_connect_button) else Color(0xFFF8BFC2)
-                    ),
-                    shape = RoundedCornerShape(50),
+                Box(
                     modifier = Modifier
-                        .weight(1f)
-                        .height(36.dp),
-                    contentPadding = PaddingValues(vertical = 0.dp)
+                        .fillMaxWidth()
+                        .padding(8.dp)
                 ) {
-                    Text(
-                        "SPECIALISTS",
-                        color = if (selectedTab == "SPECIALISTS") Color.White else Color(0xFFE94F4F),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 12.sp
+                    DoctorSearchBar(
+                        value = searchQuery,
+                        onValueChange = { searchQuery = it },
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
             }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // 🔹 Search Section
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .background(Color.White, RoundedCornerShape(12.dp))
-                .padding(8.dp)
-        ) {
-            DoctorSearchBar(
-                value = searchQuery,
-                onValueChange = { searchQuery = it },
-                modifier = Modifier.fillMaxWidth()
-            )
         }
 
         Spacer(modifier = Modifier.height(12.dp))
