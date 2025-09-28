@@ -126,12 +126,13 @@ fun PasswordOtpScreen(navController: NavController) {
                 Text(
                     text = "If you didn't Receive a Code. ",
                     color = Color.Black,
-                    fontSize = 13.sp
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.W600
                 )
                 Text(
                     text = "Resend",
                     color = Color(0xFFE94F4F),
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.W600,
                     fontSize = 13.sp,
                     modifier = Modifier.padding(start = 2.dp)
                 )
