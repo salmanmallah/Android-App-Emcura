@@ -19,6 +19,7 @@ import com.app.splashscreen.R
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.text.input.VisualTransformation
 
 @Composable
 fun LoginScreen(navController: NavController = rememberNavController()) {
@@ -86,6 +87,7 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
             Spacer(modifier = Modifier.height(16.dp))
             var email by remember { mutableStateOf("") }
             var password by remember { mutableStateOf("") }
+            var passwordVisible by remember { mutableStateOf(false) }
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
@@ -118,7 +120,18 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
                         modifier = Modifier.size(24.dp)
                     )
                 },
-                visualTransformation = PasswordVisualTransformation(),
+                trailingIcon = {
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(
+                            painter = painterResource(
+                                id = if (passwordVisible) R.drawable.visibility else R.drawable.visibility_off
+                            ),
+                            contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                        )
+                    }
+                },
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                singleLine = true,
                 shape = RoundedCornerShape(24.dp),
                 modifier = Modifier
                     .fillMaxWidth(0.85f)
