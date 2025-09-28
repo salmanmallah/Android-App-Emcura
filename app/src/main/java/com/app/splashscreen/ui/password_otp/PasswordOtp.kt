@@ -85,7 +85,7 @@ fun PasswordOtpScreen(navController: NavController) {
             ) {
                 Text(
                     text = "Enter Verification Code:",
-                    fontWeight = FontWeight.Medium,
+                    fontWeight = FontWeight.W600,
                     fontSize = 14.sp,
                     color = Color(0xFF222222),
                     modifier = Modifier.padding(start = 55.dp)
