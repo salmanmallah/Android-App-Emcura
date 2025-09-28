@@ -1,5 +1,9 @@
 package com.app.splashscreen.ui.password_otp
 
+
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -147,11 +151,13 @@ fun OtpTextField(value: String, onValueChange: (String) -> Unit) {
             .width(46.dp)
             .height(46.dp),
         textStyle = LocalTextStyle.current.copy(
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black
+            fontSize = 12.sp,
+//            fontWeight = FontWeight.Bold,
+            color = Color.Black,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+            fontFamily = androidx.compose.ui.text.font.FontFamily.Default
         ),
-//        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         visualTransformation = VisualTransformation.None
     )
 }
