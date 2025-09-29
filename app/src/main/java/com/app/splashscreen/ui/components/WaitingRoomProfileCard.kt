@@ -69,7 +69,7 @@ fun WaitingRoomProfileCard(
                     Text(
                         text = name,
                         color = Color.Black,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.W600,
                         fontSize = 17.sp,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
@@ -84,7 +84,7 @@ fun WaitingRoomProfileCard(
                 }
                 Text(
                     text = currentDate,
-                    color = Color(0xFF757575),
+                    color = Color(0xFF000000),
                     fontSize = 15.sp,
                     modifier = Modifier.padding(bottom = 4.dp)
                 )
@@ -94,20 +94,26 @@ fun WaitingRoomProfileCard(
                 Button(
                     onClick = { /* TODO: Accept Request */ },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFED202E),
+                        containerColor = Color(0xFFEB474B),
                         contentColor = Color.White
                     ),
                     shape = RoundedCornerShape(15.dp),
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier
-                        .height(22.dp)
-                        .width(145.dp)
+                        .height(25.dp)
+                        .width(155.dp)
                 ) {
                     Box(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text("Accept Request", fontSize = 12.sp, modifier = Modifier.align(Alignment.Center))
+                        Text("Accept Request",
+                            fontSize = 12.sp,
+
+                            modifier = Modifier
+                                .align(Alignment.Center)
+
+                        )
                     }
                 }
 
