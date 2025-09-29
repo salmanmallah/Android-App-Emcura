@@ -41,7 +41,8 @@ fun MessagesScreen(navController: NavController, onBackClick: (() -> Unit)? = nu
                     endIconRes = R.drawable.ic_dcd_hospital,
                     showBackIcon = true,
                     showEndIcon = true,
-                    onBackClick = onBackClick
+                    onBackClick = onBackClick,
+                    onEndIconClick = { navController.navigate("dashboard") }
                 )
             }
 
