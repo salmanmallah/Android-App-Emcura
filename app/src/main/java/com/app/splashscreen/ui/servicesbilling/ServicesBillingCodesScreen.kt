@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -82,97 +83,110 @@ fun ServicesBillingCodesScreen(navController: NavController? = null) {
                 )
             }
 
-            // White section for billing codes
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.White)
-                    .padding(16.dp)
-            ) {
-                BillingCodesList()
-            }
-
-            // Red section with curved top edges for dropdowns
-            Box(
+            // Main content with flexible layout
+            LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(
                         Color(0xFFE53E3E),
                         RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
                     )
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp)
-                ) {
-                    // Dropdown menus section
-                    LazyColumn(
-                        modifier = Modifier.weight(1f),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                // White section for billing codes (flexible height)
+                item {
+                    Surface(
+                        modifier = Modifier.fillMaxWidth(),
+                        color = Color.White,
+                        shape = RoundedCornerShape(12.dp)
                     ) {
-                        item {
-                            DropdownMenuItem(
-                                title = "My Favorites",
-                                expanded = myFavoritesExpanded,
-                                onToggle = { myFavoritesExpanded = !myFavoritesExpanded }
-                            )
-                        }
-                        item {
-                            DropdownMenuItem(
-                                title = "Most Common",
-                                expanded = mostCommonExpanded,
-                                onToggle = { mostCommonExpanded = !mostCommonExpanded }
-                            )
-                        }
-                        item {
-                            DropdownMenuItem(
-                                title = "Psych",
-                                expanded = psychExpanded,
-                                onToggle = { psychExpanded = !psychExpanded }
-                            )
-                        }
-                        item {
-                            DropdownMenuItem(
-                                title = "LSRD ( End Stage Renal Disease )",
-                                expanded = lsrdExpanded,
-                                onToggle = { lsrdExpanded = !lsrdExpanded }
-                            )
-                        }
-                        item {
-                            DropdownMenuItem(
-                                title = "Behavioral Health",
-                                expanded = behavioralHealthExpanded,
-                                onToggle = { behavioralHealthExpanded = !behavioralHealthExpanded }
-                            )
-                        }
-                        item {
-                            DropdownMenuItem(
-                                title = "Office/outpatient",
-                                expanded = officeOutpatientExpanded,
-                                onToggle = { officeOutpatientExpanded = !officeOutpatientExpanded }
-                            )
-                        }
-                        item {
-                            DropdownMenuItem(
-                                title = "Inpatient",
-                                expanded = inpatientExpanded,
-                                onToggle = { inpatientExpanded = !inpatientExpanded }
-                            )
-                        }
-                        item {
-                            DropdownMenuItem(
-                                title = "Auditing",
-                                expanded = auditingExpanded,
-                                onToggle = { auditingExpanded = !auditingExpanded }
-                            )
-                        }
+                        BillingCodesList()
                     }
+                }
 
+                // Spacing between sections
+                item {
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+
+                // Expandable dropdown items
+                item {
+                    ExpandableDropdownItem(
+                        title = "My Favorites",
+                        expanded = myFavoritesExpanded,
+                        onToggle = { myFavoritesExpanded = !myFavoritesExpanded },
+                        items = listOf("Favorite Item 1", "Favorite Item 2", "Favorite Item 3")
+                    )
+                }
+                item {
+                    ExpandableDropdownItem(
+                        title = "Most Common",
+                        expanded = mostCommonExpanded,
+                        onToggle = { mostCommonExpanded = !mostCommonExpanded },
+                        items = listOf("Common Code 1", "Common Code 2", "Common Code 3")
+                    )
+                }
+                item {
+                    ExpandableDropdownItem(
+                        title = "Psych",
+                        expanded = psychExpanded,
+                        onToggle = { psychExpanded = !psychExpanded },
+                        items = listOf(
+                            "90832 - Psytx Pt&/Family 30 Minutes",
+                            "90832 - Psytx Pt&/Family 30 Minutes", 
+                            "90832 - Psytx Pt&/Family 30 Minutes",
+                            "90832 - Psytx Pt&/Family 30 Minutes",
+                            "90832 - Psytx Pt&/Family 30 Minutes"
+                        )
+                    )
+                }
+                item {
+                    ExpandableDropdownItem(
+                        title = "LSRD ( End Stage Renal Disease )",
+                        expanded = lsrdExpanded,
+                        onToggle = { lsrdExpanded = !lsrdExpanded },
+                        items = listOf("LSRD Code 1", "LSRD Code 2", "LSRD Code 3")
+                    )
+                }
+                item {
+                    ExpandableDropdownItem(
+                        title = "Behavioral Health",
+                        expanded = behavioralHealthExpanded,
+                        onToggle = { behavioralHealthExpanded = !behavioralHealthExpanded },
+                        items = listOf("Behavioral Code 1", "Behavioral Code 2", "Behavioral Code 3")
+                    )
+                }
+                item {
+                    ExpandableDropdownItem(
+                        title = "Office/outpatient",
+                        expanded = officeOutpatientExpanded,
+                        onToggle = { officeOutpatientExpanded = !officeOutpatientExpanded },
+                        items = listOf("Office Code 1", "Office Code 2", "Office Code 3")
+                    )
+                }
+                item {
+                    ExpandableDropdownItem(
+                        title = "Inpatient",
+                        expanded = inpatientExpanded,
+                        onToggle = { inpatientExpanded = !inpatientExpanded },
+                        items = listOf("Inpatient Code 1", "Inpatient Code 2", "Inpatient Code 3")
+                    )
+                }
+                item {
+                    ExpandableDropdownItem(
+                        title = "Auditing",
+                        expanded = auditingExpanded,
+                        onToggle = { auditingExpanded = !auditingExpanded },
+                        items = listOf("Audit Code 1", "Audit Code 2", "Audit Code 3")
+                    )
+                }
+
+                // Bottom buttons
+                item {
                     Spacer(modifier = Modifier.height(16.dp))
-
-                    // Bottom buttons
                     BottomButtons()
+                    Spacer(modifier = Modifier.height(16.dp))
                 }
             }
         }
@@ -190,6 +204,9 @@ private fun BillingCodesList() {
     )
 
     Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         billingCodes.forEach { code ->
@@ -219,37 +236,71 @@ private fun BillingCodesList() {
 }
 
 @Composable
-private fun DropdownMenuItem(
+private fun ExpandableDropdownItem(
     title: String,
     expanded: Boolean,
-    onToggle: () -> Unit
+    onToggle: () -> Unit,
+    items: List<String>
 ) {
     Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onToggle() },
+        modifier = Modifier.fillMaxWidth(),
         color = Color.White,
         shape = RoundedCornerShape(8.dp)
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Text(
-                text = title,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color.Black
-            )
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowDown,
-                contentDescription = "Dropdown",
-                tint = Color(0xFFE53E3E),
-                modifier = Modifier.size(24.dp)
-            )
+            // Header row (clickable)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onToggle() }
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = title,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.Black
+                )
+                Icon(
+                    imageVector = if (expanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                    contentDescription = if (expanded) "Collapse" else "Expand",
+                    tint = Color(0xFFE53E3E),
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+            
+            // Expandable content
+            if (expanded) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color(0xFFF5F5F5))
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(1.dp)
+                ) {
+                    items.forEach { item ->
+                        Surface(
+                            modifier = Modifier.fillMaxWidth(),
+                            color = Color.White,
+                            shape = RoundedCornerShape(4.dp)
+                        ) {
+                            Text(
+                                text = item,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp),
+                                fontSize = 13.sp,
+                                color = Color.Black,
+                                lineHeight = 16.sp
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 }
