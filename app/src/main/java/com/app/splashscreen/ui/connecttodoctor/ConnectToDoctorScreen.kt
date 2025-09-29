@@ -71,7 +71,10 @@ fun ConnectToDoctorScreen(navController: NavController? = null) {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             item {
-                ConnectToDoctProfileCard()
+                ConnectToDoctProfileCard(
+                    onMessagesClick = { navController?.navigate("messagechat") },
+                    onCallClick = { navController?.navigate("videocall") }
+                )
             }
         }
     }

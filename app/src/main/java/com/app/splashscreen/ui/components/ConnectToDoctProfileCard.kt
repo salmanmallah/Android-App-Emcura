@@ -26,7 +26,9 @@ import java.util.*
 fun ConnectToDoctProfileCard(
     name: String = "Elizabeth weisberg",
     online: Boolean = true,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onMessagesClick: (() -> Unit)? = null,
+    onCallClick: (() -> Unit)? = null
 ) {
     Box(
         modifier = modifier
@@ -99,7 +101,7 @@ fun ConnectToDoctProfileCard(
             ) {
                 // Messages Button
                 Button(
-                    onClick = { /* TODO: Messages */ },
+                    onClick = { onMessagesClick?.invoke() },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFEB474B),
                         contentColor = Color.White
@@ -125,7 +127,7 @@ fun ConnectToDoctProfileCard(
                 Spacer(modifier = Modifier.width(12.dp))
                 // Call Now Button
                 Button(
-                    onClick = { /* TODO: Call Now */ },
+                    onClick = { onCallClick?.invoke() },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFEB474B),
                         contentColor = Color.White

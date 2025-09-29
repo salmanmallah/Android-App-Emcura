@@ -53,6 +53,7 @@ fun VideoCallScreen(
             showBackIcon = true,
             showEndIcon = true,
             onBackClick = { navController?.popBackStack() },
+            onEndIconClick = { navController?.navigate("dashboard") },
             modifier = Modifier.padding(bottom = 0.dp)
         )
         // White area below top bar (matches screenshot)
