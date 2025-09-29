@@ -82,7 +82,7 @@ fun MyApp() {
         composable("olcOfficeVisit") { com.app.splashscreen.ui.olc_office.OlcOfficeVisitScreen(navController) }
         composable("incomingcall") { com.app.splashscreen.ui.incomingcall.IncomingCallScreen() }
         composable("messages") { com.app.splashscreen.ui.messages.MessagesScreen(navController, onBackClick = { navController.popBackStack() }) }
-        composable("messagechat") { com.app.splashscreen.ui.messages.MessageChatScreen(onBackClick = { navController.popBackStack() }) }
+        composable("messagechat") { com.app.splashscreen.ui.messages.MessageChatScreen(navController = navController, onBackClick = { navController.popBackStack() }) }
         composable("olcOffice") { OlcOfficeScreen(navController) }
         composable("encounternotes") { com.app.splashscreen.ui.encounternotes.EncounterNotesScreen(navController) }
         composable("waitingroom") { com.app.splashscreen.ui.waitingroom.WaitingRoomScreen(navController) }

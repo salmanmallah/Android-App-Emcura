@@ -20,10 +20,12 @@ import com.app.splashscreen.ui.messages.ImageBubble
 import com.app.splashscreen.ui.messages.InputBar
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 
-fun MessageChatScreen(onBackClick: (() -> Unit)? = null) {
+fun MessageChatScreen(navController: NavController? = null, onBackClick: (() -> Unit)? = null) {
 
 
 
@@ -67,7 +69,10 @@ fun MessageChatScreen(onBackClick: (() -> Unit)? = null) {
                     endIconRes = R.drawable.ic_dcd_hospital,
                     showBackIcon = true,
                     showEndIcon = true,
-                    onBackClick = onBackClick
+                    onBackClick = { 
+                        onBackClick?.invoke() ?: navController?.popBackStack()
+                    },
+                    onEndIconClick = { navController?.navigate("dashboard") }
                 )
             }
 
@@ -125,5 +130,5 @@ fun MessageChatScreen(onBackClick: (() -> Unit)? = null) {
 @Preview(showBackground = true)
 @Composable
 fun MessageChatScreenPreview() {
-    MessageChatScreen()
+    MessageChatScreen(navController = rememberNavController())
 }
