@@ -51,7 +51,7 @@ fun WaitingRoomScreen(navController: NavController? = null) {
             contentAlignment = Alignment.Center
         ) {
             DashboardTopBar(
-                title = "Available Doctors",
+                title = "Waiting Room",
                 backIconRes = R.drawable.ic_dashboard_arrow_backward,
                 endIconRes = R.drawable.ic_dcd_hospital,
                 showBackIcon = true,
