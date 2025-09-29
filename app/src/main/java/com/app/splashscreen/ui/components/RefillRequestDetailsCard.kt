@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.app.splashscreen.R
 
 @Composable
@@ -21,7 +22,8 @@ fun RefillRequestDetailsCard(
     patient: String = "Jack Denial",
     date: String = "11/02/2017 to 11/09/2017",
     pharmacy: String = "ITC Pharmacy 2",
-    onRefillClick: () -> Unit = {}
+    navController: NavController? = null,
+    onRefillClick: () -> Unit = { navController?.navigate("servicesbillingcodes") }
 ) {
     Surface(
         modifier = Modifier.fillMaxWidth(),

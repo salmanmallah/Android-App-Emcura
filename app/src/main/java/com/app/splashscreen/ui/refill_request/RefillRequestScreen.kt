@@ -74,17 +74,16 @@ fun RefillRequestScreen(navController: NavController? = null) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Profile Card
-            RefillRequestDetailsCard()
+            RefillRequestDetailsCard(navController = navController)
 
             Spacer(modifier = Modifier.height(16.dp))
-            RefillRequestDetailsCard()
-
-
-            Spacer(modifier = Modifier.height(16.dp))
-            RefillRequestDetailsCard()
+            RefillRequestDetailsCard(navController = navController)
 
             Spacer(modifier = Modifier.height(16.dp))
-            RefillRequestDetailsCard()
+            RefillRequestDetailsCard(navController = navController)
+
+            Spacer(modifier = Modifier.height(16.dp))
+            RefillRequestDetailsCard(navController = navController)
 
             Spacer(modifier = Modifier.height(200.dp))
         }
