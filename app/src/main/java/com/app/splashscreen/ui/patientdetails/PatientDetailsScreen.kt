@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.splashscreen.ui.components.ReviewCurrentSymptomsButton
 import com.app.splashscreen.ui.components.PatientsDetailsPopup
+import com.app.splashscreen.ui.components.SendMessagePopup
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.android.gms.maps.model.LatLng
@@ -36,6 +37,7 @@ import com.google.android.gms.maps.GoogleMap
 fun PatientDetailsScreen(navController: NavController) {
     // State for showing the popup
     var showSymptomsPopup by remember { mutableStateOf(false) }
+    var showSendMessagePopup by remember { mutableStateOf(false) }
     
     Box(
         modifier = Modifier
@@ -96,9 +98,19 @@ fun PatientDetailsScreen(navController: NavController) {
                         icons = patientIcons,
                         modifier = Modifier.padding(5.dp),
                         onIconClick = { index ->
-                            // Navigate to AI Suggested Diagnosis if that icon is clicked
-                            if (patientIcons[index].second == "AI Suggested Diagnosis") {
-                                navController.navigate("aisuggesteddiagnosis")
+                            when (patientIcons[index].second) {
+                                "Send Message" -> showSendMessagePopup = true
+                                "Video Checkup" -> navController.navigate("videocall")
+                                "Call History" -> {
+                                    // Navigate to call history or show call history
+                                }
+                                "AI Suggested Diagnosis" -> navController.navigate("aisuggesteddiagnosis")
+                                "Med History" -> {
+                                    // Navigate to medical history
+                                }
+                                "Remove Patient" -> {
+                                    // Show remove patient confirmation
+                                }
                             }
                         }
                     )
@@ -147,6 +159,20 @@ fun PatientDetailsScreen(navController: NavController) {
                 bp = "120/80",
                 o2Saturation = "02 Saturation",
                 heartRate = "75"
+            )
+        }
+        
+        // Show send message popup when state is true
+        if (showSendMessagePopup) {
+            SendMessagePopup(
+                name = "Elizabeth weisberg",
+                online = true,
+                onDismiss = { showSendMessagePopup = false },
+                onSend = { message ->
+                    // Handle send message logic here
+                    println("Message sent: $message")
+                    showSendMessagePopup = false
+                }
             )
         }
     }

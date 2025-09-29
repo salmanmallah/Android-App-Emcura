@@ -144,25 +144,25 @@ fun SendMessagePopup(
                     Button(
                         onClick = onDismiss,
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFED202E),
+                            containerColor = Color(0xFFEB474B),
                             contentColor = Color.White
                         ),
                         shape = RoundedCornerShape(12.dp),
                         modifier = Modifier.weight(1f)
                     ) {
-                        Text("Cancel", fontSize = 14.sp)
+                        Text("Cancel", fontSize = 10.sp)
                     }
                     Spacer(modifier = Modifier.width(16.dp))
                     Button(
                         onClick = { onSend(message) },
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFED202E),
+                            containerColor = Color(0xFFEB474B),
                             contentColor = Color.White
                         ),
                         shape = RoundedCornerShape(12.dp),
                         modifier = Modifier.weight(1f)
                     ) {
-                        Text("Send Message", fontSize = 14.sp)
+                        Text("Send Message", fontSize = 10.sp)
                     }
                 }
             }
