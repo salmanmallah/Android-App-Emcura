@@ -76,7 +76,8 @@ fun WaitingRoomScreen(navController: NavController? = null) {
             item {
                 WaitingRoomProfileCard(
                     name = "Elizabeth Weisberg",
-                    online = true
+                    online = true,
+                    onAcceptClick = { navController?.navigate("connecttodoctor") }
                 )
             }
 

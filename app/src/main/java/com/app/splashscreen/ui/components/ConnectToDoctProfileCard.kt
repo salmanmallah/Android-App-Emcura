@@ -69,7 +69,7 @@ fun ConnectToDoctProfileCard(
                         Text(
                             text = name,
                             color = Color.Black,
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.W600,
                             fontSize = 17.sp,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -85,6 +85,7 @@ fun ConnectToDoctProfileCard(
                     Text(
                         text = "Doctor",
                         color = Color.Black,
+
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Normal,
                         modifier = Modifier.padding(bottom = 4.dp)

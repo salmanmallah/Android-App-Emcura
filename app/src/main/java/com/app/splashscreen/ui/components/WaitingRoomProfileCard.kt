@@ -26,7 +26,8 @@ import java.util.*
 fun WaitingRoomProfileCard(
     name: String,
     online: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onAcceptClick: (() -> Unit)? = null
 ) {
     val currentDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
     Box(
@@ -92,7 +93,7 @@ fun WaitingRoomProfileCard(
 
 
                 Button(
-                    onClick = { /* TODO: Accept Request */ },
+                    onClick = { onAcceptClick?.invoke() },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFEB474B),
                         contentColor = Color.White
