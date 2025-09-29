@@ -25,7 +25,6 @@ import androidx.compose.ui.text.font.FontWeight
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.DoctorCard
-import com.app.splashscreen.ui.components.DoctorSearchBar
 
 @Composable
 fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean = true) {

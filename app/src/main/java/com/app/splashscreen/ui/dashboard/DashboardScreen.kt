@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
@@ -13,13 +12,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardIconGrid
@@ -31,7 +27,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import com.app.splashscreen.ui.components.DoctorSearchBar
 
 
 @Composable
@@ -40,7 +35,6 @@ fun DashboardScreen(navController: NavController) {
     var showInstantConnectPopup by remember { mutableStateOf(false) }
     var searchQuery by remember { mutableStateOf("") }
 
-    // List of all icons with tags for search
     val allIcons = listOf(
         Triple(R.drawable.ic_dashboard_connect, "Doc to Doc", "doc"),
         Triple(R.drawable.ic_dashboard_mic, "Clinic Patient", "patient"),
@@ -50,7 +44,6 @@ fun DashboardScreen(navController: NavController) {
         Triple(R.drawable.ic_dashboard_refill, "Refill Request", "refill"),
     )
 
-    // Filter icons by search query
     val filteredIcons = remember(searchQuery) {
         if (searchQuery.isBlank()) allIcons
         else allIcons.filter { triple ->
@@ -97,25 +90,16 @@ fun DashboardScreen(navController: NavController) {
         }
 
 
-        // Add DashboardStatusCard below top icons
         Column(
             modifier = Modifier
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Top icons ke liye space
             Spacer(modifier = Modifier.height(70.dp))
 
-            // Dashboard Status Card
             DashboardStatusCard()
 
-            // Card aur neeche container ke beech gap
             Spacer(modifier = Modifier.height(40.dp))
-
-
-
-
-            // White rounded container
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -138,7 +122,6 @@ fun DashboardScreen(navController: NavController) {
                         singleLine = true,
                         trailingIcon = {
                             if (searchQuery.isNotEmpty()) {
-                                // ❌ Cross image
                                 IconButton(onClick = { searchQuery = "" }) {
                                     Image(
                                         painter = painterResource(id = R.drawable.dashboard_cross),
@@ -146,7 +129,6 @@ fun DashboardScreen(navController: NavController) {
                                     )
                                 }
                             } else {
-                                // 🔍 Search image
                                 Image(
                                     painter = painterResource(id = R.drawable.ic_dashboard_search),
                                     contentDescription = "Search Icon"
@@ -165,7 +147,6 @@ fun DashboardScreen(navController: NavController) {
                     DashboardIconGrid(
                         icons = filteredIcons.map { it.first to it.second },
                         onIconClick = { index ->
-                            // Map index to filteredIcons
                             val label = filteredIcons.getOrNull(index)?.second ?: ""
                             when (label) {
                                 "Doc to Doc" -> showDocToDocPopup = true
@@ -208,15 +189,8 @@ fun DashboardScreen(navController: NavController) {
                     )
                     Spacer(modifier = Modifier.height(200.dp))
                 }
-            } // end of White rounded container
-
-
-
+            }
         }
-
-
-
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -231,7 +205,6 @@ fun DashboardScreen(navController: NavController) {
                 ),
                 centerImageResId = R.drawable.ic_dashboard_bell_patientcare,
                 onIconClick = { index ->
-                    // 0: Power, 1: Waiting Room, 2: Support, 3: Messages, 4: Center (Patient Care)
                     when (index) {
                         0 -> navController.navigate("start") // Shutdown/Power icon → Login screen
                         1 -> navController.navigate("waitingroom")
@@ -242,15 +215,11 @@ fun DashboardScreen(navController: NavController) {
                 }
             )
         }
-
-
     }
 }
 
 @Preview(
     showBackground = true,
-//    widthDp = 1080,
-//    heightDp = 2400,
 )
 @Composable
 fun DashboardScreenPreview() {

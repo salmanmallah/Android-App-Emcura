@@ -1,23 +1,17 @@
 package com.app.splashscreen.ui.doctocp
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,7 +34,6 @@ fun DocToCpScreen(navController: NavController? = null) {
             .fillMaxSize()
             .background(Color(0xFFF5F5F5))
     ) {
-        // Top Bar (DashboardTopBar)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -58,12 +51,6 @@ fun DocToCpScreen(navController: NavController? = null) {
                 onEndIconClick = { navController?.navigate("dashboard") }
             )
         }
-
-
-
-
-
-        // 🔹 Tabs Row (Doctors / Dropdown)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -71,7 +58,6 @@ fun DocToCpScreen(navController: NavController? = null) {
                 .padding(horizontal = 24.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            // Doctors Button
             Button(
                 onClick = { /* TODO: Doctors tab click */ },
                 colors = ButtonDefaults.buttonColors(
@@ -160,14 +146,7 @@ fun DocToCpScreen(navController: NavController? = null) {
                 }
             }
         }
-
-
-
-
-
         Spacer(modifier = Modifier.height(16.dp))
-
-        // 🔹 Care Providers List
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
@@ -185,8 +164,6 @@ fun DocToCpScreen(navController: NavController? = null) {
         }
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable

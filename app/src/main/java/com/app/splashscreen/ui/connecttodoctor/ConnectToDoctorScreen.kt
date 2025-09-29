@@ -62,7 +62,6 @@ fun ConnectToDoctorScreen(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Waiting room docs list
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
