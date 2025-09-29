@@ -100,7 +100,9 @@ fun VideoCallScreen(
                     .fillMaxSize(),
                 contentAlignment = Alignment.BottomCenter
             ) {
-                com.app.splashscreen.ui.videocall.VideoCallNavBar()
+                com.app.splashscreen.ui.videocall.VideoCallNavBar(
+                    onHangup = { navController?.popBackStack() }
+                )
             }
         }
     }

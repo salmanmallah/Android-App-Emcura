@@ -83,7 +83,7 @@ fun InstantConnectScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Form fields
+//        // Form fields
         InputField(label = "First Name", value = firstName, onValueChange = { firstName = it })
         Spacer(modifier = Modifier.height(12.dp))
         InputField(label = "Last Name", value = lastName, onValueChange = { lastName = it })
@@ -237,31 +237,53 @@ fun InstantConnectScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Button(
-            onClick = { /* TODO: Send instant connect invitation */ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFED202E)),
-            shape = RoundedCornerShape(12.dp),
+        // buttons
+        Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp)
-                .shadow(8.dp, RoundedCornerShape(12.dp))
+                .fillMaxSize(),   // pura screen le
+            contentAlignment = Alignment.Center // center me align kare
         ) {
-            Text("Send instant connect invitation", fontWeight = FontWeight.Bold, fontSize = 16.sp, color = Color.White)
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Button(
+                    onClick = { /* TODO: Send instant connect invitation */ },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEB474B)),
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier
+                        .fillMaxWidth(0.9f)
+                        .height(48.dp)
+                        .shadow(8.dp, RoundedCornerShape(12.dp))
+                ) {
+                    Text(
+                        "Send instant connect invitation",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Button(
+                    onClick = { /* TODO: Not Now */ },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF212121)),
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier
+                        .fillMaxWidth(0.9f)
+                        .height(48.dp)
+                        .shadow(8.dp, RoundedCornerShape(12.dp))
+                ) {
+                    Text(
+                        "Not Now",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+            }
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Button(
-            onClick = { /* TODO: Not Now */ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
-            shape = RoundedCornerShape(12.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp)
-                .shadow(8.dp, RoundedCornerShape(12.dp))
-        ) {
-            Text("Not Now", fontWeight = FontWeight.Bold, fontSize = 16.sp, color = Color.White)
-        }
 
         Spacer(modifier = Modifier.height(24.dp))
     }
@@ -358,7 +380,7 @@ fun InputField(
     minLines: Int = 1
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(label, fontWeight = FontWeight.Bold, fontSize = 15.sp, color = Color.Black)
+        Text(label, fontWeight = FontWeight.Bold, fontSize = 15.sp, color = Color.Black, modifier = Modifier.padding(start = 15.dp))
         Spacer(modifier = Modifier.height(6.dp))
             Box(
                 modifier = Modifier
@@ -391,7 +413,11 @@ fun InputField(
 }
 
 /* ---------- Preview ---------- */
-@Preview(showBackground = true)
+@Preview(
+    showBackground = true,
+    showSystemUi = true, // ✅ system UI ke sath full height preview
+    device = "spec:parent=pixel_5,orientation=portrait"
+)
 @Composable
 fun InstantConnectScreenPreview() {
     // preview uses a fake nav controller
