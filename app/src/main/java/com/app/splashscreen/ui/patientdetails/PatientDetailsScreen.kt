@@ -22,6 +22,7 @@ import com.app.splashscreen.ui.components.DashboardTopBar
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.splashscreen.ui.components.ReviewCurrentSymptomsButton
+import com.app.splashscreen.ui.components.PatientsDetailsPopup
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.android.gms.maps.model.LatLng
@@ -33,6 +34,9 @@ import com.google.android.gms.maps.GoogleMap
 
 @Composable
 fun PatientDetailsScreen(navController: NavController) {
+    // State for showing the popup
+    var showSymptomsPopup by remember { mutableStateOf(false) }
+    
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -75,7 +79,8 @@ fun PatientDetailsScreen(navController: NavController) {
 
                     // Review Current Symptoms Button
                     ReviewCurrentSymptomsButton(
-                        modifier = Modifier.padding(bottom = 18.dp)
+                        modifier = Modifier.padding(bottom = 18.dp),
+                        onClick = { showSymptomsPopup = true }
                     )
 
                     // Dashboard icon grid
@@ -124,6 +129,26 @@ fun PatientDetailsScreen(navController: NavController) {
             // google map box below
 
         } // end of column
+        
+        // Show popup when state is true
+        if (showSymptomsPopup) {
+            PatientsDetailsPopup(
+                onDismiss = { showSymptomsPopup = false },
+                symptoms = "Headache, fever, cough",
+                conditions = "Common cold",
+                icdCodes = "jfwiejwfjpawjfpoawjpt",
+                description = "Patient experiencing symptoms since yesterday",
+                temperature = "30C",
+                bloodSugar = "120",
+                height = "5.65",
+                bmi = "22.5",
+                weight = "65",
+                respiration = "18",
+                bp = "120/80",
+                o2Saturation = "02 Saturation",
+                heartRate = "75"
+            )
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 package com.app.splashscreen.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -25,6 +26,7 @@ fun ReviewCurrentSymptomsButton(
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .clickable { onClick() }
             .background(
                 color = Color(0xFFFDE6EA),
                 shape = RoundedCornerShape(12.dp)
