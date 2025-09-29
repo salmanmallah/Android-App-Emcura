@@ -94,7 +94,7 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
                     Button(
                         onClick = { selectedTab = "DOCTORS" },
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = if (selectedTab == "DOCTORS") colorResource(id = R.color.instant_connect_button) else Color(0xFFF8BFC2)
+                            containerColor = if (selectedTab == "DOCTORS") colorResource(id = R.color.instant_connect_button) else Color(0xFFFFE5E4)
                         ),
                         shape = RoundedCornerShape(50),
                         modifier = Modifier
@@ -115,7 +115,7 @@ fun DocToDocScreen(navController: NavController? = null, enableScroll: Boolean =
                     Button(
                         onClick = { selectedTab = "SPECIALISTS" },
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = if (selectedTab == "SPECIALISTS") colorResource(id = R.color.instant_connect_button) else Color(0xFFF8BFC2)
+                            containerColor = if (selectedTab == "SPECIALISTS") colorResource(id = R.color.instant_connect_button) else Color(0xFFFFE5E4)
                         ),
                         shape = RoundedCornerShape(50),
                         modifier = Modifier
