@@ -44,7 +44,8 @@ fun EncounterNotesScreen(navController: NavController? = null) {
                     endIconRes = R.drawable.ic_dcd_hospital,
                     showBackIcon = true,
                     showEndIcon = true,
-                    onBackClick = { navController?.popBackStack() }
+                    onBackClick = { navController?.popBackStack() },
+                    onEndIconClick = { navController?.navigate("dashboard") }
                 )
             }
 

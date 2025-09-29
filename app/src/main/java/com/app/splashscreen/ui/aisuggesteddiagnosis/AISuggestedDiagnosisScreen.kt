@@ -58,7 +58,8 @@ fun AISuggestedDiagnosisScreen(navController: NavController) {
             showBackIcon = true,
             showEndIcon = true,
             textColor = Color.White,
-            onBackClick = { navController?.popBackStack() }
+            onBackClick = { navController?.popBackStack() },
+            onEndIconClick = { navController?.navigate("dashboard") }
         )
 
         // Add DashboardStatusCard below top icons

@@ -68,7 +68,8 @@ fun OnlineCarePatientsScreen(
             endIconRes = R.drawable.ic_dcd_hospital,
             showBackIcon = true,
             showEndIcon = true,
-            onBackClick = { navController?.popBackStack() }
+            onBackClick = { navController?.popBackStack() },
+            onEndIconClick = { navController?.navigate("dashboard") }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
