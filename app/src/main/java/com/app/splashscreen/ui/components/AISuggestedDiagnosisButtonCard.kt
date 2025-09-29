@@ -27,7 +27,7 @@ fun AISuggestedDiagnosisButtonCard(
     ) {
         Button(
             onClick = onGenerateDiagnosis,
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFED202E)),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEB474B)),
             shape = RoundedCornerShape(24.dp),
             modifier = Modifier
                 .weight(1f)
@@ -45,7 +45,7 @@ fun AISuggestedDiagnosisButtonCard(
 
         Button(
             onClick = onGenerateCarePlan,
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFED202E)),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEB474B)),
             shape = RoundedCornerShape(24.dp),
             modifier = Modifier
                 .weight(1f)
@@ -63,7 +63,7 @@ fun AISuggestedDiagnosisButtonCard(
 
         Button(
             onClick = onPrescriptions,
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFED202E)),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEB474B)),
             shape = RoundedCornerShape(24.dp),
             modifier = Modifier
                 .weight(1f)

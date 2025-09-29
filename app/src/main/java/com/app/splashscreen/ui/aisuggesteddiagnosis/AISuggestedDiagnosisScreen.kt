@@ -52,7 +52,7 @@ fun AISuggestedDiagnosisScreen(navController: NavController) {
     ) {
 
         DashboardTopBar(
-            title = "Available Doctors",
+            title = "AI suggested diagnosis ",
             backIconRes = R.drawable.ic_dashboard_arrow_backward,
             endIconRes = R.drawable.ic_dcd_hospital,
             showBackIcon = true,
@@ -112,7 +112,7 @@ fun AISuggestedDiagnosisScreen(navController: NavController) {
                     // Description
                     Text(
                         text = "Description:",
-                        color = Color(0xFFED202E),
+                        color = Color(0xFFEB474B),
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
                         modifier = Modifier
@@ -153,7 +153,7 @@ fun AISuggestedDiagnosisScreen(navController: NavController) {
 
                     Button(
                         onClick = { /* TODO: Done action */ },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFED202E)),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEB474B)),
                         shape = RoundedCornerShape(16.dp),
                         modifier = Modifier
                             .fillMaxWidth(0.5f)
