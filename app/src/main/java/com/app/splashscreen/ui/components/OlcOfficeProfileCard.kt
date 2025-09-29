@@ -77,7 +77,6 @@ fun OlcOfficeProfileCard(
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            // Name, Email, Mobile
             Column(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.Center

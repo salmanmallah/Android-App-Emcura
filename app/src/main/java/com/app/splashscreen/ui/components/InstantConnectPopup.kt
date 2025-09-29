@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.app.splashscreen.R
 
-// ✅ Extracted content (for preview & reuse)
 @Composable
 private fun InstantConnectPopupContent(
     onExistingPatient: () -> Unit,
@@ -165,7 +164,6 @@ fun InstantConnectPopup(
     }
 }
 
-// ✅ Preview without Dialog (safe for design check)
 @Preview(showBackground = true)
 @Composable
 fun InstantConnectPopupPreview() {

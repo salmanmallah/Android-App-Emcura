@@ -36,7 +36,6 @@ fun CallHistoryOptionsProfileCard(
             .fillMaxWidth()
             .padding(8.dp)
             .clip(RoundedCornerShape(12.dp))
-//            .background(Color(0xFFDE3C4B))
     ) {
         Row(
             modifier = Modifier

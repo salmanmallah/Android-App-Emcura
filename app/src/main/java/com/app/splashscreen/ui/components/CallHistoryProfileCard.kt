@@ -7,9 +7,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,8 +33,8 @@ fun CallHistoryProfileCard(
     name: String = "Dr. Supak Sookkasikon",
     timeAgo: String = "12 min ago",
     profileImageRes: Int = R.drawable.ic_dashboard_profile,
-    statusIconRes: Int = R.drawable.call_history_incoming, // e.g. incoming/outgoing icon
-    statusColor: Color = Color(0xFF4CAF50), // green for incoming, red for outgoing
+    statusIconRes: Int = R.drawable.call_history_incoming,
+    statusColor: Color = Color(0xFF4CAF50),
     onArrowClick: () -> Unit = {}
 ) {
     var pressed by remember { mutableStateOf(false) }
@@ -56,7 +53,6 @@ fun CallHistoryProfileCard(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            // Profile Circle
             Box(
                 modifier = Modifier
                     .size(54.dp)
@@ -72,7 +68,6 @@ fun CallHistoryProfileCard(
                 )
             }
             Spacer(modifier = Modifier.width(12.dp))
-            // Name and time
             Column(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.Center
@@ -87,12 +82,9 @@ fun CallHistoryProfileCard(
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    // Status Icon (incoming/outgoing)
                     Box(
                         modifier = Modifier
                             .size(18.dp),
-//                            .background(Color.White, CircleShape),
-//                            .border(2.dp, statusColor, CircleShape),
                         contentAlignment = Alignment.Center
                     ) {
                         Image(
@@ -109,7 +101,6 @@ fun CallHistoryProfileCard(
                     )
                 }
             }
-            // Arrow right
             IconButton(
                 onClick = onArrowClick,
                 modifier = Modifier

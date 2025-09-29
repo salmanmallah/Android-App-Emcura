@@ -39,7 +39,6 @@ fun RefillRequestDetailsCard(
             Column(
                 modifier = Modifier.weight(1f)
             ) {
-                // Title
                 Text(
                     text = title,
                     fontWeight = FontWeight.Bold,
@@ -49,7 +48,6 @@ fun RefillRequestDetailsCard(
 
                 Spacer(modifier = Modifier.height(4.dp))
 
-                // Divider line
                 Box(
                     modifier = Modifier
                         .width(60.dp)
@@ -59,7 +57,6 @@ fun RefillRequestDetailsCard(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Patient Info
                 Text(
                     text = "Patient: $patient",
                     fontSize = 12.sp,
@@ -78,8 +75,6 @@ fun RefillRequestDetailsCard(
             }
 
             Spacer(modifier = Modifier.width(16.dp))
-
-            // Action Button
             Button(
                 onClick = onRefillClick,
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE94F4F)),
@@ -95,8 +90,6 @@ fun RefillRequestDetailsCard(
                     fontWeight = FontWeight.Bold,
                     fontSize = 10.sp
                 )
-
-                // ye spacer text aur icon ke beech jitni jagah bachi hai use le lega
                 Spacer(modifier = Modifier.weight(1f))
 
                 Icon(

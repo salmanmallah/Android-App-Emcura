@@ -32,8 +32,8 @@ fun PrescriptionProfileCard(
     prescription: String = "Lipitor 80 MG TABS",
     quantity: String = "2",
     direction: String = "0",
-    imageRes: Int = R.drawable.ic_dashboard_profile, // Replace with actual doctor image
-    signatureRes: Int = R.drawable.prescription_signature // Add this drawable to your resources
+    imageRes: Int = R.drawable.ic_dashboard_profile,
+    signatureRes: Int = R.drawable.prescription_signature
 ) {
     Surface(
         modifier = Modifier
@@ -126,8 +126,6 @@ fun PrescriptionProfileCard(
                         painter = painterResource(id = signatureRes),
                         contentDescription = "Signature",
                         modifier = Modifier
-//                            .height(20.dp)
-//                            .width(60.dp),
                             .size(width = 80.dp, height = 30.dp),
                         contentScale = ContentScale.Fit
                     )

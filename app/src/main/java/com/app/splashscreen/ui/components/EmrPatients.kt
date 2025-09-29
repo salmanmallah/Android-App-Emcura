@@ -44,7 +44,6 @@ fun EmrPatients(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            // First Row (First Name, Last Name)
             Row(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.fillMaxWidth()
@@ -63,7 +62,6 @@ fun EmrPatients(
                 )
             }
 
-            // Second Row (Phone, Zipcode)
             Row(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.fillMaxWidth()
@@ -82,12 +80,10 @@ fun EmrPatients(
                 )
             }
 
-            // Buttons Row (DOB and Search in one row)
             Row(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                // DOB Button
                 Surface(
                     shape = RoundedCornerShape(14.dp),
                     shadowElevation = 6.dp,
@@ -180,7 +176,6 @@ fun CustomCenteredField(
             }
         )
 
-        // Trailing Search Icon
         Icon(
             painter = painterResource(id = R.drawable.ic_dashboard_search),
             contentDescription = "Search",

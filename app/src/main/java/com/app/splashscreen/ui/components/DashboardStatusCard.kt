@@ -1,5 +1,4 @@
 package com.app.splashscreen.ui.components
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -21,7 +20,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.splashscreen.R
-
 @Composable
 fun DashboardStatusCard(
     name: String = "John Paul",
@@ -40,7 +38,6 @@ fun DashboardStatusCard(
                 .clip(RoundedCornerShape(16.dp))
                 .background(Color.White.copy(alpha = 0.7f))
         )
-        // Card content
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -48,7 +45,6 @@ fun DashboardStatusCard(
                 .padding(horizontal = 10.dp, vertical = 6.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Profile image with border
             Box(
                 modifier = Modifier
                     .size(60.dp)
@@ -64,7 +60,6 @@ fun DashboardStatusCard(
                 )
             }
             Spacer(modifier = Modifier.width(8.dp))
-            // Name and location
             Column(
                 modifier = Modifier.weight(1f)
                     .offset(x=0.dp, y=-2.dp)

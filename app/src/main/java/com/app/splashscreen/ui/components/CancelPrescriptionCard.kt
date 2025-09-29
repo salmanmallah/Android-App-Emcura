@@ -55,7 +55,6 @@ fun CancelPrescriptionCard(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.Top
             ) {
-                // Profile Image with red border
                 Box(
                     modifier = Modifier
                         .size(78.dp)
@@ -72,18 +71,8 @@ fun CancelPrescriptionCard(
                             .clip(CircleShape),
                         contentScale = ContentScale.Crop
                     )
-
-
-
-
-
-
-
-
                 }
-
                 Spacer(modifier = Modifier.width(18.dp))
-
                 Column(
                     modifier = Modifier
                         .weight(1f)
@@ -151,17 +140,8 @@ fun CancelPrescriptionCard(
                     }
                 }
             }
-
             Spacer(modifier = Modifier.height(8.dp))
-
-            // Details block left-aligned
-
-
-
-
             Spacer(modifier = Modifier.height(8.dp))
-
-            // Prescribed by and signature in a right-aligned row
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.End,

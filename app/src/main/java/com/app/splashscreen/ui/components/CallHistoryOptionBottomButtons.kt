@@ -19,7 +19,7 @@ import com.app.splashscreen.R
 @Composable
 fun CallHistoryOptionBottomButtons(
     modifier: Modifier = Modifier,
-    // ✅ flexibility for preview
+
     recallIcon: Int = R.drawable.ic_recall,
     notesIcon: Int = R.drawable.ic_encounter_notes,
     labIcon: Int = R.drawable.ic_lab_requests,
@@ -87,7 +87,6 @@ fun CallHistoryOptionButton(iconRes: Int, text: String) {
 @Preview(showBackground = true)
 @Composable
 fun CallHistoryOptionBottomButtonsPreview() {
-    // ✅ Use dummy icons (replace with any valid drawable in your project)
     CallHistoryOptionBottomButtons(
         recallIcon = R.drawable.ic_recall,
         notesIcon = R.drawable.ic_encounter_notes,

@@ -1,5 +1,4 @@
 package com.app.splashscreen.ui.components
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -13,7 +12,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 @Composable
 fun AISuggestedDiagnosisButtonCard(
     onGenerateDiagnosis: () -> Unit = {},

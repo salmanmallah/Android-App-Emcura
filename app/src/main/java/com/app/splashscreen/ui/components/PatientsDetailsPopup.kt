@@ -20,10 +20,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.app.splashscreen.R
 
-// Define custom red color that works on all devices
-private val CustomRed = Color(0xFFFF0000) // Pure red for better visibility
+private val CustomRed = Color(0xFFFF0000)
 
-// ===================== PUBLIC DIALOG WRAPPER =====================
 @Composable
 fun PatientsDetailsPopup(
     onDismiss: () -> Unit,
@@ -62,7 +60,6 @@ fun PatientsDetailsPopup(
     }
 }
 
-// ===================== CARD CONTENT (PREVIEW FRIENDLY) =====================
 @Composable
 private fun PatientsDetailsCard(
     symptoms: String,
@@ -80,7 +77,6 @@ private fun PatientsDetailsCard(
     heartRate: String,
     patientImageRes: Int
 ) {
-    // State for editable description
     var editableDescription by remember { mutableStateOf(description) }
     
     Card(
@@ -198,8 +194,6 @@ private fun PatientsDetailsCard(
         }
     }
 }
-
-// ===================== HELPERS =====================
 @Composable
 private fun DetailSection(title: String, content: String) {
     Column {
@@ -257,7 +251,6 @@ private fun VitalsTable(
         VitalItem("Heart Rate", heartRate, Modifier.fillMaxWidth())
     }
 }
-
 @Composable
 private fun VitalItem(label: String, value: String, modifier: Modifier = Modifier) {
     Column(modifier = modifier.padding(horizontal = 4.dp)) {
@@ -265,8 +258,6 @@ private fun VitalItem(label: String, value: String, modifier: Modifier = Modifie
         Text(text = value, fontSize = 12.sp, color = Color.Black, modifier = Modifier.padding(top = 2.dp))
     }
 }
-
-// ===================== PREVIEW =====================
 @Preview(showBackground = true)
 @Composable
 fun PatientsDetailsPopupPreview() {

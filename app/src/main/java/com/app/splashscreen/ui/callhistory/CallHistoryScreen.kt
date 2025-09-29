@@ -1,5 +1,4 @@
 package com.app.splashscreen.ui.callhistory
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -26,11 +25,9 @@ import com.app.splashscreen.ui.components.PatientCareProfileCard
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.navigation.NavController
-
 @Composable
 fun CallHistoryScreen(navController: NavController? = null, enableScroll: Boolean = true) {
     var searchQuery by remember { mutableStateOf("") }
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,15 +50,12 @@ fun CallHistoryScreen(navController: NavController? = null, enableScroll: Boolea
                 onEndIconClick = { navController?.navigate("dashboard") }
             )
         }
-
         Spacer(modifier = Modifier.height(16.dp))
-
         // Search Section
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
-//                .background(Color.White, RoundedCornerShape(12.dp))
                 .padding(8.dp)
         ) {
             DoctorSearchBar(
@@ -70,12 +64,7 @@ fun CallHistoryScreen(navController: NavController? = null, enableScroll: Boolea
                 modifier = Modifier.fillMaxWidth()
             )
         }
-
-//        Spacer(modifier = Modifier.height(16.dp)
-
         Spacer(modifier = Modifier.height(12.dp))
-
-        // Doctors List Section (Always visible now)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -113,8 +102,6 @@ fun CallHistoryScreen(navController: NavController? = null, enableScroll: Boolea
                         Spacer(modifier = Modifier.height(600.dp)) // Extra space at the bottom for scroll
                     }
                 }
-
-
             }
         }
     }

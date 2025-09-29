@@ -49,7 +49,6 @@ fun EncounterNotesProfileCard(
                 .padding(horizontal = 10.dp, vertical = 10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Profile Image
             Box(
                 modifier = Modifier
                     .size(54.dp)
@@ -87,7 +86,6 @@ fun EncounterNotesProfileCard(
                         color = Color(0xFF222222)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    // Gender red dot
                     Box(
                         modifier = Modifier
                             .size(8.dp)

@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.app.splashscreen.R
 
-// ✅ Final Popup
 @Composable
 fun DocToDocPopup(
     onDismiss: () -> Unit,
@@ -48,12 +47,6 @@ fun DocToDocPopup(
                     .matchParentSize()
                     .clip(RoundedCornerShape(20.dp))
             )
-            // White scrim overlay for readability (remove or reduce alpha)
-            // Box(
-            //     modifier = Modifier
-            //         .matchParentSize()
-            //         .background(Color.White.copy(alpha = 0.85f))
-            // )
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -67,9 +60,7 @@ fun DocToDocPopup(
                     color = Color.Black,
                     textAlign = TextAlign.Center
                 )
-
                 Spacer(modifier = Modifier.height(14.dp))
-
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -108,7 +99,6 @@ fun DocToDocPopup(
     }
 }
 
-// ✅ Extracted content (for preview & reuse)
 @Composable
 private fun DocToDocPopupContent(
     onDocToDocClick: () -> Unit,
@@ -120,7 +110,6 @@ private fun DocToDocPopupContent(
             .wrapContentHeight()
             .clip(RoundedCornerShape(20.dp))
     ) {
-        // Background with overlay
         Box {
             Image(
                 painter = painterResource(id = R.drawable.ic_dashboard_background_pattern),
@@ -137,7 +126,6 @@ private fun DocToDocPopupContent(
             )
         }
 
-        // Main content
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -196,8 +184,6 @@ private fun DocToDocPopupContent(
         }
     }
 }
-
-// ✅ Icon + Text inside button
 @Composable
 private fun IconWithText(text: String) {
     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -216,7 +202,6 @@ private fun IconWithText(text: String) {
     }
 }
 
-// ✅ Preview without Dialog (safe for design check)
 @Preview(showBackground = true)
 @Composable
 fun DocToDocPopupPreview() {

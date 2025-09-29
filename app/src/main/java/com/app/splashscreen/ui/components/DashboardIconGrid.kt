@@ -4,7 +4,6 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
@@ -27,12 +26,13 @@ import androidx.compose.ui.input.pointer.pointerInteropFilter
 import com.app.splashscreen.R
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+
 @Composable
 fun DashboardIconGrid(
     icons: List<Pair<Int, String>>,
     modifier: Modifier = Modifier,
     onIconClick: ((Int) -> Unit)? = null,
-    onInstantConnectClick: (() -> Unit)? = null // new param
+    onInstantConnectClick: (() -> Unit)? = null
 ) {
     val iconsPerRow = 3
     val rows = icons.chunked(iconsPerRow)
@@ -69,7 +69,7 @@ fun DashboardIconGrid(
                                 }
                                 android.view.MotionEvent.ACTION_CANCEL -> pressed = false
                             }
-                            true // consume event, no .clickable needed
+                            true
                         }
                     DashboardCircleIconWithLabel(
                         iconResId = iconResId,
@@ -92,12 +92,12 @@ fun DashboardCircleIconWithLabel(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.wrapContentSize() // Column apni height expand karega
+        modifier = modifier.wrapContentSize()
     ) {
         // Circle Icon
         Box(
             modifier = Modifier
-                .size(62.dp) // ✅ sirf circle icon ke liye size
+                .size(62.dp)
                 .shadow(6.dp, CircleShape)
                 .background(color = MaterialTheme.colorScheme.background, shape = CircleShape)
                 .clip(CircleShape)
@@ -111,7 +111,6 @@ fun DashboardCircleIconWithLabel(
                 contentDescription = label,
                 modifier = Modifier
                     .fillMaxSize(0.62f)
-//                    .clip(CircleShape)
             )
         }
 

@@ -62,22 +62,16 @@ fun AISuggestedDiagnosisScreen(navController: NavController) {
             onEndIconClick = { navController?.navigate("dashboard") }
         )
 
-        // Add DashboardStatusCard below top icons
         Column(
             modifier = Modifier
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Top icons ke liye space
             Spacer(modifier = Modifier.height(50.dp))
-
-            // Dashboard Status Card
             AISuggestedDiagnosisTextCard()
 
-            // Card aur neeche container ke beech gap
             Spacer(modifier = Modifier.height(5.dp))
 
-            // White rounded container
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -162,7 +156,7 @@ fun AISuggestedDiagnosisScreen(navController: NavController) {
                         Text("Done", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
                     }
                 }
-            } // end of White rounded container
+            }
         }
 
 

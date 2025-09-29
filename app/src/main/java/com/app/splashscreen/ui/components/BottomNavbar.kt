@@ -41,7 +41,6 @@ fun BottomNavbar(
             .height(75.dp)
             .fillMaxWidth()
     ) {
-        // Bottom bar background
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -52,8 +51,6 @@ fun BottomNavbar(
                     shape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)
                 )
         )
-
-        // Row for icons, with space for center card
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -85,14 +82,11 @@ fun BottomNavbar(
                                 }
                                 android.view.MotionEvent.ACTION_CANCEL -> pressed = false
                             }
-                            true // consume event, no .clickable needed
+                            true
                         }
                 )
             }
-
-            Spacer(modifier = Modifier.width(38.dp)) // Space for center card
-
-            // Right icons with press animation and action on release
+            Spacer(modifier = Modifier.width(38.dp))
             icons.drop(icons.size / 2).forEachIndexed { index, iconRes ->
                 val actualIndex = index + icons.size / 2
                 var pressed by remember { mutableStateOf(false) }
@@ -116,14 +110,12 @@ fun BottomNavbar(
                                 }
                                 android.view.MotionEvent.ACTION_CANCEL -> pressed = false
                             }
-                            true // consume event, no .clickable needed
+                            true
                         }
                 )
             }
         }
 
-        // Center circular card (now clickable)
-        // --- Animated press effect for center icon, action on release ---
         var centerPressed by remember { mutableStateOf(false) }
         val centerScale by animateFloatAsState(if (centerPressed) 0.92f else 1f, label = "centerIconScale")
         Image(
@@ -146,7 +138,7 @@ fun BottomNavbar(
                         }
                         android.view.MotionEvent.ACTION_CANCEL -> centerPressed = false
                     }
-                    true // consume event, no .clickable needed
+                    true
                 }
         )
     }
@@ -163,6 +155,6 @@ fun BottomNavbarPreview() {
             R.drawable.ic_dashboard_support,
             R.drawable.ic_dashboard_masseges,
         ),
-        centerImageResId = R.drawable.ic_dashboard_bell_patientcare // Replace with your image resource
+        centerImageResId = R.drawable.ic_dashboard_bell_patientcare
     )
 }

@@ -32,7 +32,6 @@ fun MessagesNavbar(
             .height(80.dp),
         contentAlignment = Alignment.Center
     ) {
-        // Navbar background
         Surface(
             modifier = Modifier
                 .fillMaxWidth(0.85f)
@@ -62,7 +61,6 @@ fun MessagesNavbar(
             }
         }
 
-        // Center logo (clickable for patient care navigation)
         Image(
             painter = painterResource(id = centerLogoRes),
             contentDescription = "Center Logo - Patient Care",
@@ -72,7 +70,7 @@ fun MessagesNavbar(
                 .let { m -> 
                     if (onCenterClick != null) 
                         m.clickable(
-                            indication = null, // No ripple effect
+                            indication = null,
                             interactionSource = remember { MutableInteractionSource() }
                         ) { onCenterClick() } 
                     else m 
@@ -95,7 +93,7 @@ private fun NavbarIcon(
             .let { m -> 
                 if (onClick != null) 
                     m.clickable(
-                        indication = null, // No ripple effect
+                        indication = null,
                         interactionSource = remember { MutableInteractionSource() }
                     ) { onClick() } 
                 else m 

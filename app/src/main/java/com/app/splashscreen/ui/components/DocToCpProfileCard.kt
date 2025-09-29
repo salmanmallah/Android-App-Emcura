@@ -57,7 +57,6 @@ fun DocToCpProfileCard(
                 )
             }
             Spacer(modifier = Modifier.width(16.dp))
-            // Name, Status, Button
             Column(
                 modifier = Modifier
                     .weight(1f)

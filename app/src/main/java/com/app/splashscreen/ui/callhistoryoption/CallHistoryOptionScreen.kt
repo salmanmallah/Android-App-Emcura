@@ -1,5 +1,4 @@
 package com.app.splashscreen.ui.callhistoryoption
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -35,7 +34,6 @@ import com.app.splashscreen.ui.components.CallHistoryOptionNotes
 import com.app.splashscreen.ui.components.CallHistoryOptionsProfileCard
 import com.app.splashscreen.ui.components.DashboardTopBar
 import com.app.splashscreen.ui.components.DoctorSearchBar
-
 @Composable
 fun CallHistoryOptionScreen(navController: NavController) {
     var showDocToDocPopup by remember { mutableStateOf(false) }
@@ -47,7 +45,6 @@ fun CallHistoryOptionScreen(navController: NavController) {
             .fillMaxSize()
             .background(colorResource(id = R.color.dashboard_background))
     ) {
-
         DashboardTopBar(
             title = "Available Doctors",
             backIconRes = R.drawable.ic_dashboard_arrow_backward,
@@ -58,23 +55,14 @@ fun CallHistoryOptionScreen(navController: NavController) {
             onBackClick = { navController?.popBackStack() },
             onEndIconClick = { navController?.navigate("dashboard") }
         )
-
-        // Add DashboardStatusCard below top icons
         Column(
             modifier = Modifier
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Top icons ke liye space
             Spacer(modifier = Modifier.height(30.dp))
-
-            // Dashboard Status Card
             CallHistoryOptionsProfileCard()
-
-            // Card aur neeche container ke beech gap
             Spacer(modifier = Modifier.height(5.dp))
-
-            // White rounded container
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -101,8 +89,6 @@ fun CallHistoryOptionScreen(navController: NavController) {
                         .padding(horizontal = 24.dp, vertical = 24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
-
                     Spacer(modifier = Modifier.height(15.dp))
                     CallHistoryOptionNotes()
                     Spacer(modifier = Modifier.height(15.dp))
@@ -111,13 +97,11 @@ fun CallHistoryOptionScreen(navController: NavController) {
                 }
             } // end of White rounded container
         }
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
         ) {
-           // idhr ayengy saary icons
             CallHistoryOptionBottomButtons(
                 recallIcon = R.drawable.ic_recall,
                 notesIcon = R.drawable.ic_encounter_notes,
@@ -132,8 +116,6 @@ fun CallHistoryOptionScreen(navController: NavController) {
 
 @Preview(
     showBackground = true,
-//    widthDp = 1080,
-//    heightDp = 2400,
 )
 @Composable
 fun CallHistoryOptionScreenPreview() {
