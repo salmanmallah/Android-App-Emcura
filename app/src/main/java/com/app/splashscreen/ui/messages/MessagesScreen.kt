@@ -94,7 +94,13 @@ fun MessagesScreen(navController: NavController, onBackClick: (() -> Unit)? = nu
                 .padding(bottom = 24.dp),
             contentAlignment = Alignment.Center
         ) {
-            MessagesNavbar()
+            MessagesNavbar(
+                onCenterClick = { navController.navigate("patientcare") },
+                onPowerClick = { navController.navigate("login") },
+                onDotsClick = { 
+                    // Handle three dots click - could be settings or more options
+                }
+            )
         }
     }
 }

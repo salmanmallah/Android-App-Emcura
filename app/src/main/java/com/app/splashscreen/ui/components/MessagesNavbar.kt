@@ -21,7 +21,8 @@ fun MessagesNavbar(
     modifier: Modifier = Modifier,
     centerLogoRes: Int = R.drawable.ic_dashboard_bell_patientcare,
     onPowerClick: (() -> Unit)? = null,
-    onDotsClick: (() -> Unit)? = null
+    onDotsClick: (() -> Unit)? = null,
+    onCenterClick: (() -> Unit)? = null
 ) {
     Box(
         modifier = modifier
@@ -59,13 +60,14 @@ fun MessagesNavbar(
             }
         }
 
-        // Center logo (no white background, just icon, larger)
+        // Center logo (clickable for patient care navigation)
         Image(
             painter = painterResource(id = centerLogoRes),
-            contentDescription = "Center Logo",
+            contentDescription = "Center Logo - Patient Care",
             modifier = Modifier
                 .size(80.dp)
                 .align(Alignment.TopCenter)
+                .let { m -> if (onCenterClick != null) m.clickable { onCenterClick() } else m }
         )
     }
 }
