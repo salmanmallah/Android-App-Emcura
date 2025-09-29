@@ -233,10 +233,11 @@ fun DashboardScreen(navController: NavController) {
                 onIconClick = { index ->
                     // 0: Power, 1: Waiting Room, 2: Support, 3: Messages, 4: Center (Patient Care)
                     when (index) {
+                        0 -> navController.navigate("start") // Shutdown/Power icon → Login screen
                         1 -> navController.navigate("waitingroom")
+                        2 -> navController.navigate("callhistory") // Support icon (man with mic) → Call History
                         3 -> navController.navigate("messages")
                         4 -> navController.navigate("patientcare")
-                        // Add other icon triggers as needed
                     }
                 }
             )
