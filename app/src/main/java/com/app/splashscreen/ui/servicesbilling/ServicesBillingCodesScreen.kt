@@ -182,20 +182,20 @@ fun ServicesBillingCodesScreen(navController: NavController? = null) {
 @Composable
 private fun BillingCodesList() {
     val billingCodes = listOf(
-        "99202 - Office/Outpatient Visit New",
-        "99203 - Office/Outpatient Visit New",
-        "99204 - Office/Outpatient Visit New",
-        "99205 - Office/Outpatient Visit New",
-        "99211 - Office/Outpatient Visit New"
+        "99203 Office/outpatient visit, new patient, 30-44 minutes",
+        "99213 Office/outpatient visit, established patient, 20-29 minutes",
+        "99214 Office/outpatient visit, established patient, 30-39 minutes", 
+        "99215 Office/outpatient visit, established patient, 40-54 minutes",
+        "99243 Office consultation for a new or established patient"
     )
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         billingCodes.forEach { code ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.Top
             ) {
                 RadioButton(
                     selected = false,
@@ -209,7 +209,9 @@ private fun BillingCodesList() {
                 Text(
                     text = code,
                     color = Color.Black,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
+                    modifier = Modifier.weight(1f),
+                    lineHeight = 20.sp
                 )
             }
         }
