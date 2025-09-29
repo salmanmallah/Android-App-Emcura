@@ -1,8 +1,8 @@
-
 package com.app.splashscreen.ui.servicesbilling
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,6 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,7 +26,7 @@ import com.app.splashscreen.ui.components.DashboardTopBar
 
 @Composable
 fun ServicesBillingCodesScreen(navController: NavController? = null) {
-    // States for dropdowns
+// States for dropdowns
     var myFavoritesExpanded by remember { mutableStateOf(false) }
     var mostCommonExpanded by remember { mutableStateOf(false) }
     var psychExpanded by remember { mutableStateOf(false) }
@@ -34,6 +35,10 @@ fun ServicesBillingCodesScreen(navController: NavController? = null) {
     var officeOutpatientExpanded by remember { mutableStateOf(false) }
     var inpatientExpanded by remember { mutableStateOf(false) }
     var auditingExpanded by remember { mutableStateOf(false) }
+
+
+// State for section ordering - true means dropdown is on top
+    var dropdownOnTop by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -83,105 +88,220 @@ fun ServicesBillingCodesScreen(navController: NavController? = null) {
                 )
             }
 
-            // White section for billing codes (fixed white background)
-            Surface(
-                modifier = Modifier.fillMaxWidth(),
-                color = Color.White,
-                shape = RoundedCornerShape(bottomStart = 0.dp, bottomEnd = 0.dp)
-            ) {
-                BillingCodesList()
+            // Dynamic content based on section order
+            if (dropdownOnTop) {
+                DraggableDropdownSection(
+                    myFavoritesExpanded = myFavoritesExpanded,
+                    mostCommonExpanded = mostCommonExpanded,
+                    psychExpanded = psychExpanded,
+                    lsrdExpanded = lsrdExpanded,
+                    behavioralHealthExpanded = behavioralHealthExpanded,
+                    officeOutpatientExpanded = officeOutpatientExpanded,
+                    inpatientExpanded = inpatientExpanded,
+                    auditingExpanded = auditingExpanded,
+                    onMyFavoritesToggle = { myFavoritesExpanded = !myFavoritesExpanded },
+                    onMostCommonToggle = { mostCommonExpanded = !mostCommonExpanded },
+                    onPsychToggle = { psychExpanded = !psychExpanded },
+                    onLsrdToggle = { lsrdExpanded = !lsrdExpanded },
+                    onBehavioralHealthToggle = { behavioralHealthExpanded = !behavioralHealthExpanded },
+                    onOfficeOutpatientToggle = { officeOutpatientExpanded = !officeOutpatientExpanded },
+                    onInpatientToggle = { inpatientExpanded = !inpatientExpanded },
+                    onAuditingToggle = { auditingExpanded = !auditingExpanded },
+                    onDragDown = { dropdownOnTop = false }
+                )
+                DraggableRadioSection(
+                    onDragUp = { dropdownOnTop = true }
+                )
+            } else {
+                DraggableRadioSection(
+                    onDragUp = { dropdownOnTop = true }
+                )
+                DraggableDropdownSection(
+                    myFavoritesExpanded = myFavoritesExpanded,
+                    mostCommonExpanded = mostCommonExpanded,
+                    psychExpanded = psychExpanded,
+                    lsrdExpanded = lsrdExpanded,
+                    behavioralHealthExpanded = behavioralHealthExpanded,
+                    officeOutpatientExpanded = officeOutpatientExpanded,
+                    inpatientExpanded = inpatientExpanded,
+                    auditingExpanded = auditingExpanded,
+                    onMyFavoritesToggle = { myFavoritesExpanded = !myFavoritesExpanded },
+                    onMostCommonToggle = { mostCommonExpanded = !mostCommonExpanded },
+                    onPsychToggle = { psychExpanded = !psychExpanded },
+                    onLsrdToggle = { lsrdExpanded = !lsrdExpanded },
+                    onBehavioralHealthToggle = { behavioralHealthExpanded = !behavioralHealthExpanded },
+                    onOfficeOutpatientToggle = { officeOutpatientExpanded = !officeOutpatientExpanded },
+                    onInpatientToggle = { inpatientExpanded = !inpatientExpanded },
+                    onAuditingToggle = { auditingExpanded = !auditingExpanded },
+                    onDragDown = { dropdownOnTop = false }
+                )
             }
+        }
+    }
 
-            // Red section with curved top edges for dropdowns only
-            LazyColumn(
+
+}
+
+@Composable
+private fun DraggableRadioSection(
+    onDragUp: () -> Unit
+) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .pointerInput(Unit) {
+                detectDragGestures { _, dragAmount ->
+                    if (dragAmount.y < -100) {
+                        onDragUp()
+                    }
+                }
+            },
+        color = Color.White,
+        shape = RoundedCornerShape(bottomStart = 0.dp, bottomEnd = 0.dp)
+    ) {
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Box(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        Color(0xFFE53E3E),
-                        RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
-                    )
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                contentAlignment = Alignment.Center
             ) {
-                // Expandable dropdown items
-                item {
-                    ExpandableDropdownItem(
-                        title = "My Favorites",
-                        expanded = myFavoritesExpanded,
-                        onToggle = { myFavoritesExpanded = !myFavoritesExpanded },
-                        items = listOf("Favorite Item 1", "Favorite Item 2", "Favorite Item 3")
-                    )
-                }
-                item {
-                    ExpandableDropdownItem(
-                        title = "Most Common",
-                        expanded = mostCommonExpanded,
-                        onToggle = { mostCommonExpanded = !mostCommonExpanded },
-                        items = listOf("Common Code 1", "Common Code 2", "Common Code 3")
-                    )
-                }
-                item {
-                    ExpandableDropdownItem(
-                        title = "Psych",
-                        expanded = psychExpanded,
-                        onToggle = { psychExpanded = !psychExpanded },
-                        items = listOf(
-                            "90832 - Psytx Pt&/Family 30 Minutes",
-                            "90832 - Psytx Pt&/Family 30 Minutes", 
-                            "90832 - Psytx Pt&/Family 30 Minutes",
-                            "90832 - Psytx Pt&/Family 30 Minutes",
-                            "90832 - Psytx Pt&/Family 30 Minutes"
-                        )
-                    )
-                }
-                item {
-                    ExpandableDropdownItem(
-                        title = "LSRD ( End Stage Renal Disease )",
-                        expanded = lsrdExpanded,
-                        onToggle = { lsrdExpanded = !lsrdExpanded },
-                        items = listOf("LSRD Code 1", "LSRD Code 2", "LSRD Code 3")
-                    )
-                }
-                item {
-                    ExpandableDropdownItem(
-                        title = "Behavioral Health",
-                        expanded = behavioralHealthExpanded,
-                        onToggle = { behavioralHealthExpanded = !behavioralHealthExpanded },
-                        items = listOf("Behavioral Code 1", "Behavioral Code 2", "Behavioral Code 3")
-                    )
-                }
-                item {
-                    ExpandableDropdownItem(
-                        title = "Office/outpatient",
-                        expanded = officeOutpatientExpanded,
-                        onToggle = { officeOutpatientExpanded = !officeOutpatientExpanded },
-                        items = listOf("Office Code 1", "Office Code 2", "Office Code 3")
-                    )
-                }
-                item {
-                    ExpandableDropdownItem(
-                        title = "Inpatient",
-                        expanded = inpatientExpanded,
-                        onToggle = { inpatientExpanded = !inpatientExpanded },
-                        items = listOf("Inpatient Code 1", "Inpatient Code 2", "Inpatient Code 3")
-                    )
-                }
-                item {
-                    ExpandableDropdownItem(
-                        title = "Auditing",
-                        expanded = auditingExpanded,
-                        onToggle = { auditingExpanded = !auditingExpanded },
-                        items = listOf("Audit Code 1", "Audit Code 2", "Audit Code 3")
-                    )
-                }
-
-                // Bottom buttons
-                item {
-                    Spacer(modifier = Modifier.height(16.dp))
-                    BottomButtons()
-                    Spacer(modifier = Modifier.height(16.dp))
-                }
+                Box(
+                    modifier = Modifier
+                        .width(40.dp)
+                        .height(4.dp)
+                        .background(Color.Gray, RoundedCornerShape(2.dp))
+                )
             }
+            BillingCodesList()
+        }
+    }
+}
+
+@Composable
+private fun DraggableDropdownSection(
+    myFavoritesExpanded: Boolean,
+    mostCommonExpanded: Boolean,
+    psychExpanded: Boolean,
+    lsrdExpanded: Boolean,
+    behavioralHealthExpanded: Boolean,
+    officeOutpatientExpanded: Boolean,
+    inpatientExpanded: Boolean,
+    auditingExpanded: Boolean,
+    onMyFavoritesToggle: () -> Unit,
+    onMostCommonToggle: () -> Unit,
+    onPsychToggle: () -> Unit,
+    onLsrdToggle: () -> Unit,
+    onBehavioralHealthToggle: () -> Unit,
+    onOfficeOutpatientToggle: () -> Unit,
+    onInpatientToggle: () -> Unit,
+    onAuditingToggle: () -> Unit,
+    onDragDown: () -> Unit
+) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Color(0xFFE53E3E),
+                RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
+            )
+            .padding(16.dp)
+            .pointerInput(Unit) {
+                detectDragGestures { _, dragAmount ->
+                    if (dragAmount.y > 100) {
+                        onDragDown()
+                    }
+                }
+            },
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        item {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Box(
+                    modifier = Modifier
+                        .width(40.dp)
+                        .height(4.dp)
+                        .background(Color.White, RoundedCornerShape(2.dp))
+                )
+            }
+        }
+        item {
+            ExpandableDropdownItem(
+                title = "My Favorites",
+                expanded = myFavoritesExpanded,
+                onToggle = onMyFavoritesToggle,
+                items = listOf("Favorite Item 1", "Favorite Item 2", "Favorite Item 3")
+            )
+        }
+        item {
+            ExpandableDropdownItem(
+                title = "Most Common",
+                expanded = mostCommonExpanded,
+                onToggle = onMostCommonToggle,
+                items = listOf("Common Code 1", "Common Code 2", "Common Code 3")
+            )
+        }
+        item {
+            ExpandableDropdownItem(
+                title = "Psych",
+                expanded = psychExpanded,
+                onToggle = onPsychToggle,
+                items = listOf(
+                    "90832 - Psytx Pt&/Family 30 Minutes",
+                    "90834 - Psytx Pt&/Family 45 Minutes",
+                    "90837 - Psytx Pt&/Family 60 Minutes"
+                )
+            )
+        }
+        item {
+            ExpandableDropdownItem(
+                title = "LSRD (End Stage Renal Disease)",
+                expanded = lsrdExpanded,
+                onToggle = onLsrdToggle,
+                items = listOf("LSRD Code 1", "LSRD Code 2", "LSRD Code 3")
+            )
+        }
+        item {
+            ExpandableDropdownItem(
+                title = "Behavioral Health",
+                expanded = behavioralHealthExpanded,
+                onToggle = onBehavioralHealthToggle,
+                items = listOf("Behavioral Code 1", "Behavioral Code 2", "Behavioral Code 3")
+            )
+        }
+        item {
+            ExpandableDropdownItem(
+                title = "Office/outpatient",
+                expanded = officeOutpatientExpanded,
+                onToggle = onOfficeOutpatientToggle,
+                items = listOf("Office Code 1", "Office Code 2", "Office Code 3")
+            )
+        }
+        item {
+            ExpandableDropdownItem(
+                title = "Inpatient",
+                expanded = inpatientExpanded,
+                onToggle = onInpatientToggle,
+                items = listOf("Inpatient Code 1", "Inpatient Code 2", "Inpatient Code 3")
+            )
+        }
+        item {
+            ExpandableDropdownItem(
+                title = "Auditing",
+                expanded = auditingExpanded,
+                onToggle = onAuditingToggle,
+                items = listOf("Audit Code 1", "Audit Code 2", "Audit Code 3")
+            )
+        }
+        item {
+            Spacer(modifier = Modifier.height(16.dp))
+            BottomButtons()
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
@@ -191,12 +311,12 @@ private fun BillingCodesList() {
     val billingCodes = listOf(
         "99203 Office/outpatient visit, new patient, 30-44 minutes",
         "99213 Office/outpatient visit, established patient, 20-29 minutes",
-        "99214 Office/outpatient visit, established patient, 30-39 minutes", 
+        "99214 Office/outpatient visit, established patient, 30-39 minutes",
         "99215 Office/outpatient visit, established patient, 40-54 minutes",
         "99243 Office consultation for a new or established patient"
     )
-
     var selectedIndex by remember { mutableStateOf(-1) }
+
 
     Column(
         modifier = Modifier
@@ -228,6 +348,8 @@ private fun BillingCodesList() {
             }
         }
     }
+
+
 }
 
 @Composable
@@ -242,10 +364,7 @@ private fun ExpandableDropdownItem(
         color = Color.White,
         shape = RoundedCornerShape(8.dp)
     ) {
-        Column(
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            // Header row (clickable)
+        Column(modifier = Modifier.fillMaxWidth()) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -267,8 +386,6 @@ private fun ExpandableDropdownItem(
                     modifier = Modifier.size(24.dp)
                 )
             }
-            
-            // Expandable content
             if (expanded) {
                 Column(
                     modifier = Modifier
@@ -315,13 +432,8 @@ private fun BottomButtons() {
             ),
             shape = RoundedCornerShape(8.dp)
         ) {
-            Text(
-                text = "Add to Favorite",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Medium
-            )
+            Text("Add to Favorite", fontSize = 12.sp, fontWeight = FontWeight.Medium)
         }
-
         Button(
             onClick = { },
             modifier = Modifier.weight(1f),
@@ -331,13 +443,8 @@ private fun BottomButtons() {
             ),
             shape = RoundedCornerShape(8.dp)
         ) {
-            Text(
-                text = "Remove from Favorite",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Medium
-            )
+            Text("Remove from Favorite", fontSize = 12.sp, fontWeight = FontWeight.Medium)
         }
-
         Button(
             onClick = { },
             modifier = Modifier.weight(1f),
@@ -347,11 +454,7 @@ private fun BottomButtons() {
             ),
             shape = RoundedCornerShape(8.dp)
         ) {
-            Text(
-                text = "Next",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Medium
-            )
+            Text("Next", fontSize = 12.sp, fontWeight = FontWeight.Medium)
         }
     }
 }
