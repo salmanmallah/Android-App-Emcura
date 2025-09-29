@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,13 +20,16 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.app.splashscreen.R
 
+// Define custom red color that works on all devices
+private val CustomRed = Color(0xFFFF0000) // Pure red for better visibility
+
 // ===================== PUBLIC DIALOG WRAPPER =====================
 @Composable
 fun PatientsDetailsPopup(
     onDismiss: () -> Unit,
     symptoms: String = "",
     conditions: String = "Common cold",
-    icdCodes: String = "ABC123",
+    icdCodes: String = "J00.9 - Acute nasopharyngitis, unspecified",
     description: String = "",
     temperature: String = "30C",
     bloodSugar: String = "",
@@ -77,6 +80,9 @@ private fun PatientsDetailsCard(
     heartRate: String,
     patientImageRes: Int
 ) {
+    // State for editable description
+    var editableDescription by remember { mutableStateOf(description) }
+    
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -113,23 +119,28 @@ private fun PatientsDetailsCard(
                     Text(
                         text = "Descriptions:",
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color(0xFFE53E3E),
+                        fontWeight = FontWeight.Bold,
+                        color = CustomRed,
                         modifier = Modifier.padding(bottom = 4.dp)
                     )
                     OutlinedTextField(
-                        value = description,
-                        onValueChange = { },
+                        value = editableDescription,
+                        onValueChange = { editableDescription = it },
+                        placeholder = { 
+                            Text("Enter patient description here...", fontSize = 12.sp, color = Color.Gray) 
+                        },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(80.dp),
                         shape = RoundedCornerShape(8.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Color.Gray,
+                            focusedBorderColor = CustomRed,
                             unfocusedBorderColor = Color.Gray,
                             focusedContainerColor = Color.White,
-                            unfocusedContainerColor = Color.White
-                        )
+                            unfocusedContainerColor = Color.White,
+                            cursorColor = CustomRed
+                        ),
+                        maxLines = 3
                     )
                 }
             }
@@ -140,8 +151,8 @@ private fun PatientsDetailsCard(
                     Text(
                         text = "Vitals:",
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color(0xFFE53E3E),
+                        fontWeight = FontWeight.Bold,
+                        color = CustomRed,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
                     VitalsTable(
@@ -164,8 +175,8 @@ private fun PatientsDetailsCard(
                     Text(
                         text = "Image:",
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color(0xFFE53E3E),
+                        fontWeight = FontWeight.Bold,
+                        color = CustomRed,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
                     Row(
@@ -195,8 +206,8 @@ private fun DetailSection(title: String, content: String) {
         Text(
             text = title,
             fontSize = 14.sp,
-            fontWeight = FontWeight.Medium,
-            color = Color(0xFFE53E3E),
+            fontWeight = FontWeight.Bold,
+            color = CustomRed,
             modifier = Modifier.padding(bottom = 2.dp)
         )
         Text(
@@ -262,7 +273,7 @@ fun PatientsDetailsPopupPreview() {
     PatientsDetailsCard(
         symptoms = "Headache, cough",
         conditions = "Common cold",
-        icdCodes = "J00",
+        icdCodes = "J00.9 - Acute nasopharyngitis, unspecified",
         description = "Patient is feeling unwell since yesterday.",
         temperature = "30C",
         bloodSugar = "120",
