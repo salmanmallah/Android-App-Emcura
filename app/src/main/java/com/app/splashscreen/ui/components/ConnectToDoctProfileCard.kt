@@ -101,12 +101,12 @@ fun ConnectToDoctProfileCard(
                 Button(
                     onClick = { /* TODO: Messages */ },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFED202E),
+                        containerColor = Color(0xFFEB474B),
                         contentColor = Color.White
                     ),
                     shape = RoundedCornerShape(50),
                     modifier = Modifier
-                        .height(40.dp)
+                        .height(32.dp)
                         .weight(1f)
                 ) {
                     Row(
@@ -116,23 +116,23 @@ fun ConnectToDoctProfileCard(
                         Icon(
                             painter = painterResource(id = R.drawable.massege_icon),
                             contentDescription = "Messages",
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(16.dp)
                         )
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Text("Messages", fontSize = 15.sp)
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text("Messages", fontSize = 12.sp)
                     }
                 }
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(12.dp))
                 // Call Now Button
                 Button(
                     onClick = { /* TODO: Call Now */ },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFED202E),
+                        containerColor = Color(0xFFEB474B),
                         contentColor = Color.White
                     ),
                     shape = RoundedCornerShape(50),
                     modifier = Modifier
-                        .height(40.dp)
+                        .height(32.dp)
                         .weight(1f)
                 ) {
                     Row(
@@ -142,10 +142,10 @@ fun ConnectToDoctProfileCard(
                         Icon(
                             painter = painterResource(id = R.drawable.call_now_icon),
                             contentDescription = "Call Now",
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(16.dp)
                         )
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Text("Call Now", fontSize = 15.sp)
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text("Call Now", fontSize = 12.sp)
                     }
                 }
             }
