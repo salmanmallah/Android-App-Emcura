@@ -19,6 +19,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.animation.core.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.splashscreen.R
@@ -360,11 +369,19 @@ private fun ExpandableDropdownItem(
     items: List<String>
 ) {
     Surface(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            ),
         color = Color.White,
         shape = RoundedCornerShape(8.dp)
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
+            // Header row (clickable)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -379,35 +396,80 @@ private fun ExpandableDropdownItem(
                     fontWeight = FontWeight.Medium,
                     color = Color.Black
                 )
+                
+                // Animated arrow rotation
+                val rotationAngle: Float by animateFloatAsState(
+                    targetValue = if (expanded) 180f else 0f,
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessMedium
+                    ),
+                    label = "arrow_rotation"
+                )
+                
                 Icon(
-                    imageVector = if (expanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                    imageVector = Icons.Default.KeyboardArrowDown,
                     contentDescription = if (expanded) "Collapse" else "Expand",
                     tint = Color(0xFFE53E3E),
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier
+                        .size(24.dp)
+                        .graphicsLayer { 
+                            rotationZ = rotationAngle 
+                        }
                 )
             }
-            if (expanded) {
+            
+            // Expandable content with smooth animation
+            AnimatedVisibility(
+                visible = expanded,
+                enter = expandVertically(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                ) + slideInVertically(
+                    initialOffsetY = { -it / 2 },
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                ),
+                exit = shrinkVertically(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                ) + slideOutVertically(
+                    targetOffsetY = { -it / 2 },
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                )
+            ) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(Color(0xFFF5F5F5))
                         .padding(horizontal = 16.dp, vertical = 8.dp),
-                    verticalArrangement = Arrangement.spacedBy(1.dp)
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     items.forEach { item ->
                         Surface(
                             modifier = Modifier.fillMaxWidth(),
                             color = Color.White,
-                            shape = RoundedCornerShape(4.dp)
+                            shape = RoundedCornerShape(6.dp),
+                            shadowElevation = 2.dp
                         ) {
                             Text(
                                 text = item,
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(12.dp),
+                                    .clickable { /* Handle item click */ }
+                                    .padding(14.dp),
                                 fontSize = 13.sp,
                                 color = Color.Black,
-                                lineHeight = 16.sp
+                                lineHeight = 18.sp
                             )
                         }
                     }
