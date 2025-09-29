@@ -83,7 +83,16 @@ fun ServicesBillingCodesScreen(navController: NavController? = null) {
                 )
             }
 
-            // Main content with flexible layout
+            // White section for billing codes (fixed white background)
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                color = Color.White,
+                shape = RoundedCornerShape(bottomStart = 0.dp, bottomEnd = 0.dp)
+            ) {
+                BillingCodesList()
+            }
+
+            // Red section with curved top edges for dropdowns only
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
@@ -94,22 +103,6 @@ fun ServicesBillingCodesScreen(navController: NavController? = null) {
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                // White section for billing codes (flexible height)
-                item {
-                    Surface(
-                        modifier = Modifier.fillMaxWidth(),
-                        color = Color.White,
-                        shape = RoundedCornerShape(12.dp)
-                    ) {
-                        BillingCodesList()
-                    }
-                }
-
-                // Spacing between sections
-                item {
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
-
                 // Expandable dropdown items
                 item {
                     ExpandableDropdownItem(
@@ -203,22 +196,24 @@ private fun BillingCodesList() {
         "99243 Office consultation for a new or established patient"
     )
 
+    var selectedIndex by remember { mutableStateOf(-1) }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        billingCodes.forEach { code ->
+        billingCodes.forEachIndexed { index, code ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.Top
             ) {
                 RadioButton(
-                    selected = false,
-                    onClick = { },
+                    selected = selectedIndex == index,
+                    onClick = { selectedIndex = index },
                     colors = RadioButtonDefaults.colors(
-                        selectedColor = Color.Red,
+                        selectedColor = Color(0xFFE53E3E),
                         unselectedColor = Color.Gray
                     )
                 )
