@@ -101,9 +101,7 @@ fun PatientDetailsScreen(navController: NavController) {
                             when (patientIcons[index].second) {
                                 "Send Message" -> showSendMessagePopup = true
                                 "Video Checkup" -> navController.navigate("videocall")
-                                "Call History" -> {
-                                    // Navigate to call history or show call history
-                                }
+                                "Call History" -> navController.navigate("callhistory")
                                 "AI Suggested Diagnosis" -> navController.navigate("aisuggesteddiagnosis")
                                 "Med History" -> {
                                     // Navigate to medical history
