@@ -46,16 +46,23 @@ fun VideoCallScreen(
             .background(Color(0xFFF8F8F8))
     ) {
         // TopBar (navigation)
-        DashboardTopBar(
-            title = "00:58",
-            backIconRes = R.drawable.ic_dashboard_arrow_backward,
-            endIconRes = R.drawable.ic_dcd_hospital,
-            showBackIcon = true,
-            showEndIcon = true,
-            onBackClick = { navController?.popBackStack() },
-            onEndIconClick = { navController?.navigate("dashboard") },
-            modifier = Modifier.padding(bottom = 0.dp)
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.White)
+                .padding(vertical = 8.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            DashboardTopBar(
+                title = "00:58",
+                backIconRes = R.drawable.ic_dashboard_arrow_backward,
+                endIconRes = R.drawable.ic_dcd_hospital,
+                showBackIcon = true,
+                showEndIcon = true,
+                onBackClick = { navController?.popBackStack() },
+                onEndIconClick = { navController?.navigate("dashboard") }
+            )
+        }
         // White area below top bar (matches screenshot)
         Spacer(
             modifier = Modifier

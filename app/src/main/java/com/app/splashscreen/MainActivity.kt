@@ -87,7 +87,7 @@ fun MyApp() {
         composable("encounternotes") { com.app.splashscreen.ui.encounternotes.EncounterNotesScreen(navController) }
         composable("waitingroom") { com.app.splashscreen.ui.waitingroom.WaitingRoomScreen(navController) }
         composable("connecttodoctor") { com.app.splashscreen.ui.connecttodoctor.ConnectToDoctorScreen(navController) }
-        composable("videocall") { com.app.splashscreen.ui.videocall.VideoCallScreen() }
+        composable("videocall") { com.app.splashscreen.ui.videocall.VideoCallScreen(navController) }
     }
 }
 
