@@ -25,7 +25,6 @@ import com.app.splashscreen.R
 @Composable
 fun PermissionRequestScreen(navController: NavController? = null) {
     val context = LocalContext.current
-//    com.app.splashscreen.ui.common.GradientBackground {
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.TopCenter
@@ -109,7 +108,6 @@ fun PermissionRequestScreen(navController: NavController? = null) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // 🔹 Exit Button with shadow
             Surface(
                 shadowElevation = 8.dp,
                 shape = RoundedCornerShape(12.dp),
@@ -118,7 +116,6 @@ fun PermissionRequestScreen(navController: NavController? = null) {
                 Button(
                     onClick = {
                         if (navController != null && navController.popBackStack().not()) {
-                            // If can't go back, finish the activity
                             (context as? android.app.Activity)?.finish()
                         }
                     },

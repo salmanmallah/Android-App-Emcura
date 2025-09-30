@@ -35,7 +35,6 @@ import com.google.android.gms.maps.GoogleMap
 
 @Composable
 fun PatientDetailsScreen(navController: NavController) {
-    // State for showing the popup
     var showSymptomsPopup by remember { mutableStateOf(false) }
     var showSendMessagePopup by remember { mutableStateOf(false) }
     
@@ -112,35 +111,15 @@ fun PatientDetailsScreen(navController: NavController) {
                             }
                         }
                     )
-//
-//                    // Live Map Card
-//                    val cameraPositionState = rememberCameraPositionState {
-//                        position = com.google.android.gms.maps.model.CameraPosition.fromLatLngZoom(LatLng(24.8607, 67.0011), 12f)
-//                    }
-//                    Card(
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .padding(top = 24.dp)
-//                            .aspectRatio(1.3f)
-//                            .clip(RoundedCornerShape(24.dp)),
-//                        elevation = CardDefaults.cardElevation(8.dp)
-//                    ) {
-//                        GoogleMap(
-//                            modifier = Modifier.fillMaxSize(),
-//                            cameraPositionState = cameraPositionState
-//                        )
-//                    }
 
 
                     Spacer(modifier = Modifier.height(200.dp))
                 }
             }
 
-            // google map box below
 
         } // end of column
         
-        // Show popup when state is true
         if (showSymptomsPopup) {
             PatientsDetailsPopup(
                 onDismiss = { showSymptomsPopup = false },
@@ -160,14 +139,12 @@ fun PatientDetailsScreen(navController: NavController) {
             )
         }
         
-        // Show send message popup when state is true
         if (showSendMessagePopup) {
             SendMessagePopup(
                 name = "Elizabeth weisberg",
                 online = true,
                 onDismiss = { showSendMessagePopup = false },
                 onSend = { message ->
-                    // Handle send message logic here
                     println("Message sent: $message")
                     showSendMessagePopup = false
                 }

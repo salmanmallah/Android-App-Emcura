@@ -36,13 +36,11 @@ fun RefillRequestScreen(navController: NavController? = null) {
     var expanded by remember { mutableStateOf(false) }
     var selectedOption by remember { mutableStateOf("Other") }
 
-    // refile details column
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFF5F5F5))
     ) {
-        // Top Bar (DashboardTopBar)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -64,7 +62,6 @@ fun RefillRequestScreen(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Waiting room docs list
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -73,7 +70,6 @@ fun RefillRequestScreen(navController: NavController? = null) {
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Profile Card
             RefillRequestDetailsCard(navController = navController)
 
             Spacer(modifier = Modifier.height(16.dp))

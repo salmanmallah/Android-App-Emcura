@@ -41,7 +41,6 @@ fun ConnectToDoctorScreen(navController: NavController? = null) {
             .fillMaxSize()
             .background(Color(0xFFF5F5F5))
     ) {
-        // Top Bar (DashboardTopBar)
         Box(
             modifier = Modifier
                 .fillMaxWidth()

@@ -33,7 +33,7 @@ fun SendMessagePopup(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0x80000000)) // semi-transparent overlay
+            .background(Color(0x80000000)) 
             .wrapContentSize(Alignment.Center)
     ) {
         Box(

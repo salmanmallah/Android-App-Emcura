@@ -40,7 +40,6 @@ fun WaitingRoomProfileCard(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            // Profile Circle
             Box(
                 modifier = Modifier
                     .size(60.dp)

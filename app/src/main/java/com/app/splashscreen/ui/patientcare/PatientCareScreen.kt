@@ -33,7 +33,6 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
             .fillMaxSize()
             .background(Color(0xFFF8F8F8))
     ) {
-        // 🔹 TopBar Section
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -54,7 +53,6 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Search Section
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -71,7 +69,6 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Static Buttons Row (No Tabs)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -125,7 +122,6 @@ fun PatientCare(navController: NavController? = null, enableScroll: Boolean = tr
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // 🔹 Doctors List Section (Always visible now)
         Box(
             modifier = Modifier
                 .fillMaxWidth()

@@ -27,8 +27,7 @@ import com.app.splashscreen.ui.emr_patients.EmrPatients
 import com.app.splashscreen.ui.components.PrescriptionProfileCard
 
 
-// Profile data for OnlineCare Patients
-// (Keep as is for now, can be moved to a shared model if needed)
+
 data class ProfileData(
     val name: String,
     val email: String,
@@ -41,10 +40,9 @@ fun PrescriptionScreen(
     navController: NavController? = null,
     enableScroll: Boolean = true
 ) {
-    var selectedTab by remember { mutableStateOf(0) } // 0 = OnlineCare, 1 = EMR
+    var selectedTab by remember { mutableStateOf(0) } 
     var searchQuery by remember { mutableStateOf("") }
 
-    // Dummy data for OnlineCare patients
     val onlineCarePatients = remember {
         listOf(
             ProfileData("John Doe", "john@email.com", "1234567890", com.app.splashscreen.R.drawable.ic_dashboard_profile),
@@ -65,7 +63,6 @@ fun PrescriptionScreen(
             .fillMaxSize()
             .background(Color(0xFFF8F8F8))
     ) {
-        // 🔹 TopBar
         DashboardTopBar(
             title = "Prescription to Patients",
             backIconRes = R.drawable.ic_dashboard_arrow_backward,
@@ -77,7 +74,6 @@ fun PrescriptionScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Tabs (OnlineCare / EMR)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -135,7 +131,6 @@ fun PrescriptionScreen(
 
 
 
-        // 🔹 Content Section
         Box(
             modifier = Modifier
                 .fillMaxWidth()

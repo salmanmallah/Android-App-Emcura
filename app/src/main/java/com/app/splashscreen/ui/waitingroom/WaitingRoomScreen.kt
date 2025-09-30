@@ -1,31 +1,17 @@
 package com.app.splashscreen.ui.waitingroom
 
-
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
-import com.app.splashscreen.ui.components.DocToCpProfileCard
 import com.app.splashscreen.ui.components.WaitingRoomProfileCard
 
 @Composable
@@ -42,7 +28,6 @@ fun WaitingRoomScreen(navController: NavController? = null) {
             .fillMaxSize()
             .background(Color(0xFFF5F5F5))
     ) {
-        // Top Bar (DashboardTopBar)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -63,7 +48,6 @@ fun WaitingRoomScreen(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Waiting room docs list
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
@@ -71,7 +55,6 @@ fun WaitingRoomScreen(navController: NavController? = null) {
                 .weight(1f),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // ab yahan par waiting room profile card add karna
 
             item {
                 WaitingRoomProfileCard(
@@ -80,17 +63,9 @@ fun WaitingRoomScreen(navController: NavController? = null) {
                     onAcceptClick = { navController?.navigate("connecttodoctor") }
                 )
             }
-
-           
-
-
         }
-
-
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable

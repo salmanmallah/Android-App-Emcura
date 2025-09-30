@@ -24,7 +24,6 @@ import com.app.splashscreen.ui.components.DoctorSearchBar
 import com.app.splashscreen.ui.components.OlcOfficeProfileCard
 import com.app.splashscreen.ui.emr_patients.EmrPatients
 
-// Profile data for OnlineCare Patients
 data class ProfileData(
     val name: String,
     val email: String,
@@ -61,7 +60,6 @@ fun OnlineCarePatientsScreen(
             .fillMaxSize()
             .background(Color(0xFFF8F8F8))
     ) {
-        // 🔹 TopBar
         DashboardTopBar(
             title = "Search Patients",
             backIconRes = R.drawable.ic_dashboard_arrow_backward,
@@ -74,7 +72,6 @@ fun OnlineCarePatientsScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Tabs (OnlineCare / EMR)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -130,7 +127,6 @@ fun OnlineCarePatientsScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 SearchBar (only for OnlineCare Patients)
         if (selectedTab == 0) {
             Box(
                 modifier = Modifier
@@ -149,7 +145,6 @@ fun OnlineCarePatientsScreen(
             Spacer(modifier = Modifier.height(12.dp))
         }
 
-        // 🔹 Content Section
         Box(
             modifier = Modifier
                 .fillMaxWidth()

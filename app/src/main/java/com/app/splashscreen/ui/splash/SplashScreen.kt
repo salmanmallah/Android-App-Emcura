@@ -20,8 +20,7 @@ import kotlinx.coroutines.delay
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.navigation.compose.rememberNavController
-import androidx.compose.ui.platform.LocalContext // Might be needed by rememberNavController indirectly
-
+import androidx.compose.ui.platform.LocalContext 
 
 @Composable
 fun SplashScreen(navController: NavHostController) {

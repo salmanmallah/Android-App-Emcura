@@ -42,19 +42,18 @@ fun PasswordOtpScreen(navController: NavController) {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color.White,           // top 70% pure white
-                        Color(0xFFFFE6E6),    // start pink
-                        Color(0xFFFAD2D2)     // darker pink
+                        Color.White,           
+                        Color(0xFFFFE6E6),    
+                        Color(0xFFFAD2D2)     
                     ),
-                    startY = screenHeightPx * 0.5f,   // 70% height se gradient start
-                    endY = screenHeightPx            // bottom tak
+                    startY = screenHeightPx * 0.5f,  
+                    endY = screenHeightPx            
                 )
             )
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-//                .align(Alignment.TopCenter)
                 .padding(top = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -153,7 +152,6 @@ fun OtpTextField(value: String, onValueChange: (String) -> Unit) {
             .height(46.dp),
         textStyle = LocalTextStyle.current.copy(
             fontSize = 12.sp,
-//            fontWeight = FontWeight.Bold,
             color = Color.Black,
             textAlign = androidx.compose.ui.text.style.TextAlign.Center,
             fontFamily = androidx.compose.ui.text.font.FontFamily.Default

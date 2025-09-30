@@ -24,8 +24,6 @@ import com.app.splashscreen.ui.components.DoctorSearchBar
 import com.app.splashscreen.ui.components.OlcOfficeProfileCard
 import com.app.splashscreen.ui.emr_patients.EmrPatients
 
-// Profile data for Video Call Patients
-// (reuse ProfileData if needed)
 data class VideoCallProfileData(
     val name: String,
     val email: String,
@@ -63,19 +61,16 @@ fun VideoCallScreen(
                 onEndIconClick = { navController?.navigate("dashboard") }
             )
         }
-        // White area below top bar (matches screenshot)
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(8.dp)
                 .background(Color.White)
         )
-        // The rest of the screen: background image and overlays
         Box(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            // Background image
             androidx.compose.foundation.Image(
                 painter = painterResource(id = R.drawable.video_call_image),
                 contentDescription = null,
@@ -83,7 +78,6 @@ fun VideoCallScreen(
                 contentScale = androidx.compose.ui.layout.ContentScale.Crop
             )
 
-            // Floating self video preview (top right, draggable)
             Box(
                 modifier = Modifier
                     .fillMaxSize(),
@@ -94,7 +88,6 @@ fun VideoCallScreen(
                 )
             }
 
-            // Bottom navbar overlay
             Box(
                 modifier = Modifier
                     .fillMaxSize(),

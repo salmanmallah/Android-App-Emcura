@@ -24,7 +24,6 @@ import com.app.splashscreen.ui.components.DoctorSearchBar
 
 @Composable
 fun SelectSymptomsScreen(navController: NavController? = null) {
-    // --- Dynamic symptoms list ---
     val allSymptoms = listOf(
         "Common Cold", "Allergies", "Constipation", "Cough",
         "Ear Problems", "UTI(Females, 18+)", "Fever", "Flu"

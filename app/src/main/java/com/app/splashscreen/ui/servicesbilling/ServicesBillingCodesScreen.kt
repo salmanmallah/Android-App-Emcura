@@ -35,7 +35,6 @@ import com.app.splashscreen.ui.components.DashboardTopBar
 
 @Composable
 fun ServicesBillingCodesScreen(navController: NavController? = null) {
-// States for dropdowns
     var myFavoritesExpanded by remember { mutableStateOf(false) }
     var mostCommonExpanded by remember { mutableStateOf(false) }
     var psychExpanded by remember { mutableStateOf(false) }
@@ -46,7 +45,6 @@ fun ServicesBillingCodesScreen(navController: NavController? = null) {
     var auditingExpanded by remember { mutableStateOf(false) }
 
 
-// State for section ordering - true means dropdown is on top
     var dropdownOnTop by remember { mutableStateOf(false) }
 
     Box(
@@ -55,7 +53,6 @@ fun ServicesBillingCodesScreen(navController: NavController? = null) {
             .background(Color(0xFFF8F8F8))
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-            // Top Bar
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -74,7 +71,6 @@ fun ServicesBillingCodesScreen(navController: NavController? = null) {
                 )
             }
 
-            // Timer section with red background
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -97,7 +93,6 @@ fun ServicesBillingCodesScreen(navController: NavController? = null) {
                 )
             }
 
-            // Dynamic content based on section order
             if (dropdownOnTop) {
                 DraggableDropdownSection(
                     myFavoritesExpanded = myFavoritesExpanded,
@@ -397,7 +392,6 @@ private fun ExpandableDropdownItem(
                     color = Color.Black
                 )
                 
-                // Animated arrow rotation
                 val rotationAngle: Float by animateFloatAsState(
                     targetValue = if (expanded) 180f else 0f,
                     animationSpec = spring(
