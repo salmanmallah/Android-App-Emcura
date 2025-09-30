@@ -1,0 +1,114 @@
+package com.app.emcura.ui.callhistory
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontWeight
+import com.app.emcura.R
+import com.app.emcura.ui.components.DashboardTopBar
+import com.app.emcura.ui.components.DoctorSearchBar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import com.app.emcura.ui.components.CallHistoryProfileCard
+import com.app.emcura.ui.components.PatientCareProfileCard
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.navigation.NavController
+@Composable
+fun CallHistoryScreen(navController: NavController? = null, enableScroll: Boolean = true) {
+    var searchQuery by remember { mutableStateOf("") }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        // TopBar Section
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.White)
+                .padding(vertical = 8.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            DashboardTopBar(
+                title = "Call History",
+                backIconRes = R.drawable.ic_dashboard_arrow_backward,
+                endIconRes = R.drawable.ic_dcd_hospital,
+                showBackIcon = true,
+                showEndIcon = true,
+                onBackClick = { navController?.popBackStack() },
+                onEndIconClick = { navController?.navigate("dashboard") }
+            )
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        // Search Section
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .padding(8.dp)
+        ) {
+            DoctorSearchBar(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+        Spacer(modifier = Modifier.height(12.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(horizontal = 8.dp)
+                .padding(top = 8.dp)
+        ) {
+            val callHistory = listOf(
+                Triple("Aslam Chandio", R.drawable.ic_dashboard_profile, "12 min ago"),
+                Triple("Elizabeth Weisberg", R.drawable.ic_dashboard_profile, "5 min ago"),
+                Triple("Dr John Wick Memon", R.drawable.dr_john_wick, "2 min ago"),
+                Triple("Emma Stone", R.drawable.ic_dashboard_profile, "1 hour ago")
+            )
+            val filteredCalls = callHistory.filter { it.first.contains(searchQuery, ignoreCase = true) }
+            if (filteredCalls.isEmpty()) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text("No results found", color = Color.Gray, fontSize = 16.sp)
+                }
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    items(filteredCalls) { (name, profileImageRes, timeAgo) ->
+                        CallHistoryProfileCard(
+                            name = name,
+                            profileImageRes = profileImageRes,
+                            timeAgo = timeAgo,
+                            onArrowClick = {
+                                navController?.navigate("callhistoryoption")
+                            }
+                        )
+                    }
+                    item {
+                        Spacer(modifier = Modifier.height(600.dp)) // Extra space at the bottom for scroll
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CallHistoryScreenPreview() {
+    CallHistoryScreen(enableScroll = false)
+}

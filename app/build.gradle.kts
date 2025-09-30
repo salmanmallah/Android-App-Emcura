@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.app.splashscreen"
+    namespace = "com.app.emcura"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.app.splashscreen"
+        applicationId = "com.app.emcura"
         minSdk = 21
         targetSdk = 36
         versionCode = 1

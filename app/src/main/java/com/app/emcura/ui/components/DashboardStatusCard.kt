@@ -1,0 +1,114 @@
+package com.app.emcura.ui.components
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.app.emcura.R
+@Composable
+fun DashboardStatusCard(
+    name: String = "John Paul",
+    location: String = "Michigon, United States"
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 12.dp, start = 12.dp, end = 12.dp)
+    ) {
+        // Card background
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(90.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .background(Color.White.copy(alpha = 0.7f))
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(72.dp)
+                .padding(horizontal = 10.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(60.dp)
+                    .clip(CircleShape)
+                    .background(Color.White)
+                    .border(1.dp, Color(0xFFEB474B), CircleShape),
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_dashboard_profile),
+                    contentDescription = "Profile",
+                    modifier = Modifier.size(52.dp)
+                )
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Column(
+                modifier = Modifier.weight(1f)
+                    .offset(x=0.dp, y=-2.dp)
+            ) {
+                Text(
+                    text = "Hello, $name",
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 15.sp
+                )
+                Spacer(modifier = Modifier.height(1.dp))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_dashboard_location), // Replace with location pin icon
+                        contentDescription = "Location Pin",
+                        modifier = Modifier.size(12.dp)
+                            .offset(x=-3.dp , y = 0.dp)
+                    )
+                    Spacer(modifier = Modifier.width(0.dp))
+                    Text(
+                        text = location,
+                        color = Color.White,
+                        fontSize = 12.sp
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            // Edit icon
+            Box(
+                modifier = Modifier
+                    .offset(x = 0.dp, y=-16.dp)
+                    .size(22.dp)
+                    .clip(CircleShape)
+                    .background(Color.White)
+                ,
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_dashboard_edit),
+                    contentDescription = "Edit",
+                    modifier = Modifier.size(12.dp)
+                )
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun DashboardStatusCardPreview() {
+    DashboardStatusCard()
+}
