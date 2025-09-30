@@ -106,7 +106,7 @@ fun DashboardScreen(navController: NavController) {
                     .weight(1f)
                     .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
                     .background(Color.White)
-                    .verticalScroll(rememberScrollState()) // scroll added to the container
+                    .verticalScroll(rememberScrollState())
             ) {
                 Column(
                     modifier = Modifier
@@ -206,9 +206,9 @@ fun DashboardScreen(navController: NavController) {
                 centerImageResId = R.drawable.ic_dashboard_bell_patientcare,
                 onIconClick = { index ->
                     when (index) {
-                        0 -> navController.navigate("start") // Shutdown/Power icon → Login screen
+                        0 -> navController.navigate("start")
                         1 -> navController.navigate("waitingroom")
-                        2 -> navController.navigate("callhistory") // Support icon (man with mic) → Call History
+                        2 -> navController.navigate("callhistory")
                         3 -> navController.navigate("messages")
                         4 -> navController.navigate("patientcare")
                     }

@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,8 +14,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import com.app.splashscreen.R
-import com.app.splashscreen.ui.components.CallHistoryOptionBottomButtons
-import com.app.splashscreen.ui.components.CallHistoryOptionNotes
+
 import com.app.splashscreen.ui.components.CallHistoryOptionsProfileCard
 import com.app.splashscreen.ui.components.DashboardTopBar
 import androidx.navigation.NavController
@@ -24,14 +22,6 @@ import androidx.navigation.compose.rememberNavController
 import com.app.splashscreen.ui.components.ReviewCurrentSymptomsButton
 import com.app.splashscreen.ui.components.PatientsDetailsPopup
 import com.app.splashscreen.ui.components.SendMessagePopup
-import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.rememberCameraPositionState
-import com.google.android.gms.maps.model.LatLng
-import androidx.compose.material3.Card
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.material3.CardDefaults
-import com.google.android.gms.maps.GoogleMap
 
 @Composable
 fun PatientDetailsScreen(navController: NavController) {
@@ -78,13 +68,11 @@ fun PatientDetailsScreen(navController: NavController) {
                     Spacer(modifier = Modifier.height(10.dp))
 
 
-                    // Review Current Symptoms Button
                     ReviewCurrentSymptomsButton(
                         modifier = Modifier.padding(bottom = 18.dp),
                         onClick = { showSymptomsPopup = true }
                     )
 
-                    // Dashboard icon grid
                     val patientIcons = listOf(
                         R.drawable.pd_message to "Send Message",
                         R.drawable.pd_video_checkup to "Video Checkup",
@@ -103,10 +91,8 @@ fun PatientDetailsScreen(navController: NavController) {
                                 "Call History" -> navController.navigate("callhistory")
                                 "AI Suggested Diagnosis" -> navController.navigate("aisuggesteddiagnosis")
                                 "Med History" -> {
-                                    // Navigate to medical history
                                 }
                                 "Remove Patient" -> {
-                                    // Show remove patient confirmation
                                 }
                             }
                         }
@@ -118,7 +104,7 @@ fun PatientDetailsScreen(navController: NavController) {
             }
 
 
-        } // end of column
+        }
         
         if (showSymptomsPopup) {
             PatientsDetailsPopup(

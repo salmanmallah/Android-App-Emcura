@@ -54,12 +54,12 @@ fun StartScreen(onStartClick: () -> Unit) {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color.White,           // top 70% pure white
-                        Color(0xFFFFE6E6),    // start pink
-                        Color(0xFFFAD2D2)     // darker pink
+                        Color.White,
+                        Color(0xFFFFE6E6),
+                        Color(0xFFFAD2D2)
                     ),
-                    startY = screenHeightPx * 0.5f,   // 70% height se gradient start
-                    endY = screenHeightPx            // bottom tak
+                    startY = screenHeightPx * 0.5f,
+                    endY = screenHeightPx
                 )
             )
     ) {
@@ -117,7 +117,6 @@ fun StartScreen(onStartClick: () -> Unit) {
                 }
             }
 
-            // Dots
             Row(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth()
@@ -146,7 +145,6 @@ fun StartScreen(onStartClick: () -> Unit) {
 
             Spacer(modifier = Modifier.height(80.dp))
 
-            // Buttons
             if (currentStep < steps - 1) {
                 Button(
                     onClick = {

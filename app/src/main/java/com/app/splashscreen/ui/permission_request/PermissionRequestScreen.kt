@@ -1,6 +1,6 @@
 package com.app.splashscreen.ui.permission_request
 
-import androidx.compose.foundation.background
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,10 +10,7 @@ import androidx.navigation.NavController
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -37,7 +34,6 @@ fun PermissionRequestScreen(navController: NavController? = null) {
         ) {
             Spacer(modifier = Modifier.height(100.dp))
 
-            // 🔹 Logo
             Image(
                 painter = painterResource(id = R.drawable.red_logo),
                 contentDescription = "Emcura Logo",
@@ -48,7 +44,6 @@ fun PermissionRequestScreen(navController: NavController? = null) {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // 🔹 Title
             Text(
                 text = "PERMISSIONS REQUIRED",
                 color = Color.Black,
@@ -66,7 +61,6 @@ fun PermissionRequestScreen(navController: NavController? = null) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // 🔹 Description
             Text(
                 text = "Please allow the required permissions. Please note that certain app features will not work until you allow the required permissions.",
                 color = Color.Black,
@@ -79,7 +73,6 @@ fun PermissionRequestScreen(navController: NavController? = null) {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // 🔹 Review & Allow Button with shadow
             Surface(
                 shadowElevation = 8.dp,
                 shape = RoundedCornerShape(12.dp),

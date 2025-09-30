@@ -31,12 +31,12 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color.White,           // top 70% pure white
-                        Color(0xFFFFE6E6),    // start pink
-                        Color(0xFFFAD2D2)     // darker pink
+                        Color.White,
+                        Color(0xFFFFE6E6),
+                        Color(0xFFFAD2D2)
                     ),
-                    startY = screenHeightPx * 0.5f,   // 70% height se gradient start
-                    endY = screenHeightPx            // bottom tak
+                    startY = screenHeightPx * 0.5f,
+                    endY = screenHeightPx
                 )
             )
     ) {
@@ -48,7 +48,6 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
         ) {
             Spacer(modifier = Modifier.height(100.dp))
 
-            // 🔹 Logo
             Image(
                 painter = painterResource(id = R.drawable.red_logo),
                 contentDescription = "Emcura Logo",
@@ -56,13 +55,7 @@ fun LoginScreen(navController: NavController = rememberNavController()) {
                     .width(280.dp)
                     .height(64.dp)
             )
-//            Spacer(modifier = Modifier.height(8.dp))
-//            Text(
-//                text = "emcura medical",
-//                color = Color(0xFFC2185B),
-//                fontSize = 28.sp,
-//                fontWeight = FontWeight.Bold
-//            )
+
             Spacer(modifier = Modifier.height(24.dp))
             Row(
                 verticalAlignment = Alignment.CenterVertically,

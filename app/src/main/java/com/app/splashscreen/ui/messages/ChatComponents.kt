@@ -143,10 +143,8 @@ fun InputBar(
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Clip icon on the left
         IconButton(
             onClick = { 
-                // Handle attachment/clip click
             }
         ) {
             Image(
@@ -158,7 +156,6 @@ fun InputBar(
         
         Spacer(modifier = Modifier.width(8.dp))
         
-        // Text input field
         Surface(
             shape = RoundedCornerShape(16.dp),
             color = Color.White,
@@ -185,7 +182,6 @@ fun InputBar(
         
         Spacer(modifier = Modifier.width(8.dp))
         
-        // Send icon on the right
         IconButton(onClick = onSendClick) {
             Image(
                 painter = painterResource(id = R.drawable.message_send_icon),

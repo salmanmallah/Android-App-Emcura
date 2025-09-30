@@ -184,7 +184,6 @@ fun OnlineCarePatientsScreen(
                         .fillMaxWidth()
                         .verticalScroll(rememberScrollState())
                 ) {
-//                  EMR PATIENTS.
                     Spacer(modifier = Modifier.height(16.dp))
                     EmrPatients()
                 }

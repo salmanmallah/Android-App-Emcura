@@ -21,9 +21,6 @@ import androidx.navigation.NavController
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.CancelPrescriptionCard
 import com.app.splashscreen.ui.components.DashboardTopBar
-import com.app.splashscreen.ui.components.DoctorSearchBar
-import com.app.splashscreen.ui.components.OlcOfficeProfileCard
-import com.app.splashscreen.ui.emr_patients.EmrPatients
 import com.app.splashscreen.ui.components.PrescriptionProfileCard
 
 

@@ -1,6 +1,5 @@
 package com.app.splashscreen.ui.instantconnect
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -10,7 +9,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,7 +18,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,7 +31,6 @@ import com.app.splashscreen.ui.components.DashboardTopBar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InstantConnectScreen(navController: NavController) {
-    // painters (callable from a Composable)
     val calendarIcon: Painter = painterResource(id = R.drawable.callender)
     val maleIcon: Painter = painterResource(id = R.drawable.male_gender)
     val femaleIcon: Painter = painterResource(id = R.drawable.femenine_gender)
@@ -71,7 +67,6 @@ fun InstantConnectScreen(navController: NavController) {
             .verticalScroll(scrollState)
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
-        // Top bar
         DashboardTopBar(
             title = "Instant Connect",
             backIconRes = R.drawable.ic_dashboard_arrow_backward,
@@ -83,7 +78,6 @@ fun InstantConnectScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(12.dp))
 
-//        // Form fields
         InputField(label = "First Name", value = firstName, onValueChange = { firstName = it })
         Spacer(modifier = Modifier.height(12.dp))
         InputField(label = "Last Name", value = lastName, onValueChange = { lastName = it })
@@ -174,7 +168,6 @@ fun InstantConnectScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(12.dp))
 
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
-            // City with dropdown
             Box(modifier = Modifier.weight(1f)) {
                 InputField(
                     label = "City",
@@ -202,7 +195,6 @@ fun InstantConnectScreen(navController: NavController) {
                 }
             }
 
-            // State with dropdown
             Box(modifier = Modifier.weight(1f)) {
                 InputField(
                     label = "State",
@@ -237,11 +229,10 @@ fun InstantConnectScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // buttons
         Box(
             modifier = Modifier
-                .fillMaxSize(),   // pura screen le
-            contentAlignment = Alignment.Center // center me align kare
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -289,7 +280,6 @@ fun InstantConnectScreen(navController: NavController) {
     }
 }
 
-/* ---------- Helpers / sub-composables ---------- */
 
 @Composable
 fun GenderSelector(
@@ -366,7 +356,6 @@ fun GenderCard(
 
 
 
-// Removed stub DatePickerDialog, now using Material3 DatePickerDialog above
 
 @Composable
 fun InputField(
@@ -386,7 +375,6 @@ fun InputField(
                 modifier = Modifier
                     .fillMaxWidth()
                     .shadow(6.dp, RoundedCornerShape(24.dp))
-                    // .border(1.5.dp, RoundedCornerShape(24.dp))
                     .background(Color.White, RoundedCornerShape(24.dp))
             ) {
                 TextField(
@@ -412,14 +400,12 @@ fun InputField(
     }
 }
 
-/* ---------- Preview ---------- */
 @Preview(
     showBackground = true,
-    showSystemUi = true, // ✅ system UI ke sath full height preview
+    showSystemUi = true,
     device = "spec:parent=pixel_5,orientation=portrait"
 )
 @Composable
 fun InstantConnectScreenPreview() {
-    // preview uses a fake nav controller
     InstantConnectScreen(navController = rememberNavController())
 }

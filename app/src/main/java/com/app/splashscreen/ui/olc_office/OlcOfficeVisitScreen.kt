@@ -33,7 +33,6 @@ fun OlcOfficeVisitScreen(navController: NavController? = null) {
             .fillMaxSize()
             .background(Color(0xFFF5F5F5))
     ) {
-        // Top Bar (DashboardTopBar)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -54,7 +53,6 @@ fun OlcOfficeVisitScreen(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Waiting room docs list
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -62,18 +60,16 @@ fun OlcOfficeVisitScreen(navController: NavController? = null) {
                 .weight(1f),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Profile Card
             OlcOfficeProfileCard(
                 name = "Susan Edward",
                 email = "email2jamal3@yahoo.com",
                 mobile = "5555655555",
-                imageRes = R.drawable.ic_dashboard_profile // Replace with actual image resource if needed
+                imageRes = R.drawable.ic_dashboard_profile
             )
 
             Spacer(modifier = Modifier.height(32.dp))
 
 
-            // Clinic Patient Note Options
             OlcOfficeVisitNote()
 
             Spacer(modifier = Modifier.height(100.dp))

@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -76,7 +75,6 @@ fun VideoCallNavBar(
             drawPath(path, color = navBarColor, style = Fill)
         }
 
-        // Left side buttons
         Row(
             modifier = Modifier
                 .align(Alignment.CenterStart)
@@ -108,7 +106,6 @@ fun VideoCallNavBar(
             )
         }
 
-        // Right side buttons
         Row(
             modifier = Modifier
                 .align(Alignment.CenterEnd)
@@ -134,7 +131,6 @@ fun VideoCallNavBar(
             )
         }
 
-        // Hangup button (center, above curve) with no background behind
         Box(
             modifier = Modifier
                 .align(Alignment.TopCenter)

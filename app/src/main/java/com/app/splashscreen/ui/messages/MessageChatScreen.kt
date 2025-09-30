@@ -3,7 +3,6 @@ package com.app.splashscreen.ui.messages
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -12,12 +11,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.app.splashscreen.R
 import com.app.splashscreen.ui.components.DashboardTopBar
-import com.app.splashscreen.ui.components.MessageCard
-import com.app.splashscreen.ui.components.MessagesNavbar
-import com.app.splashscreen.ui.messages.ProfileHeader
-import com.app.splashscreen.ui.messages.ChatBubble
-import com.app.splashscreen.ui.messages.ImageBubble
-import com.app.splashscreen.ui.messages.InputBar
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
@@ -78,7 +71,6 @@ fun MessageChatScreen(navController: NavController? = null, onBackClick: (() -> 
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Profile header
             ProfileHeader(
                 name = "Dr. Deniel James",
                 status = "Online",
@@ -87,7 +79,6 @@ fun MessageChatScreen(navController: NavController? = null, onBackClick: (() -> 
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Messages list with pagination
             Box(modifier = Modifier.weight(1f)) {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
@@ -105,7 +96,6 @@ fun MessageChatScreen(navController: NavController? = null, onBackClick: (() -> 
                                 isSent = idx % 2 == 0
                             )
                         }
-                        // Pagination trigger
                         if (idx == messages.size - 1 && messages.size < allMessages.size) {
                             androidx.compose.runtime.LaunchedEffect(messages.size) {
                                 loadedMessages += 20
@@ -115,12 +105,10 @@ fun MessageChatScreen(navController: NavController? = null, onBackClick: (() -> 
                 }
             }
 
-            // Input bar
             InputBar(
                 value = chatInput,
                 onValueChange = { chatInput = it },
                 onSendClick = {
-                    // Add message logic here
                 }
             )
         }

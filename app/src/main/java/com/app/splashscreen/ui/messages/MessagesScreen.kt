@@ -27,7 +27,6 @@ fun MessagesScreen(navController: NavController, onBackClick: (() -> Unit)? = nu
             .background(Color(0xFFF8F8F8))
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-            // Top bar
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -48,7 +47,6 @@ fun MessagesScreen(navController: NavController, onBackClick: (() -> Unit)? = nu
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Dummy messages
             val messages = listOf(
                 Triple("Dr. Supak Sookkasikon", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "12:58 PM"),
                 Triple("Dr. Diallo S Jabari", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "YESTERDAY"),
@@ -58,7 +56,6 @@ fun MessagesScreen(navController: NavController, onBackClick: (() -> Unit)? = nu
                 Triple("Dr. Gerard Lucas", "I trust this message finds you in good spirits. As part of our ongoing commitment to your health, it's time for some routine lab work", "07/30/2024")
             )
 
-            // Messages list
             Box(modifier = Modifier.weight(1f)) {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
@@ -86,7 +83,6 @@ fun MessagesScreen(navController: NavController, onBackClick: (() -> Unit)? = nu
             }
         }
 
-        // Floating navbar at bottom
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -98,7 +94,6 @@ fun MessagesScreen(navController: NavController, onBackClick: (() -> Unit)? = nu
                 onCenterClick = { navController.navigate("patientcare") },
                 onPowerClick = { navController.navigate("login") },
                 onDotsClick = { 
-                    // Handle three dots click - could be settings or more options
                 }
             )
         }

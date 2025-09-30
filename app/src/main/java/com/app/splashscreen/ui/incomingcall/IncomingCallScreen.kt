@@ -19,7 +19,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 
 @Composable
 fun IncomingCallScreen(
@@ -46,19 +45,16 @@ fun IncomingCallScreen(
                 color = Color.Black
             )
             Spacer(modifier = Modifier.height(32.dp))
-            // Profile image with perfect red border
             Box(
                 modifier = Modifier.size(120.dp),
                 contentAlignment = Alignment.Center
             ) {
-                // Red border circle
                 Box(
                     modifier = Modifier
                         .size(120.dp)
                         .background(Color.Transparent)
                         .border(6.dp, Color(0xFFE94F4F), CircleShape)
                 )
-                // Profile image clipped inside
                 Image(
                     painter = painterResource(id = doctorImageRes),
                     contentDescription = "Doctor Image",
@@ -80,12 +76,10 @@ fun IncomingCallScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                // Accept Call
                 Box(
                     modifier = Modifier
                         .size(64.dp)
-//                        .shadow(8.dp, CircleShape)
-//                        .background(Color(0xFF4CAF50), CircleShape)
+
                         .clickable { onAccept() },
                     contentAlignment = Alignment.Center
                 ) {
@@ -96,12 +90,10 @@ fun IncomingCallScreen(
                     )
                 }
                 Spacer(modifier = Modifier.width(48.dp))
-                // Reject Call
                 Box(
                     modifier = Modifier
                         .size(64.dp)
-//                        .shadow(8.dp, CircleShape)
-//                        .background(Color(0xFFE94F4F), CircleShape)
+
                         .clickable { onReject() },
                     contentAlignment = Alignment.Center
                 ) {

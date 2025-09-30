@@ -37,13 +37,11 @@ fun VideoCallScreen(
     navController: NavController? = null,
     enableScroll: Boolean = true
 ) {
-    // Navigation bar and white area remain at the top
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFF8F8F8))
     ) {
-        // TopBar (navigation)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
